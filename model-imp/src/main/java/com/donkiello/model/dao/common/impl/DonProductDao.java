@@ -41,7 +41,7 @@ public class DonProductDao extends AbstractDao implements IDonProductsDao{
     }
 
     public List<DonProducts> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonProducts ");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonProducts c ");
         List<DonProducts> products = query.getResultList();
         return products;
     }

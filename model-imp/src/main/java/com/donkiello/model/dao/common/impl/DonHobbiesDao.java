@@ -41,7 +41,7 @@ public class DonHobbiesDao extends AbstractDao implements IDonHobbiesDao{
     }
 
     public List<DonHobbies> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonHobbies ");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonHobbies c");
         List<DonHobbies> hobbies = query.getResultList();
         return hobbies;
     }

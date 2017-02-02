@@ -1,210 +1,204 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.donkiello.model.entity.common;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
- *
- * @author Mohammad
+ * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_program")
-@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "DonProgram.findAll", query = "SELECT d FROM DonProgram d"),
-//    @NamedQuery(name = "DonProgram.findByDon364id", query = "SELECT d FROM DonProgram d WHERE d.don364id = :don364id"),
-//    @NamedQuery(name = "DonProgram.findByDon364programName", query = "SELECT d FROM DonProgram d WHERE d.don364programName = :don364programName"),
-//    @NamedQuery(name = "DonProgram.findByDon364masterThesis", query = "SELECT d FROM DonProgram d WHERE d.don364masterThesis = :don364masterThesis"),
-//    @NamedQuery(name = "DonProgram.findByDon364thesisSubject", query = "SELECT d FROM DonProgram d WHERE d.don364thesisSubject = :don364thesisSubject"),
-//    @NamedQuery(name = "DonProgram.findByDon364supervisor", query = "SELECT d FROM DonProgram d WHERE d.don364supervisor = :don364supervisor"),
-//    @NamedQuery(name = "DonProgram.findByDon364firstPayment", query = "SELECT d FROM DonProgram d WHERE d.don364firstPayment = :don364firstPayment"),
-//    @NamedQuery(name = "DonProgram.findByDon364secondPayment", query = "SELECT d FROM DonProgram d WHERE d.don364secondPayment = :don364secondPayment"),
-//    @NamedQuery(name = "DonProgram.findByDon364paymentDesc", query = "SELECT d FROM DonProgram d WHERE d.don364paymentDesc = :don364paymentDesc"),
-//    @NamedQuery(name = "DonProgram.findByDon364deleted", query = "SELECT d FROM DonProgram d WHERE d.don364deleted = :don364deleted")})
-public class DonProgram implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "don_program", schema = "dondb", catalog = "")
+public class DonProgram {
+    private Integer programId;
+    private Integer customerId;
+    private String programProgramName;
+    private String programMasterThesis;
+    private String programThesisSubject;
+    private String programSecondPayment;
+    private String programFirstPayment;
+    private String programSupervisor;
+    private String programPaymentDisc;
+    private Integer programDeleted;
+    private String programIsStudying;
+    private String programPaymentStatus;
+    private DonCustomer donCustomerByCustomerId;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "DON364ID")
-    private Integer don364id;
-    @Size(max = 1000)
-    @Column(name = "DON364PROGRAM_NAME")
-    private String don364programName;
-    @Size(max = 2000)
-    @Column(name = "DON364MASTER_THESIS")
-    private String don364masterThesis;
-    @Size(max = 2000)
-    @Column(name = "DON364THESIS_SUBJECT")
-    private String don364thesisSubject;
-    @Size(max = 1000)
-    @Column(name = "DON364SUPERVISOR")
-    private String don364supervisor;
-    @Size(max = 100)
-    @Column(name = "DON364FIRST_PAYMENT")
-    private String don364firstPayment;
-    @Size(max = 100)
-    @Column(name = "DON364SECOND_PAYMENT")
-    private String don364secondPayment;
-    @Size(max = 2000)
-    @Column(name = "DON364PAYMENT_DESC")
-    private String don364paymentDesc;
-    @Size(max = 100)
-    @Column(name = "DON364PAYMENT_STATUS")
-    private String don364paymentStatus;
-    @Size(max = 100)
-    @Column(name = "DON364ISSTUDYING")
-    private String don364isStudying;
-    
-    @Column(name = "DON364DELETED")
-    private Short deleted;
-    @JoinColumn(name = "DON360ID", referencedColumnName = "DON360ID")
-    @ManyToOne(optional = false)
-    private DonCustomer don360id;
-
-    public DonProgram() {
+    @Column(name = "ProgramID")
+    public int getProgramId() {
+        return programId;
     }
 
-    public DonProgram(Integer don364id) {
-        this.don364id = don364id;
+    public void setProgramId(int programId) {
+        this.programId = programId;
     }
 
-    public Integer getDon364id() {
-        return don364id;
+    @Basic
+    @Column(name = "CustomerID")
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setDon364id(Integer don364id) {
-        this.don364id = don364id;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public String getDon364programName() {
-        return don364programName;
+    @Basic
+    @Column(name = "ProgramProgramName")
+    public String getProgramProgramName() {
+        return programProgramName;
     }
 
-    public void setDon364programName(String don364programName) {
-        this.don364programName = don364programName;
+    public void setProgramProgramName(String programProgramName) {
+        this.programProgramName = programProgramName;
     }
 
-    public String getDon364masterThesis() {
-        return don364masterThesis;
+    @Basic
+    @Column(name = "ProgramMasterThesis")
+    public String getProgramMasterThesis() {
+        return programMasterThesis;
     }
 
-    public void setDon364masterThesis(String don364masterThesis) {
-        this.don364masterThesis = don364masterThesis;
+    public void setProgramMasterThesis(String programMasterThesis) {
+        this.programMasterThesis = programMasterThesis;
     }
 
-    public String getDon364thesisSubject() {
-        return don364thesisSubject;
+    @Basic
+    @Column(name = "ProgramThesisSubject")
+    public String getProgramThesisSubject() {
+        return programThesisSubject;
     }
 
-    public void setDon364thesisSubject(String don364thesisSubject) {
-        this.don364thesisSubject = don364thesisSubject;
+    public void setProgramThesisSubject(String programThesisSubject) {
+        this.programThesisSubject = programThesisSubject;
     }
 
-    public String getDon364supervisor() {
-        return don364supervisor;
+    @Basic
+    @Column(name = "ProgramSecondPayment")
+    public String getProgramSecondPayment() {
+        return programSecondPayment;
     }
 
-    public void setDon364supervisor(String don364supervisor) {
-        this.don364supervisor = don364supervisor;
+    public void setProgramSecondPayment(String programSecondPayment) {
+        this.programSecondPayment = programSecondPayment;
     }
 
-
-    public String getDon364paymentDesc() {
-        return don364paymentDesc;
+    @Basic
+    @Column(name = "ProgramFirstPayment")
+    public String getProgramFirstPayment() {
+        return programFirstPayment;
     }
 
-    public void setDon364paymentDesc(String don364paymentDesc) {
-        this.don364paymentDesc = don364paymentDesc;
+    public void setProgramFirstPayment(String programFirstPayment) {
+        this.programFirstPayment = programFirstPayment;
     }
 
-    public Short getDeleted() {
-        return deleted;
+    @Basic
+    @Column(name = "ProgramSupervisor")
+    public String getProgramSupervisor() {
+        return programSupervisor;
     }
 
-    public void setDeleted(Short deleted) {
-        this.deleted = deleted;
+    public void setProgramSupervisor(String programSupervisor) {
+        this.programSupervisor = programSupervisor;
     }
 
-    public DonCustomer getDon360id() {
-        return don360id;
+    @Basic
+    @Column(name = "ProgramPaymentDisc")
+    public String getProgramPaymentDisc() {
+        return programPaymentDisc;
     }
 
-    public void setDon360id(DonCustomer don360id) {
-        this.don360id = don360id;
+    public void setProgramPaymentDisc(String programPaymentDisc) {
+        this.programPaymentDisc = programPaymentDisc;
     }
 
-    public String getDon364firstPayment() {
-        return don364firstPayment;
+    @Basic
+    @Column(name = "ProgramDeleted")
+    public Integer getProgramDeleted() {
+        return programDeleted;
     }
 
-    public void setDon364firstPayment(String don364firstPayment) {
-        this.don364firstPayment = don364firstPayment;
+    public void setProgramDeleted(Integer programDeleted) {
+        this.programDeleted = programDeleted;
     }
 
-    public String getDon364secondPayment() {
-        return don364secondPayment;
+    @Basic
+    @Column(name = "ProgramIsStudying")
+    public String getProgramIsStudying() {
+        return programIsStudying;
     }
 
-    public void setDon364secondPayment(String don364secondPayment) {
-        this.don364secondPayment = don364secondPayment;
+    public void setProgramIsStudying(String programIsStudying) {
+        this.programIsStudying = programIsStudying;
     }
 
-    public String getDon364paymentStatus() {
-        return don364paymentStatus;
+    @Basic
+    @Column(name = "ProgramPaymentStatus")
+    public String getProgramPaymentStatus() {
+        return programPaymentStatus;
     }
 
-    public void setDon364paymentStatus(String don364paymentStatus) {
-        this.don364paymentStatus = don364paymentStatus;
-    }
-
-    public String getDon364isStudying() {
-        return don364isStudying;
-    }
-
-    public void setDon364isStudying(String don364isStudying) {
-        this.don364isStudying = don364isStudying;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (don364id != null ? don364id.hashCode() : 0);
-        return hash;
+    public void setProgramPaymentStatus(String programPaymentStatus) {
+        this.programPaymentStatus = programPaymentStatus;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DonProgram)) {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DonProgram that = (DonProgram) o;
+
+        if (programId != that.programId) return false;
+        if (customerId != that.customerId) return false;
+        if (programProgramName != null ? !programProgramName.equals(that.programProgramName) : that.programProgramName != null)
             return false;
-        }
-        DonProgram other = (DonProgram) object;
-        if ((this.don364id == null && other.don364id != null) || (this.don364id != null && !this.don364id.equals(other.don364id))) {
+        if (programMasterThesis != null ? !programMasterThesis.equals(that.programMasterThesis) : that.programMasterThesis != null)
             return false;
-        }
+        if (programThesisSubject != null ? !programThesisSubject.equals(that.programThesisSubject) : that.programThesisSubject != null)
+            return false;
+        if (programSecondPayment != null ? !programSecondPayment.equals(that.programSecondPayment) : that.programSecondPayment != null)
+            return false;
+        if (programFirstPayment != null ? !programFirstPayment.equals(that.programFirstPayment) : that.programFirstPayment != null)
+            return false;
+        if (programSupervisor != null ? !programSupervisor.equals(that.programSupervisor) : that.programSupervisor != null)
+            return false;
+        if (programPaymentDisc != null ? !programPaymentDisc.equals(that.programPaymentDisc) : that.programPaymentDisc != null)
+            return false;
+        if (programDeleted != null ? !programDeleted.equals(that.programDeleted) : that.programDeleted != null)
+            return false;
+        if (programIsStudying != null ? !programIsStudying.equals(that.programIsStudying) : that.programIsStudying != null)
+            return false;
+        if (programPaymentStatus != null ? !programPaymentStatus.equals(that.programPaymentStatus) : that.programPaymentStatus != null)
+            return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.donkiello.model.entity.common.DonProgram[ don364id=" + don364id + " ]";
+    public int hashCode() {
+        int result = programId;
+        result = 31 * result + customerId;
+        result = 31 * result + (programProgramName != null ? programProgramName.hashCode() : 0);
+        result = 31 * result + (programMasterThesis != null ? programMasterThesis.hashCode() : 0);
+        result = 31 * result + (programThesisSubject != null ? programThesisSubject.hashCode() : 0);
+        result = 31 * result + (programSecondPayment != null ? programSecondPayment.hashCode() : 0);
+        result = 31 * result + (programFirstPayment != null ? programFirstPayment.hashCode() : 0);
+        result = 31 * result + (programSupervisor != null ? programSupervisor.hashCode() : 0);
+        result = 31 * result + (programPaymentDisc != null ? programPaymentDisc.hashCode() : 0);
+        result = 31 * result + (programDeleted != null ? programDeleted.hashCode() : 0);
+        result = 31 * result + (programIsStudying != null ? programIsStudying.hashCode() : 0);
+        result = 31 * result + (programPaymentStatus != null ? programPaymentStatus.hashCode() : 0);
+        return result;
     }
-    
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
+    public DonCustomer getDonCustomerByCustomerId() {
+        return donCustomerByCustomerId;
+    }
+
+    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    }
 }

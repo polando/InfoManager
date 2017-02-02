@@ -37,7 +37,8 @@ public class DonPersonalDao extends AbstractDao implements IDonPersonalDao{
     }
 
     public void remove(DonPersonal t) {
-        t.setDeleted(Short.valueOf("1"));
+       // t.setDeleted(Short.valueOf("1"));
+        t.setPersonalDeleted(1);
         getEntityManager().merge(t);
     }
 

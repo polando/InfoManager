@@ -39,7 +39,8 @@ public class DonCustomerDao extends AbstractDao implements IDonCustomerDao {
 
     public void remove(DonCustomer t) {
         try {
-            t.setDeleted(BaseEntity.DELETE_YES);
+          //  t.setDeleted(BaseEntity.DELETE_YES);
+            t.setCustomerDeleted(1);
             getEntityManager().merge(t);
         } catch (Exception e) {
             System.out.println("exception\n" + e.getMessage());
@@ -48,7 +49,7 @@ public class DonCustomerDao extends AbstractDao implements IDonCustomerDao {
     }
 
     public List<DonCustomer> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonCustomer c WHERE c.deleted = 0");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonCustomer c WHERE c.customerDeleted = 0");
         List<DonCustomer> customers = query.getResultList();
         return customers;
     }

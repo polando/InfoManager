@@ -20,7 +20,7 @@
             <p:dataTable rowStyleClass="rowClass" style="font-size: 13px; font-style: normal;" id="customerTable" var="customer"  value="#{customerManager.customerList}" widgetVar="customersTable"
                          emptyMessage="No Customers found with given criteria" filteredValue="#{customerManager.filteredCustomers}" paginator="true" rows="10"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} "
-                         rowsPerPageTemplate="5,10,15" sortMode="multiple"  draggableColumns="true"  rowKey="#{customer.don360id}" >
+                         rowsPerPageTemplate="5,10,15" sortMode="multiple"  draggableColumns="true"  rowKey="#{customer.customerId}" >
 
                 <f:facet name="header">
                     <p:commandButton style="float: left" value="Add" icon="ui-icon-plus" action="#{customerManager.addCustomer()}" type="submit" ajax="false"/>
@@ -32,38 +32,44 @@
                     </p:outputPanel>
                 </f:facet>
                 <p:column exportable="false" headerText="Image" width="62">
-                    <p:graphicImage rendered="#{not empty customer.don360image}" url="/DisplayImage?type=ps&amp;pid=#{customer.don360id}" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
-                    <p:graphicImage rendered="#{empty customer.don360image}" url="/resources/images/unknown.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
+                    <p:graphicImage rendered="#{not empty customer.customerImage}" url="/DisplayImage?type=ps&amp;pid=#{customer.customerId}" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
+                    <p:graphicImage rendered="#{empty customer.customerImage}" url="/resources/images/unknown.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
 
                 </p:column>
-                <p:column  filterBy="#{customer.don360name}" headerText="Name" sortBy="#{customer.don360name}"  filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360name}" />
+                <p:column  filterBy="#{customer.customerName}" headerText="Name" sortBy="#{customer.customerName}"  filterMatchMode="contains">
+                    <h:outputText value="#{customer.customerName}" />
                 </p:column>
                 
-                <p:column  filterBy="#{customer.donPersonalList.get(0).don361personalMail}" headerText="E-Mail"  width="15%" styleClass="not-show-at-start" filterMatchMode="contains" >
-                    <h:outputText value="#{customer.donPersonalList.get(0).don361personalMail}"/>
+                <p:column  filterBy="#{customer.firstBusinessEmail}" headerText="E-Mail"  width="15%" styleClass="not-show-at-start" filterMatchMode="contains" >
+                    <h:outputText value="#{customer.firstBusinessEmail}"/>
                 </p:column>
 
-                <p:column filterBy="#{customer.don360mobileno}" headerText="Tell(Mobile)"  filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360mobileno}" />
+                <p:column filterBy="#{customer.customerMobileNo}" headerText="Tell(Mobile)"  filterMatchMode="contains">
+                    <h:outputText value="#{customer.customerMobileNo}" />
                 </p:column>
 
-                <p:column filterBy="#{customer.don360customerRate}" headerText="Class"  width="6%" sortBy="#{customer.don360customerRate}" filterMatchMode="contains">
+                <p:column filterBy="#{customer.customerRate}" headerText="Class"  width="6%" sortBy="#{customer.customerRate}" filterMatchMode="contains">
 
-                    <h:outputText value="#{customer.don360customerRate}" />
+                    <h:outputText value="#{customer.customerRate}" />
                 </p:column>
-                <p:column filterBy="#{customer.don360programs}" headerText="Programs" width="6%" filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360programs}" />
+                <p:column filterBy="#{customer.customerPrograms}" headerText="Programs" width="6%" filterMatchMode="contains">
+                    <h:outputText value="#{customer.customerPrograms}" />
                 </p:column>
-                <p:column filterBy="#{customer.don360bussinessNames}" headerText="Business Name" filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360bussinessNames}" />
+                <p:column filterBy="#{customer.firstBusinessName}" headerText="Business Name" filterMatchMode="contains">
+                    <h:outputText value="#{customer.firstBusinessName}" />
                 </p:column>
 <!--                <p:column  filterBy="#{customer.donPersonalList.get(0).don361description}" headerText="Comments" styleClass="not-show-at-start" filterMatchMode="contains">
                     <h:outputText value="#{customer.donPersonalList.get(0).don361description}" />
                 </p:column>-->
-                <p:column  filterBy="#{customer.donPersonalList.get(0).don361homeAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
+            <!--    <p:column  filterBy="#{customer.donPersonalList.get(0).don361homeAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
                     <h:outputText value="#{customer.donPersonalList.get(0).don361homeAddress}" />
                 </p:column>
+                  !-->
+
+                <p:column  filterBy="#{customer.firstBusinessAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
+                    <h:outputText value="#{customer.FirstBusinessAddress}" />
+                </p:column>
+
 <!--                <p:column filterBy="#{customer.donBussinessList.get(0).don368tag}" headerText="Business Tags" filterMatchMode="contains">
                     <h:outputText value="#{customer.donBussinessList.get(0).don368tag}" />
                 </p:column>-->
@@ -73,8 +79,8 @@
                 <p:column filterBy="#{customer.don360paymentStatus}" headerText="Payment status" sortBy="#{customer.don360paymentStatus}" filterMatchMode="contains">
                     <h:outputText value="#{customer.don360paymentStatus}" />
                 </p:column>-->
-                <p:column filterBy="#{customer.donBussinessList.get(0).don368bussField}" headerText="Business Fields" filterMatchMode="contains">
-                    <h:outputText value="#{customer.donBussinessList.get(0).don368bussField}" />
+                <p:column filterBy="#{customer.firstBusinessField}" headerText="Business Fields" filterMatchMode="contains">
+                    <h:outputText value="#{customer.firstBusinessField}" />
                 </p:column>
 
                 <p:column width="40" style="max-width: 40px;" exportable="false" >
@@ -96,7 +102,7 @@
                 <p:graphicImage name="/images/excel.png" />
                 <p:dataExporter  type="xls" target="customerTable" fileName="students" />
             </h:commandLink>
-            <p:commandLink value="Logout #{login.onlineUser.don369name}" action="#{login.logout}" style="float: right; color: #f6a828;" />
+            <p:commandLink value="Logout #{login.onlineUser.usersName}" action="#{login.logout}" style="float: right; color: #f6a828;" />
         </h:form>
     </h:body>
 </f:view>

@@ -1,241 +1,244 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.donkiello.model.entity.common;
 
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /**
- *
- * @author Mohammad
+ * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_customer")
-@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "DonCustomer.findAll", query = "SELECT d FROM DonCustomer d"),
-//    @NamedQuery(name = "DonCustomer.findByDon360id", query = "SELECT d FROM DonCustomer d WHERE d.don360id = :don360id"),
-//    @NamedQuery(name = "DonCustomer.findByDon360deleted", query = "SELECT d FROM DonCustomer d WHERE d.don360deleted = :don360deleted"),
-//    @NamedQuery(name = "DonCustomer.findByDon360name", query = "SELECT d FROM DonCustomer d WHERE d.don360name = :don360name"),
-//    @NamedQuery(name = "DonCustomer.findByDon360bussinessNames", query = "SELECT d FROM DonCustomer d WHERE d.don360bussinessNames = :don360bussinessNames"),
-//    @NamedQuery(name = "DonCustomer.findByDon360programs", query = "SELECT d FROM DonCustomer d WHERE d.don360programs = :don360programs"),
-//    @NamedQuery(name = "DonCustomer.findByDon360paymentStatus", query = "SELECT d FROM DonCustomer d WHERE d.don360paymentStatus = :don360paymentStatus"),
-//    @NamedQuery(name = "DonCustomer.findByDon360mobileno", query = "SELECT d FROM DonCustomer d WHERE d.don360mobileno = :don360mobileno")})
-public class DonCustomer implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "don_customer", schema = "dondb", catalog = "")
+public class DonCustomer {
+    private int customerId;
+    private String customerRate;
+    private String customerEcoRate;
+    private Integer customerDeleted;
+    private String customerName;
+    private byte[] customerImage;
+    private String customerBusinessName;
+    private String customerPrograms;
+    private String customerPaymentStatus;
+    private String customerMobileNo;
+    private List<DonBussiness> donBussinessesByCustomerId;
+    private List<DonPast> donPastsByCustomerId;
+    private List<DonPersonal> donPersonalsByCustomerId;
+    private List<DonProgram> donProgramsByCustomerId;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "DON360ID")
-    private Integer don360id;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "DON360CUSTOMER_RATE")
-    private String don360customerRate;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "DON360CUSTOMER_ECO_RATE")
-    private String don360customerEcoRate;
-    @Column(name = "DON360DELETED")
-    private Short deleted;
-    @Size(max = 1000)
-    @Column(name = "DON360NAME")
-    private String don360name;
-    @Lob
-    @Column(name = "DON360IMAGE")
-    private byte[] don360image;
-    @Size(max = 5000)
-    @Column(name = "DON360BUSSINESS_NAMES")
-    private String don360bussinessNames;
-    @Size(max = 500)
-    @Column(name = "DON360PROGRAMS")
-    private String don360programs;
-    @Size(max = 100)
-    @Column(name = "DON360PAYMENT_STATUS")
-    private String don360paymentStatus;
-    @Size(max = 200)
-    @Column(name = "DON360MOBILENO")
-    private String don360mobileno;
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "don360id" )
-    private List<DonPersonal> donPersonalList;
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "don360id" )
-    private List<DonPast> donPastList;
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "don360id" )
-    private List<DonBussiness> donBussinessList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "don360id")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<DonProgram> donProgramList;
-
-    public DonCustomer() {
+    @Column(name = "CustomerID")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public DonCustomer(Integer don360id) {
-        this.don360id = don360id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public Integer getDon360id() {
-        return don360id;
+    @Basic
+    @Column(name = "CustomerRate")
+    public String getCustomerRate() {
+        return customerRate;
     }
 
-    public void setDon360id(Integer don360id) {
-        this.don360id = don360id;
+    public void setCustomerRate(String customerRate) {
+        this.customerRate = customerRate;
     }
 
-    public String getDon360customerRate() {
-        return don360customerRate;
+    @Basic
+    @Column(name = "CustomerEcoRate")
+    public String getCustomerEcoRate() {
+        return customerEcoRate;
     }
 
-    public void setDon360customerRate(String don360customerRate) {
-        this.don360customerRate = don360customerRate;
+    public void setCustomerEcoRate(String customerEcoRate) {
+        this.customerEcoRate = customerEcoRate;
     }
 
-    public String getDon360customerEcoRate() {
-        return don360customerEcoRate;
+    @Basic
+    @Column(name = "CustomerDeleted")
+    public Integer getCustomerDeleted() {
+        return customerDeleted;
     }
 
-    public void setDon360customerEcoRate(String don360customerEcoRate) {
-        this.don360customerEcoRate = don360customerEcoRate;
+    public void setCustomerDeleted(Integer customerDeleted) {
+        this.customerDeleted = customerDeleted;
     }
 
-    public Short getDeleted() {
-        return deleted;
+    @Basic
+    @Column(name = "CustomerName")
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setDeleted(Short deleted) {
-        System.out.println("in set deleted");
-        this.deleted = deleted;
-        System.out.println("after set deleted");
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getDon360name() {
-        return don360name;
+    @Basic
+    @Column(name = "CustomerImage")
+    public byte[] getCustomerImage() {
+        return customerImage;
     }
 
-    public void setDon360name(String don360name) {
-        this.don360name = don360name;
+    public void setCustomerImage(byte[] customerImage) {
+        this.customerImage = customerImage;
     }
 
-    public byte[] getDon360image() {
-        return don360image;
+    @Basic
+    @Column(name = "CustomerBusinessName")
+    public String getCustomerBusinessName() {
+        return customerBusinessName;
     }
 
-    public void setDon360image(byte[] don360image) {
-        this.don360image = don360image;
+    public void setCustomerBusinessName(String customerBusinessName) {
+        this.customerBusinessName = customerBusinessName;
     }
 
-    public String getDon360bussinessNames() {
-        return don360bussinessNames;
+    @Basic
+    @Column(name = "CustomerPrograms")
+    public String getCustomerPrograms() {
+        return customerPrograms;
     }
 
-    public void setDon360bussinessNames(String don360bussinessNames) {
-        this.don360bussinessNames = don360bussinessNames;
+    public void setCustomerPrograms(String customerPrograms) {
+        this.customerPrograms = customerPrograms;
     }
 
-    public String getDon360programs() {
-        return don360programs;
+    @Basic
+    @Column(name = "CustomerPaymentStatus")
+    public String getCustomerPaymentStatus() {
+        return customerPaymentStatus;
     }
 
-    public void setDon360programs(String don360programs) {
-        this.don360programs = don360programs;
+    public void setCustomerPaymentStatus(String customerPaymentStatus) {
+        this.customerPaymentStatus = customerPaymentStatus;
     }
 
-    public String getDon360paymentStatus() {
-        return don360paymentStatus;
+    @Basic
+    @Column(name = "CustomerMobileNo")
+    public String getCustomerMobileNo() {
+        return customerMobileNo;
     }
 
-    public void setDon360paymentStatus(String don360paymentStatus) {
-        this.don360paymentStatus = don360paymentStatus;
-    }
-
-    public String getDon360mobileno() {
-        return don360mobileno;
-    }
-
-    public void setDon360mobileno(String don360mobileno) {
-        this.don360mobileno = don360mobileno;
-    }
-
-    @XmlTransient
-    public List<DonPersonal> getDonPersonalList() {
-        return donPersonalList;
-    }
-
-    public void setDonPersonalList(List<DonPersonal> donPersonalList) {
-        this.donPersonalList = donPersonalList;
-    }
-
-    @XmlTransient
-    public List<DonPast> getDonPastList() {
-        return donPastList;
-    }
-
-    public void setDonPastList(List<DonPast> donPastList) {
-        this.donPastList = donPastList;
-    }
-
-    @XmlTransient
-    public List<DonBussiness> getDonBussinessList() {
-        return donBussinessList;
-    }
-
-    public void setDonBussinessList(List<DonBussiness> donBussinessList) {
-        this.donBussinessList = donBussinessList;
-    }
-
-    @XmlTransient
-    public List<DonProgram> getDonProgramList() {
-        return donProgramList;
-    }
-
-    public void setDonProgramList(List<DonProgram> donProgramList) {
-        this.donProgramList = donProgramList;
+    public void setCustomerMobileNo(String customerMobileNo) {
+        this.customerMobileNo = customerMobileNo;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (don360id != null ? don360id.hashCode() : 0);
-        return hash;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DonCustomer)) {
+        DonCustomer that = (DonCustomer) o;
+
+        if (customerId != that.customerId) return false;
+        if (customerRate != null ? !customerRate.equals(that.customerRate) : that.customerRate != null) return false;
+        if (customerEcoRate != null ? !customerEcoRate.equals(that.customerEcoRate) : that.customerEcoRate != null)
             return false;
-        }
-        DonCustomer other = (DonCustomer) object;
-        if ((this.don360id == null && other.don360id != null) || (this.don360id != null && !this.don360id.equals(other.don360id))) {
+        if (customerDeleted != null ? !customerDeleted.equals(that.customerDeleted) : that.customerDeleted != null)
             return false;
-        }
+        if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null) return false;
+        if (!Arrays.equals(customerImage, that.customerImage)) return false;
+        if (customerBusinessName != null ? !customerBusinessName.equals(that.customerBusinessName) : that.customerBusinessName != null)
+            return false;
+        if (customerPrograms != null ? !customerPrograms.equals(that.customerPrograms) : that.customerPrograms != null)
+            return false;
+        if (customerPaymentStatus != null ? !customerPaymentStatus.equals(that.customerPaymentStatus) : that.customerPaymentStatus != null)
+            return false;
+        if (customerMobileNo != null ? !customerMobileNo.equals(that.customerMobileNo) : that.customerMobileNo != null)
+            return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.donkiello.model.entity.common.DonCustomer[ don360id=" + don360id + " ]";
+    public int hashCode() {
+        int result = customerId;
+        result = 31 * result + (customerRate != null ? customerRate.hashCode() : 0);
+        result = 31 * result + (customerEcoRate != null ? customerEcoRate.hashCode() : 0);
+        result = 31 * result + (customerDeleted != null ? customerDeleted.hashCode() : 0);
+        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(customerImage);
+        result = 31 * result + (customerBusinessName != null ? customerBusinessName.hashCode() : 0);
+        result = 31 * result + (customerPrograms != null ? customerPrograms.hashCode() : 0);
+        result = 31 * result + (customerPaymentStatus != null ? customerPaymentStatus.hashCode() : 0);
+        result = 31 * result + (customerMobileNo != null ? customerMobileNo.hashCode() : 0);
+        return result;
     }
-    
+
+    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    public List<DonBussiness> getDonBussinessesByCustomerId() {
+        return donBussinessesByCustomerId;
+    }
+
+    public void setDonBussinessesByCustomerId(List<DonBussiness> donBussinessesByCustomerId) {
+        this.donBussinessesByCustomerId = donBussinessesByCustomerId;
+    }
+
+    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    public List<DonPast> getDonPastsByCustomerId() {
+        return donPastsByCustomerId;
+    }
+
+    public void setDonPastsByCustomerId(List<DonPast> donPastsByCustomerId) {
+        this.donPastsByCustomerId = donPastsByCustomerId;
+    }
+
+    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    public List<DonPersonal> getDonPersonalsByCustomerId() {
+        return donPersonalsByCustomerId;
+    }
+
+    public void setDonPersonalsByCustomerId(List<DonPersonal> donPersonalsByCustomerId) {
+        this.donPersonalsByCustomerId = donPersonalsByCustomerId;
+    }
+
+    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    public List<DonProgram> getDonProgramsByCustomerId() {
+        return donProgramsByCustomerId;
+    }
+
+    public void setDonProgramsByCustomerId(List<DonProgram> donProgramsByCustomerId) {
+        this.donProgramsByCustomerId = donProgramsByCustomerId;
+    }
+
+    public String firstBusinessAddress()
+    {
+        if(donBussinessesByCustomerId != null)
+        {
+            return donBussinessesByCustomerId.get(0).getBusinessAddress();
+        }
+        else return "";
+    }
+
+    public String firstBusinessField()
+    {
+        if(donBussinessesByCustomerId != null)
+        {
+            return donBussinessesByCustomerId.get(0).getBusinessField();
+        }
+        else return "";
+    }
+
+    public String firstBusinessName()
+    {
+        if(donBussinessesByCustomerId != null)
+        {
+            return donBussinessesByCustomerId.get(0).getBusinessName();
+        }
+        else return "";
+    }
+
+    public String firstBusinessEmail()
+    {
+        if(donBussinessesByCustomerId != null)
+        {
+            return donBussinessesByCustomerId.get(0).getBusinessEmail();
+        }
+        else return "";
+    }
+
+
 }

@@ -1,392 +1,413 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.donkiello.model.entity.common;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
+import java.math.BigInteger;
+import java.sql.Date;
+import java.util.Arrays;
 
 /**
- *
- * @author Mohammad
+ * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_personal")
-@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "DonPersonal.findAll", query = "SELECT d FROM DonPersonal d"),
-//    @NamedQuery(name = "DonPersonal.findByDon361id", query = "SELECT d FROM DonPersonal d WHERE d.don361id = :don361id"),
-//    @NamedQuery(name = "DonPersonal.findByDon361name", query = "SELECT d FROM DonPersonal d WHERE d.don361name = :don361name"),
-//    @NamedQuery(name = "DonPersonal.findByDon361familyName", query = "SELECT d FROM DonPersonal d WHERE d.don361familyName = :don361familyName"),
-//    @NamedQuery(name = "DonPersonal.findByDon361gender", query = "SELECT d FROM DonPersonal d WHERE d.don361gender = :don361gender"),
-//    @NamedQuery(name = "DonPersonal.findByDon361mobileNumber", query = "SELECT d FROM DonPersonal d WHERE d.don361mobileNumber = :don361mobileNumber"),
-//    @NamedQuery(name = "DonPersonal.findByDon361enName", query = "SELECT d FROM DonPersonal d WHERE d.don361enName = :don361enName"),
-//    @NamedQuery(name = "DonPersonal.findByDon361enFamily", query = "SELECT d FROM DonPersonal d WHERE d.don361enFamily = :don361enFamily"),
-//    @NamedQuery(name = "DonPersonal.findByDon361prefix", query = "SELECT d FROM DonPersonal d WHERE d.don361prefix = :don361prefix"),
-//    @NamedQuery(name = "DonPersonal.findByDon361enPrefix", query = "SELECT d FROM DonPersonal d WHERE d.don361enPrefix = :don361enPrefix"),
-//    @NamedQuery(name = "DonPersonal.findByDon361homeTel", query = "SELECT d FROM DonPersonal d WHERE d.don361homeTel = :don361homeTel"),
-//    @NamedQuery(name = "DonPersonal.findByDon361homeFax", query = "SELECT d FROM DonPersonal d WHERE d.don361homeFax = :don361homeFax"),
-//    @NamedQuery(name = "DonPersonal.findByDon361postalCode", query = "SELECT d FROM DonPersonal d WHERE d.don361postalCode = :don361postalCode"),
-//    @NamedQuery(name = "DonPersonal.findByDon361homeAddress", query = "SELECT d FROM DonPersonal d WHERE d.don361homeAddress = :don361homeAddress"),
-//    @NamedQuery(name = "DonPersonal.findByDon361fHName", query = "SELECT d FROM DonPersonal d WHERE d.don361fHName = :don361fHName"),
-//    @NamedQuery(name = "DonPersonal.findByDon361enFHName", query = "SELECT d FROM DonPersonal d WHERE d.don361enFHName = :don361enFHName"),
-//    @NamedQuery(name = "DonPersonal.findByDon361birthday", query = "SELECT d FROM DonPersonal d WHERE d.don361birthday = :don361birthday"),
-//    @NamedQuery(name = "DonPersonal.findByDon361enHomeAddress", query = "SELECT d FROM DonPersonal d WHERE d.don361enHomeAddress = :don361enHomeAddress"),
-//    @NamedQuery(name = "DonPersonal.findByDon361birthPlace", query = "SELECT d FROM DonPersonal d WHERE d.don361birthPlace = :don361birthPlace"),
-//    @NamedQuery(name = "DonPersonal.findByDon361passportNo", query = "SELECT d FROM DonPersonal d WHERE d.don361passportNo = :don361passportNo"),
-//    @NamedQuery(name = "DonPersonal.findByDon361birthCerNo", query = "SELECT d FROM DonPersonal d WHERE d.don361birthCerNo = :don361birthCerNo"),
-//    @NamedQuery(name = "DonPersonal.findByDon361personalMail", query = "SELECT d FROM DonPersonal d WHERE d.don361personalMail = :don361personalMail"),
-//    @NamedQuery(name = "DonPersonal.findByDon361hobbies", query = "SELECT d FROM DonPersonal d WHERE d.don361hobbies = :don361hobbies"),
-//    @NamedQuery(name = "DonPersonal.findByDon364deleted", query = "SELECT d FROM DonPersonal d WHERE d.don364deleted = :don364deleted")})
-public class DonPersonal implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "don_personal", schema = "dondb", catalog = "")
+public class DonPersonal {
+    private int personalId;
+    private int customerId;
+    private String persinalName;
+    private String personalFamilyName;
+    private BigInteger personalGender;
+    private String personalMobileNum;
+    private String personalNameEn;
+    private String personalFamilyNameEn;
+    private String personalPrefix;
+    private String personalPrefixEn;
+    private String personalHomeTel;
+    private String personalHomeFax;
+    private String personalPostalCode;
+    private String personalHomeAddress;
+    private String personalFhName;
+    private String personalFhNameEn;
+    private Date personalBirthday;
+    private String personalHomeAddressEn;
+    private String personalBirthPlace;
+    private String personalPassportNo;
+    private String personalBirthCertNo;
+    private String personalPersonalEmail;
+    private byte[] personalPassportScan;
+    private byte[] personalBirthCertScan;
+    private String personalDisc;
+    private String personalHobbies;
+    private Integer personalDeleted;
+    private DonCustomer donCustomerByCustomerId;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "DON361ID")
-    private Integer don361id;
-    @Size(max = 1000)
-    @Column(name = "DON361NAME")
-    private String don361name;
-    @Size(max = 1000)
-    @Column(name = "DON361FAMILY_NAME")
-    private String don361familyName;
-    @Column(name = "DON361GENDER")
-    private Short don361gender;
-    @Size(max = 1000)
-    @Column(name = "DON361MOBILE_NUMBER")
-    private String don361mobileNumber;
-    @Size(max = 1000)
-    @Column(name = "DON361EN_NAME")
-    private String don361enName;
-    @Size(max = 1000)
-    @Column(name = "DON361EN_FAMILY")
-    private String don361enFamily;
-    @Size(max = 1000)
-    @Column(name = "DON361PREFIX")
-    private String don361prefix;
-    @Size(max = 1000)
-    @Column(name = "DON361EN_PREFIX")
-    private String don361enPrefix;
-    @Size(max = 1000)
-    @Column(name = "DON361HOME_TEL")
-    private String don361homeTel;
-    @Size(max = 1000)
-    @Column(name = "DON361HOME_FAX")
-    private String don361homeFax;
-    @Size(max = 1000)
-    @Column(name = "DON361POSTAL_CODE")
-    private String don361postalCode;
-    @Size(max = 3000)
-    @Column(name = "DON361HOME_ADDRESS")
-    private String don361homeAddress;
-    @Size(max = 1000)
-    @Column(name = "DON361F_H_NAME")
-    private String don361fHName;
-    @Size(max = 1000)
-    @Column(name = "DON361EN_F_H_NAME")
-    private String don361enFHName;
-    @Column(name = "DON361BIRTHDAY")
-    @Temporal(TemporalType.DATE)
-    private Date don361birthday;
-    @Size(max = 1000)
-    @Column(name = "DON361EN_HOME_ADDRESS")
-    private String don361enHomeAddress;
-    @Size(max = 1000)
-    @Column(name = "DON361BIRTH_PLACE")
-    private String don361birthPlace;
-    @Size(max = 1000)
-    @Column(name = "DON361PASSPORT_NO")
-    private String don361passportNo;
-    @Size(max = 100)
-    @Column(name = "DON361BIRTH_CER_NO")
-    private String don361birthCerNo;
-    @Size(max = 100)
-    @Column(name = "DON361PERSONAL_MAIL")
-    private String don361personalMail;
-    @Lob
-    @Column(name = "DON361PASSPORT_SCAN")
-    private byte[] don361passportScan;
-    @Lob
-    @Column(name = "DON361BIRTH_CERT_SCAN")
-    private byte[] don361birthCertScan;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "DON361DESCRIPTION")
-    private String don361description;
-    @Size(max = 1000)
-    @Column(name = "DON361HOBBIES")
-    private String don361hobbies;
-    @Column(name = "DON364DELETED")
-    private Short deleted;
-    @JoinColumn(name = "DON360ID", referencedColumnName = "DON360ID")
-    @ManyToOne(optional = false)
-    private DonCustomer don360id;
-
-    public DonPersonal() {
+    @Column(name = "PersonalID")
+    public int getPersonalId() {
+        return personalId;
     }
 
-    public DonPersonal(Integer don361id) {
-        this.don361id = don361id;
+    public void setPersonalId(int personalId) {
+        this.personalId = personalId;
     }
 
-    public Integer getDon361id() {
-        return don361id;
+    @Basic
+    @Column(name = "CustomerID")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setDon361id(Integer don361id) {
-        this.don361id = don361id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getDon361name() {
-        return don361name;
+    @Basic
+    @Column(name = "PersinalName")
+    public String getPersinalName() {
+        return persinalName;
     }
 
-    public void setDon361name(String don361name) {
-        this.don361name = don361name;
+    public void setPersinalName(String persinalName) {
+        this.persinalName = persinalName;
     }
 
-    public String getDon361familyName() {
-        return don361familyName;
+    @Basic
+    @Column(name = "PersonalFamilyName")
+    public String getPersonalFamilyName() {
+        return personalFamilyName;
     }
 
-    public void setDon361familyName(String don361familyName) {
-        this.don361familyName = don361familyName;
+    public void setPersonalFamilyName(String personalFamilyName) {
+        this.personalFamilyName = personalFamilyName;
     }
 
-    public Short getDon361gender() {
-       
-        return don361gender;
+    @Basic
+    @Column(name = "PersonalGender")
+    public BigInteger getPersonalGender() {
+        return personalGender;
     }
 
-    public void setDon361gender(Short don361gender) {
-        this.don361gender = don361gender;
+    public void setPersonalGender(BigInteger personalGender) {
+        this.personalGender = personalGender;
     }
 
-    public String getDon361mobileNumber() {
-        return don361mobileNumber;
+    @Basic
+    @Column(name = "PersonalMobileNum")
+    public String getPersonalMobileNum() {
+        return personalMobileNum;
     }
 
-    public void setDon361mobileNumber(String don361mobileNumber) {
-        this.don361mobileNumber = don361mobileNumber;
+    public void setPersonalMobileNum(String personalMobileNum) {
+        this.personalMobileNum = personalMobileNum;
     }
 
-    public String getDon361enName() {
-        return don361enName;
+    @Basic
+    @Column(name = "PersonalNameEN")
+    public String getPersonalNameEn() {
+        return personalNameEn;
     }
 
-    public void setDon361enName(String don361enName) {
-        this.don361enName = don361enName;
+    public void setPersonalNameEn(String personalNameEn) {
+        this.personalNameEn = personalNameEn;
     }
 
-    public String getDon361enFamily() {
-        return don361enFamily;
+    @Basic
+    @Column(name = "PersonalFamilyNameEN")
+    public String getPersonalFamilyNameEn() {
+        return personalFamilyNameEn;
     }
 
-    public void setDon361enFamily(String don361enFamily) {
-        this.don361enFamily = don361enFamily;
+    public void setPersonalFamilyNameEn(String personalFamilyNameEn) {
+        this.personalFamilyNameEn = personalFamilyNameEn;
     }
 
-    public String getDon361prefix() {
-        return don361prefix;
+    @Basic
+    @Column(name = "PersonalPrefix")
+    public String getPersonalPrefix() {
+        return personalPrefix;
     }
 
-    public void setDon361prefix(String don361prefix) {
-        this.don361prefix = don361prefix;
+    public void setPersonalPrefix(String personalPrefix) {
+        this.personalPrefix = personalPrefix;
     }
 
-    public String getDon361enPrefix() {
-        return don361enPrefix;
+    @Basic
+    @Column(name = "PersonalPrefixEN")
+    public String getPersonalPrefixEn() {
+        return personalPrefixEn;
     }
 
-    public void setDon361enPrefix(String don361enPrefix) {
-        this.don361enPrefix = don361enPrefix;
+    public void setPersonalPrefixEn(String personalPrefixEn) {
+        this.personalPrefixEn = personalPrefixEn;
     }
 
-    public String getDon361homeTel() {
-        return don361homeTel;
+    @Basic
+    @Column(name = "PersonalHomeTel")
+    public String getPersonalHomeTel() {
+        return personalHomeTel;
     }
 
-    public void setDon361homeTel(String don361homeTel) {
-        this.don361homeTel = don361homeTel;
+    public void setPersonalHomeTel(String personalHomeTel) {
+        this.personalHomeTel = personalHomeTel;
     }
 
-    public String getDon361homeFax() {
-        return don361homeFax;
+    @Basic
+    @Column(name = "PersonalHomeFax")
+    public String getPersonalHomeFax() {
+        return personalHomeFax;
     }
 
-    public void setDon361homeFax(String don361homeFax) {
-        this.don361homeFax = don361homeFax;
+    public void setPersonalHomeFax(String personalHomeFax) {
+        this.personalHomeFax = personalHomeFax;
     }
 
-    public String getDon361postalCode() {
-        return don361postalCode;
+    @Basic
+    @Column(name = "PersonalPostalCode")
+    public String getPersonalPostalCode() {
+        return personalPostalCode;
     }
 
-    public void setDon361postalCode(String don361postalCode) {
-        this.don361postalCode = don361postalCode;
+    public void setPersonalPostalCode(String personalPostalCode) {
+        this.personalPostalCode = personalPostalCode;
     }
 
-    public String getDon361homeAddress() {
-        return don361homeAddress;
+    @Basic
+    @Column(name = "PersonalHomeAddress")
+    public String getPersonalHomeAddress() {
+        return personalHomeAddress;
     }
 
-    public void setDon361homeAddress(String don361homeAddress) {
-        this.don361homeAddress = don361homeAddress;
+    public void setPersonalHomeAddress(String personalHomeAddress) {
+        this.personalHomeAddress = personalHomeAddress;
     }
 
-    public String getDon361fHName() {
-        return don361fHName;
+    @Basic
+    @Column(name = "PersonalFHName")
+    public String getPersonalFhName() {
+        return personalFhName;
     }
 
-    public void setDon361fHName(String don361fHName) {
-        this.don361fHName = don361fHName;
+    public void setPersonalFhName(String personalFhName) {
+        this.personalFhName = personalFhName;
     }
 
-    public String getDon361enFHName() {
-        return don361enFHName;
+    @Basic
+    @Column(name = "PersonalFHNameEN")
+    public String getPersonalFhNameEn() {
+        return personalFhNameEn;
     }
 
-    public void setDon361enFHName(String don361enFHName) {
-        this.don361enFHName = don361enFHName;
+    public void setPersonalFhNameEn(String personalFhNameEn) {
+        this.personalFhNameEn = personalFhNameEn;
     }
 
-    public Date getDon361birthday() {
-        return don361birthday;
+    @Basic
+    @Column(name = "PersonalBirthday")
+    public Date getPersonalBirthday() {
+        return personalBirthday;
     }
 
-    public void setDon361birthday(Date don361birthday) {
-        this.don361birthday = don361birthday;
+    public void setPersonalBirthday(Date personalBirthday) {
+        this.personalBirthday = personalBirthday;
     }
 
-    public String getDon361enHomeAddress() {
-        return don361enHomeAddress;
+    @Basic
+    @Column(name = "PersonalHomeAddressEN")
+    public String getPersonalHomeAddressEn() {
+        return personalHomeAddressEn;
     }
 
-    public void setDon361enHomeAddress(String don361enHomeAddress) {
-        this.don361enHomeAddress = don361enHomeAddress;
+    public void setPersonalHomeAddressEn(String personalHomeAddressEn) {
+        this.personalHomeAddressEn = personalHomeAddressEn;
     }
 
-    public String getDon361birthPlace() {
-        return don361birthPlace;
+    @Basic
+    @Column(name = "PersonalBirthPlace")
+    public String getPersonalBirthPlace() {
+        return personalBirthPlace;
     }
 
-    public void setDon361birthPlace(String don361birthPlace) {
-        this.don361birthPlace = don361birthPlace;
+    public void setPersonalBirthPlace(String personalBirthPlace) {
+        this.personalBirthPlace = personalBirthPlace;
     }
 
-    public String getDon361passportNo() {
-        return don361passportNo;
+    @Basic
+    @Column(name = "PersonalPassportNo")
+    public String getPersonalPassportNo() {
+        return personalPassportNo;
     }
 
-    public void setDon361passportNo(String don361passportNo) {
-        this.don361passportNo = don361passportNo;
+    public void setPersonalPassportNo(String personalPassportNo) {
+        this.personalPassportNo = personalPassportNo;
     }
 
-    public String getDon361birthCerNo() {
-        return don361birthCerNo;
+    @Basic
+    @Column(name = "PersonalBirthCertNo")
+    public String getPersonalBirthCertNo() {
+        return personalBirthCertNo;
     }
 
-    public void setDon361birthCerNo(String don361birthCerNo) {
-        this.don361birthCerNo = don361birthCerNo;
+    public void setPersonalBirthCertNo(String personalBirthCertNo) {
+        this.personalBirthCertNo = personalBirthCertNo;
     }
 
-    public String getDon361personalMail() {
-        return don361personalMail;
+    @Basic
+    @Column(name = "PersonalPersonalEmail")
+    public String getPersonalPersonalEmail() {
+        return personalPersonalEmail;
     }
 
-    public void setDon361personalMail(String don361personalMail) {
-        this.don361personalMail = don361personalMail;
+    public void setPersonalPersonalEmail(String personalPersonalEmail) {
+        this.personalPersonalEmail = personalPersonalEmail;
     }
 
-    public byte[] getDon361passportScan() {
-        return don361passportScan;
+    @Basic
+    @Column(name = "PersonalPassportScan")
+    public byte[] getPersonalPassportScan() {
+        return personalPassportScan;
     }
 
-    public void setDon361passportScan(byte[] don361passportScan) {
-        this.don361passportScan = don361passportScan;
+    public void setPersonalPassportScan(byte[] personalPassportScan) {
+        this.personalPassportScan = personalPassportScan;
     }
 
-    public byte[] getDon361birthCertScan() {
-        return don361birthCertScan;
+    @Basic
+    @Column(name = "PersonalBirthCertScan")
+    public byte[] getPersonalBirthCertScan() {
+        return personalBirthCertScan;
     }
 
-    public void setDon361birthCertScan(byte[] don361birthCertScan) {
-        this.don361birthCertScan = don361birthCertScan;
+    public void setPersonalBirthCertScan(byte[] personalBirthCertScan) {
+        this.personalBirthCertScan = personalBirthCertScan;
     }
 
-    public String getDon361description() {
-        return don361description;
+    @Basic
+    @Column(name = "PersonalDisc")
+    public String getPersonalDisc() {
+        return personalDisc;
     }
 
-    public void setDon361description(String don361description) {
-        this.don361description = don361description;
+    public void setPersonalDisc(String personalDisc) {
+        this.personalDisc = personalDisc;
     }
 
-    public String getDon361hobbies() {
-        return don361hobbies;
+    @Basic
+    @Column(name = "PersonalHobbies")
+    public String getPersonalHobbies() {
+        return personalHobbies;
     }
 
-    public void setDon361hobbies(String don361hobbies) {
-        this.don361hobbies = don361hobbies;
+    public void setPersonalHobbies(String personalHobbies) {
+        this.personalHobbies = personalHobbies;
     }
 
-    public Short getDeleted() {
-        return deleted;
+    @Basic
+    @Column(name = "PersonalDeleted")
+    public Integer getPersonalDeleted() {
+        return personalDeleted;
     }
 
-    public void setDeleted(Short deleted) {
-        this.deleted = deleted;
-    }
-
-    public DonCustomer getDon360id() {
-        return don360id;
-    }
-
-    public void setDon360id(DonCustomer don360id) {
-        this.don360id = don360id;
+    public void setPersonalDeleted(Integer personalDeleted) {
+        this.personalDeleted = personalDeleted;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (don361id != null ? don361id.hashCode() : 0);
-        return hash;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DonPersonal)) {
+        DonPersonal that = (DonPersonal) o;
+
+        if (personalId != that.personalId) return false;
+        if (customerId != that.customerId) return false;
+        if (persinalName != null ? !persinalName.equals(that.persinalName) : that.persinalName != null) return false;
+        if (personalFamilyName != null ? !personalFamilyName.equals(that.personalFamilyName) : that.personalFamilyName != null)
             return false;
-        }
-        DonPersonal other = (DonPersonal) object;
-        if ((this.don361id == null && other.don361id != null) || (this.don361id != null && !this.don361id.equals(other.don361id))) {
+        if (personalGender != null ? !personalGender.equals(that.personalGender) : that.personalGender != null)
             return false;
-        }
+        if (personalMobileNum != null ? !personalMobileNum.equals(that.personalMobileNum) : that.personalMobileNum != null)
+            return false;
+        if (personalNameEn != null ? !personalNameEn.equals(that.personalNameEn) : that.personalNameEn != null)
+            return false;
+        if (personalFamilyNameEn != null ? !personalFamilyNameEn.equals(that.personalFamilyNameEn) : that.personalFamilyNameEn != null)
+            return false;
+        if (personalPrefix != null ? !personalPrefix.equals(that.personalPrefix) : that.personalPrefix != null)
+            return false;
+        if (personalPrefixEn != null ? !personalPrefixEn.equals(that.personalPrefixEn) : that.personalPrefixEn != null)
+            return false;
+        if (personalHomeTel != null ? !personalHomeTel.equals(that.personalHomeTel) : that.personalHomeTel != null)
+            return false;
+        if (personalHomeFax != null ? !personalHomeFax.equals(that.personalHomeFax) : that.personalHomeFax != null)
+            return false;
+        if (personalPostalCode != null ? !personalPostalCode.equals(that.personalPostalCode) : that.personalPostalCode != null)
+            return false;
+        if (personalHomeAddress != null ? !personalHomeAddress.equals(that.personalHomeAddress) : that.personalHomeAddress != null)
+            return false;
+        if (personalFhName != null ? !personalFhName.equals(that.personalFhName) : that.personalFhName != null)
+            return false;
+        if (personalFhNameEn != null ? !personalFhNameEn.equals(that.personalFhNameEn) : that.personalFhNameEn != null)
+            return false;
+        if (personalBirthday != null ? !personalBirthday.equals(that.personalBirthday) : that.personalBirthday != null)
+            return false;
+        if (personalHomeAddressEn != null ? !personalHomeAddressEn.equals(that.personalHomeAddressEn) : that.personalHomeAddressEn != null)
+            return false;
+        if (personalBirthPlace != null ? !personalBirthPlace.equals(that.personalBirthPlace) : that.personalBirthPlace != null)
+            return false;
+        if (personalPassportNo != null ? !personalPassportNo.equals(that.personalPassportNo) : that.personalPassportNo != null)
+            return false;
+        if (personalBirthCertNo != null ? !personalBirthCertNo.equals(that.personalBirthCertNo) : that.personalBirthCertNo != null)
+            return false;
+        if (personalPersonalEmail != null ? !personalPersonalEmail.equals(that.personalPersonalEmail) : that.personalPersonalEmail != null)
+            return false;
+        if (!Arrays.equals(personalPassportScan, that.personalPassportScan)) return false;
+        if (!Arrays.equals(personalBirthCertScan, that.personalBirthCertScan)) return false;
+        if (personalDisc != null ? !personalDisc.equals(that.personalDisc) : that.personalDisc != null) return false;
+        if (personalHobbies != null ? !personalHobbies.equals(that.personalHobbies) : that.personalHobbies != null)
+            return false;
+        if (personalDeleted != null ? !personalDeleted.equals(that.personalDeleted) : that.personalDeleted != null)
+            return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.donkiello.model.entity.common.DonPersonal[ don361id=" + don361id + " ]";
+    public int hashCode() {
+        int result = personalId;
+        result = 31 * result + customerId;
+        result = 31 * result + (persinalName != null ? persinalName.hashCode() : 0);
+        result = 31 * result + (personalFamilyName != null ? personalFamilyName.hashCode() : 0);
+        result = 31 * result + (personalGender != null ? personalGender.hashCode() : 0);
+        result = 31 * result + (personalMobileNum != null ? personalMobileNum.hashCode() : 0);
+        result = 31 * result + (personalNameEn != null ? personalNameEn.hashCode() : 0);
+        result = 31 * result + (personalFamilyNameEn != null ? personalFamilyNameEn.hashCode() : 0);
+        result = 31 * result + (personalPrefix != null ? personalPrefix.hashCode() : 0);
+        result = 31 * result + (personalPrefixEn != null ? personalPrefixEn.hashCode() : 0);
+        result = 31 * result + (personalHomeTel != null ? personalHomeTel.hashCode() : 0);
+        result = 31 * result + (personalHomeFax != null ? personalHomeFax.hashCode() : 0);
+        result = 31 * result + (personalPostalCode != null ? personalPostalCode.hashCode() : 0);
+        result = 31 * result + (personalHomeAddress != null ? personalHomeAddress.hashCode() : 0);
+        result = 31 * result + (personalFhName != null ? personalFhName.hashCode() : 0);
+        result = 31 * result + (personalFhNameEn != null ? personalFhNameEn.hashCode() : 0);
+        result = 31 * result + (personalBirthday != null ? personalBirthday.hashCode() : 0);
+        result = 31 * result + (personalHomeAddressEn != null ? personalHomeAddressEn.hashCode() : 0);
+        result = 31 * result + (personalBirthPlace != null ? personalBirthPlace.hashCode() : 0);
+        result = 31 * result + (personalPassportNo != null ? personalPassportNo.hashCode() : 0);
+        result = 31 * result + (personalBirthCertNo != null ? personalBirthCertNo.hashCode() : 0);
+        result = 31 * result + (personalPersonalEmail != null ? personalPersonalEmail.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(personalPassportScan);
+        result = 31 * result + Arrays.hashCode(personalBirthCertScan);
+        result = 31 * result + (personalDisc != null ? personalDisc.hashCode() : 0);
+        result = 31 * result + (personalHobbies != null ? personalHobbies.hashCode() : 0);
+        result = 31 * result + (personalDeleted != null ? personalDeleted.hashCode() : 0);
+        return result;
     }
-    
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
+    public DonCustomer getDonCustomerByCustomerId() {
+        return donCustomerByCustomerId;
+    }
+
+    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    }
 }

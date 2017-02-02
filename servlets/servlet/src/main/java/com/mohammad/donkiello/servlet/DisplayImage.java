@@ -58,7 +58,7 @@ public class DisplayImage extends HttpServlet implements Serializable {
                 DonPersonal personal = personalService.searchById(Integer.parseInt(id));
                 response.reset();
                 response.setContentType("image/jpeg");
-                response.getOutputStream().write(personal.getDon361passportScan());
+                response.getOutputStream().write(personal.getPersonalPassportScan());
                 response.flushBuffer();
             } else if (type.equalsIgnoreCase("bcs")) {
                // IDonPersonalService personalService = (IDonPersonalService) JndiUtils.getModelEjb("DonPersonalService");
@@ -66,14 +66,14 @@ public class DisplayImage extends HttpServlet implements Serializable {
                 DonPersonal personal = personalService.searchById(Integer.parseInt(id));
                 response.reset();
                 response.setContentType("image/jpeg");
-                response.getOutputStream().write(personal.getDon361birthCertScan());
+                response.getOutputStream().write(personal.getPersonalBirthCertScan());
                 response.flushBuffer();
             }  else if (type.equalsIgnoreCase("ps")) {
              //   IDonCustomerService customerService = (IDonCustomerService) JndiUtils.getModelEjb("DonCustomerService");
                 DonCustomer customer = customerService.searchById(Integer.parseInt(id));
                 response.reset();
                 response.setContentType("image/jpeg");
-                response.getOutputStream().write(customer.getDon360image());
+                response.getOutputStream().write(customer.getCustomerImage());
                 response.flushBuffer();
             }
         } catch (Exception e) {

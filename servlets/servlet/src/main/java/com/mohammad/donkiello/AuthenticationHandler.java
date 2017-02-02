@@ -64,7 +64,7 @@ public class AuthenticationHandler implements Serializable {
     public void viewAction() {
 
         if (null != onlineUser) {
-            System.out.println("online user is : " + onlineUser.getDon369username());
+            System.out.println("online user is : " + onlineUser.getUsersName());
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("donkielloApp/views/firstPage.xhtml");
             } catch (IOException ex) {

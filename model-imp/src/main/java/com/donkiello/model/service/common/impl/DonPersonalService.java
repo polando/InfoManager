@@ -55,9 +55,9 @@ public class DonPersonalService implements IDonPersonalService{
     public void insertImage(byte[] image , int pid , boolean isPassport) throws BusinessException {
         DonPersonal p = donPersonalDao.searchById(pid);
         if(isPassport)
-            p.setDon361passportScan(image);
+            p.setPersonalPassportScan(image);
         else
-            p.setDon361birthCertScan(image);
+            p.setPersonalBirthCertScan(image);
            donPersonalDao.update(p);
     }
 

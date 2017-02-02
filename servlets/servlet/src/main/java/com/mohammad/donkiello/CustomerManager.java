@@ -56,22 +56,22 @@ public class CustomerManager implements Serializable {
         DonCustomer selectedCustomer1 = null;
 
         if (selectedCustomer != null) {
-            selectedCustomer1 = customerService.searchById(selectedCustomer.getDon360id());
-            String temp = selectedCustomer.getDon360name();
+            selectedCustomer1 = customerService.searchById(selectedCustomer.getCustomerId());
+            String temp = selectedCustomer.getCustomerName();
             
             //cascading remove
-            if(selectedCustomer1.getDonPersonalList()!=null)
-                for( DonPersonal p : selectedCustomer.getDonPersonalList())
-                    p.setDeleted(BaseEntity.DELETE_YES);
-            if(selectedCustomer1.getDonBussinessList()!=null)
-                for( DonBussiness p : selectedCustomer.getDonBussinessList())
-                    p.setDeleted(BaseEntity.DELETE_YES);
-            if(selectedCustomer1.getDonPastList()!=null)
-                for( DonPast p : selectedCustomer.getDonPastList())
-                    p.setDeleted(BaseEntity.DELETE_YES);
-            if(selectedCustomer1.getDonProgramList()!=null)
-                for( DonProgram p : selectedCustomer.getDonProgramList())
-                    p.setDeleted(BaseEntity.DELETE_YES);
+            if(selectedCustomer1.getDonPersonalsByCustomerId()!=null)
+                for( DonPersonal p : selectedCustomer.getDonPersonalsByCustomerId())
+                    p.setPersonalDeleted(1);
+            if(selectedCustomer1.getDonBussinessesByCustomerId()!=null)
+                for( DonBussiness p : selectedCustomer.getDonBussinessesByCustomerId())
+                    p.setBusinessDeleted(1);
+            if(selectedCustomer1.getDonPastsByCustomerId()!=null)
+                for( DonPast p : selectedCustomer.getDonPastsByCustomerId())
+                    p.setPastDeleted(1);
+            if(selectedCustomer1.getDonProgramsByCustomerId()!=null)
+                for( DonProgram p : selectedCustomer.getDonProgramsByCustomerId())
+                    p.setProgramDeleted(1);
             customerService.remove(selectedCustomer);
             customerList.remove(selectedCustomer);
             

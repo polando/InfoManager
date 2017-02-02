@@ -42,7 +42,7 @@ public class DonEducationalInfoDao extends AbstractDao implements IDonEducationa
     }
 
     public List<DonEducationalInfo> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonEducationalInfo ");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonEducationalInfo c ");
         List<DonEducationalInfo> educationalInfos = query.getResultList();
         return educationalInfos;
     }

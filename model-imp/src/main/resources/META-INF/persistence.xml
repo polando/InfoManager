@@ -3,13 +3,17 @@
   <persistence-unit name="DonPU" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>java:jboss/datasources/DonDs</jta-data-source>
-        <class>com.donkiello.model.entity.common.DonBussiness</class>
-        <class>com.donkiello.model.entity.common.DonCustomer</class>
-        <class>com.donkiello.model.entity.common.DonPast</class>
-        <class>com.donkiello.model.entity.common.DonProgram</class>
-        <class>com.donkiello.model.entity.common.DonUsers</class>
-        <class>com.donkiello.model.entity.common.DonPersonal</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+      <class>com.donkiello.model.entity.common.DonBussiness</class>
+      <class>com.donkiello.model.entity.common.DonCustomer</class>
+      <class>com.donkiello.model.entity.common.DonPast</class>
+      <class>com.donkiello.model.entity.common.DonPersonal</class>
+      <class>com.donkiello.model.entity.common.DonProgram</class>
+      <class>com.donkiello.model.entity.common.DonUsers</class>
+      <class>com.donkiello.model.entity.common.DonBussinessInfo</class>
+      <class>com.donkiello.model.entity.common.DonEducationalInfo</class>
+      <class>com.donkiello.model.entity.common.DonHobbies</class>
+      <class>com.donkiello.model.entity.common.DonProducts</class>
+      <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.datasource" value="java:jboss/datasources/DonDs"/>
             <property name="hibernate.connection.autocommit" value="true"/>

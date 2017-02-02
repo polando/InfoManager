@@ -52,7 +52,7 @@ public class DonCustomerService implements IDonCustomerService{
 
     public void insertPhoto(byte[] image, int pid) throws BusinessException {
         DonCustomer customer = donCustomerDao.searchById(pid);
-        customer.setDon360image(image);
+        customer.setCustomerImage(image);
         donCustomerDao.update(customer);
     }
     

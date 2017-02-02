@@ -1,282 +1,312 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.donkiello.model.entity.common;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
- *
- * @author Mohammad
+ * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_bussiness")
-@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "DonBussiness.findAll", query = "SELECT d FROM DonBussiness d"),
-//    @NamedQuery(name = "DonBussiness.findByDon368id", query = "SELECT d FROM DonBussiness d WHERE d.don368id = :don368id"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussName", query = "SELECT d FROM DonBussiness d WHERE d.don368bussName = :don368bussName"),
-//    @NamedQuery(name = "DonBussiness.findByDon368position", query = "SELECT d FROM DonBussiness d WHERE d.don368position = :don368position"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussAddress", query = "SELECT d FROM DonBussiness d WHERE d.don368bussAddress = :don368bussAddress"),
-//    @NamedQuery(name = "DonBussiness.findByDon368brand", query = "SELECT d FROM DonBussiness d WHERE d.don368brand = :don368brand"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussField", query = "SELECT d FROM DonBussiness d WHERE d.don368bussField = :don368bussField"),
-//    @NamedQuery(name = "DonBussiness.findByDon368officeTel", query = "SELECT d FROM DonBussiness d WHERE d.don368officeTel = :don368officeTel"),
-//    @NamedQuery(name = "DonBussiness.findByDon368secretaryName", query = "SELECT d FROM DonBussiness d WHERE d.don368secretaryName = :don368secretaryName"),
-//    @NamedQuery(name = "DonBussiness.findByDon368secretaryTel", query = "SELECT d FROM DonBussiness d WHERE d.don368secretaryTel = :don368secretaryTel"),
-//    @NamedQuery(name = "DonBussiness.findByDon368fax", query = "SELECT d FROM DonBussiness d WHERE d.don368fax = :don368fax"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussMail", query = "SELECT d FROM DonBussiness d WHERE d.don368bussMail = :don368bussMail"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussWebsite", query = "SELECT d FROM DonBussiness d WHERE d.don368bussWebsite = :don368bussWebsite"),
-//    @NamedQuery(name = "DonBussiness.findByDon368branchComp", query = "SELECT d FROM DonBussiness d WHERE d.don368branchComp = :don368branchComp"),
-//    @NamedQuery(name = "DonBussiness.findByDon368pastComps", query = "SELECT d FROM DonBussiness d WHERE d.don368pastComps = :don368pastComps"),
-//    @NamedQuery(name = "DonBussiness.findByDon368bussDescreption", query = "SELECT d FROM DonBussiness d WHERE d.don368bussDescreption = :don368bussDescreption"),
-//    @NamedQuery(name = "DonBussiness.findByDon368tag", query = "SELECT d FROM DonBussiness d WHERE d.don368tag = :don368tag"),
-//    @NamedQuery(name = "DonBussiness.findByDon368deleted", query = "SELECT d FROM DonBussiness d WHERE d.don368deleted = :don368deleted")})
-public class DonBussiness implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "don_bussiness", schema = "dondb", catalog = "")
+public class DonBussiness {
+    private int bussinessId;
+    private int customerId;
+    private String businessName;
+    private String businessPosition;
+    private String businessAddress;
+    private String businessBrand;
+    private String businessField;
+    private String businessOfficeTel;
+    private String businessSereterayName;
+    private String bussinessSecretaryTel;
+    private String bussinessFax;
+    private String businessEmail;
+    private String businessWebsite;
+    private String businessBranchComp;
+    private String businessPastComps;
+    private String businessCity;
+    private Integer businessDeleted;
+    private String businessTag;
+    private String businessCountry;
+    private String businessSecretaryEmail;
+    private DonCustomer donCustomerByCustomerId;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "DON368ID")
-    private Integer don368id;
-    @Size(max = 1000)
-    @Column(name = "DON368BUSS_NAME")
-    private String don368bussName;
-    @Size(max = 1000)
-    @Column(name = "DON368POSITION")
-    private String don368position;
-    @Size(max = 3000)
-    @Column(name = "DON368BUSS_ADDRESS")
-    private String don368bussAddress;
-    @Size(max = 1000)
-    @Column(name = "DON368BRAND")
-    private String don368brand;
-    @Size(max = 1000)
-    @Column(name = "DON368BUSS_FIELD")
-    private String don368bussField;
-    @Size(max = 1000)
-    @Column(name = "DON368OFFICE_TEL")
-    private String don368officeTel;
-    @Size(max = 1000)
-    @Column(name = "DON368SECRETARY_NAME")
-    private String don368secretaryName;
-    @Size(max = 1000)
-    @Column(name = "DON368SECRETARY_TEL")
-    private String don368secretaryTel;
-    @Size(max = 1000)
-    @Column(name = "DON368FAX")
-    private String don368fax;
-    @Size(max = 1000)
-    @Column(name = "DON368BUSS_MAIL")
-    private String don368bussMail;
-    @Size(max = 200)
-    @Column(name = "DON368BUSS_WEBSITE")
-    private String don368bussWebsite;
-    @Size(max = 1000)
-    @Column(name = "DON368BRANCH_COMP")
-    private String don368branchComp;
-    @Size(max = 1000)
-    @Column(name = "DON368PAST_COMPS")
-    private String don368pastComps;
-    @Size(max = 2000)
-    @Column(name = "DON368BUSS_DESCREPTION")
-    private String don368bussDescreption;
-    @Size(max = 500)
-    @Column(name = "DON368TAG")
-    private String don368tag;
-    @Column(name = "DON368DELETED")
-    private Short deleted;
-    @JoinColumn(name = "DON360ID", referencedColumnName = "DON360ID")
-    @ManyToOne(optional = false)
-    private DonCustomer don360id;
-
-    public DonBussiness() {
+    @Column(name = "BussinessID")
+    public int getBussinessId() {
+        return bussinessId;
     }
 
-    public DonBussiness(Integer don368id) {
-        this.don368id = don368id;
+    public void setBussinessId(int bussinessId) {
+        this.bussinessId = bussinessId;
     }
 
-    public Integer getDon368id() {
-        return don368id;
+    @Basic
+    @Column(name = "CustomerID")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setDon368id(Integer don368id) {
-        this.don368id = don368id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getDon368bussName() {
-        return don368bussName;
+    @Basic
+    @Column(name = "BusinessName")
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setDon368bussName(String don368bussName) {
-        this.don368bussName = don368bussName;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
-    public String getDon368position() {
-        return don368position;
+    @Basic
+    @Column(name = "BusinessPosition")
+    public String getBusinessPosition() {
+        return businessPosition;
     }
 
-    public void setDon368position(String don368position) {
-        this.don368position = don368position;
+    public void setBusinessPosition(String businessPosition) {
+        this.businessPosition = businessPosition;
     }
 
-    public String getDon368bussAddress() {
-        return don368bussAddress;
+    @Basic
+    @Column(name = "BusinessAddress")
+    public String getBusinessAddress() {
+        return businessAddress;
     }
 
-    public void setDon368bussAddress(String don368bussAddress) {
-        this.don368bussAddress = don368bussAddress;
+    public void setBusinessAddress(String businessAddress) {
+        this.businessAddress = businessAddress;
     }
 
-    public String getDon368brand() {
-        return don368brand;
+    @Basic
+    @Column(name = "BusinessBrand")
+    public String getBusinessBrand() {
+        return businessBrand;
     }
 
-    public void setDon368brand(String don368brand) {
-        this.don368brand = don368brand;
+    public void setBusinessBrand(String businessBrand) {
+        this.businessBrand = businessBrand;
     }
 
-    public String getDon368bussField() {
-        return don368bussField;
+    @Basic
+    @Column(name = "BusinessField")
+    public String getBusinessField() {
+        return businessField;
     }
 
-    public void setDon368bussField(String don368bussField) {
-        this.don368bussField = don368bussField;
+    public void setBusinessField(String businessField) {
+        this.businessField = businessField;
     }
 
-    public String getDon368officeTel() {
-        return don368officeTel;
+    @Basic
+    @Column(name = "BusinessOfficeTel")
+    public String getBusinessOfficeTel() {
+        return businessOfficeTel;
     }
 
-    public void setDon368officeTel(String don368officeTel) {
-        this.don368officeTel = don368officeTel;
+    public void setBusinessOfficeTel(String businessOfficeTel) {
+        this.businessOfficeTel = businessOfficeTel;
     }
 
-    public String getDon368secretaryName() {
-        return don368secretaryName;
+    @Basic
+    @Column(name = "BusinessSereterayName")
+    public String getBusinessSereterayName() {
+        return businessSereterayName;
     }
 
-    public void setDon368secretaryName(String don368secretaryName) {
-        this.don368secretaryName = don368secretaryName;
+    public void setBusinessSereterayName(String businessSereterayName) {
+        this.businessSereterayName = businessSereterayName;
     }
 
-    public String getDon368secretaryTel() {
-        return don368secretaryTel;
+    @Basic
+    @Column(name = "BussinessSecretaryTel")
+    public String getBussinessSecretaryTel() {
+        return bussinessSecretaryTel;
     }
 
-    public void setDon368secretaryTel(String don368secretaryTel) {
-        this.don368secretaryTel = don368secretaryTel;
+    public void setBussinessSecretaryTel(String bussinessSecretaryTel) {
+        this.bussinessSecretaryTel = bussinessSecretaryTel;
     }
 
-    public String getDon368fax() {
-        return don368fax;
+    @Basic
+    @Column(name = "BussinessFax")
+    public String getBussinessFax() {
+        return bussinessFax;
     }
 
-    public void setDon368fax(String don368fax) {
-        this.don368fax = don368fax;
+    public void setBussinessFax(String bussinessFax) {
+        this.bussinessFax = bussinessFax;
     }
 
-    public String getDon368bussMail() {
-        return don368bussMail;
+    @Basic
+    @Column(name = "BusinessEmail")
+    public String getBusinessEmail() {
+        return businessEmail;
     }
 
-    public void setDon368bussMail(String don368bussMail) {
-        this.don368bussMail = don368bussMail;
+    public void setBusinessEmail(String businessEmail) {
+        this.businessEmail = businessEmail;
     }
 
-    public String getDon368bussWebsite() {
-        return don368bussWebsite;
+    @Basic
+    @Column(name = "BusinessWebsite")
+    public String getBusinessWebsite() {
+        return businessWebsite;
     }
 
-    public void setDon368bussWebsite(String don368bussWebsite) {
-        this.don368bussWebsite = don368bussWebsite;
+    public void setBusinessWebsite(String businessWebsite) {
+        this.businessWebsite = businessWebsite;
     }
 
-    public String getDon368branchComp() {
-        return don368branchComp;
+    @Basic
+    @Column(name = "BusinessBranchComp")
+    public String getBusinessBranchComp() {
+        return businessBranchComp;
     }
 
-    public void setDon368branchComp(String don368branchComp) {
-        this.don368branchComp = don368branchComp;
+    public void setBusinessBranchComp(String businessBranchComp) {
+        this.businessBranchComp = businessBranchComp;
     }
 
-    public String getDon368pastComps() {
-        return don368pastComps;
+    @Basic
+    @Column(name = "BusinessPastComps")
+    public String getBusinessPastComps() {
+        return businessPastComps;
     }
 
-    public void setDon368pastComps(String don368pastComps) {
-        this.don368pastComps = don368pastComps;
+    public void setBusinessPastComps(String businessPastComps) {
+        this.businessPastComps = businessPastComps;
     }
 
-    public String getDon368bussDescreption() {
-        return don368bussDescreption;
+    @Basic
+    @Column(name = "BusinessCity")
+    public String getBusinessCity() {
+        return businessCity;
     }
 
-    public void setDon368bussDescreption(String don368bussDescreption) {
-        this.don368bussDescreption = don368bussDescreption;
+    public void setBusinessCity(String businessCity) {
+        this.businessCity = businessCity;
     }
 
-    public String getDon368tag() {
-        return don368tag;
+    @Basic
+    @Column(name = "BusinessDeleted")
+    public Integer getBusinessDeleted() {
+        return businessDeleted;
     }
 
-    public void setDon368tag(String don368tag) {
-        this.don368tag = don368tag;
+    public void setBusinessDeleted(Integer businessDeleted) {
+        this.businessDeleted = businessDeleted;
     }
 
-    public Short getDeleted() {
-        return deleted;
+    @Basic
+    @Column(name = "BusinessTag")
+    public String getBusinessTag() {
+        return businessTag;
     }
 
-    public void setDeleted(Short deleted) {
-        this.deleted = deleted;
+    public void setBusinessTag(String businessTag) {
+        this.businessTag = businessTag;
     }
 
-    public DonCustomer getDon360id() {
-        return don360id;
+    @Basic
+    @Column(name = "BusinessCountry")
+    public String getBusinessCountry() {
+        return businessCountry;
     }
 
-    public void setDon360id(DonCustomer don360id) {
-        this.don360id = don360id;
+    public void setBusinessCountry(String businessCountry) {
+        this.businessCountry = businessCountry;
+    }
+
+    @Basic
+    @Column(name = "BusinessSecretaryEmail")
+    public String getBusinessSecretaryEmail() {
+        return businessSecretaryEmail;
+    }
+
+    public void setBusinessSecretaryEmail(String businessSecretaryEmail) {
+        this.businessSecretaryEmail = businessSecretaryEmail;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (don368id != null ? don368id.hashCode() : 0);
-        return hash;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DonBussiness)) {
+        DonBussiness that = (DonBussiness) o;
+
+        if (bussinessId != that.bussinessId) return false;
+        if (customerId != that.customerId) return false;
+        if (businessName != null ? !businessName.equals(that.businessName) : that.businessName != null) return false;
+        if (businessPosition != null ? !businessPosition.equals(that.businessPosition) : that.businessPosition != null)
             return false;
-        }
-        DonBussiness other = (DonBussiness) object;
-        if ((this.don368id == null && other.don368id != null) || (this.don368id != null && !this.don368id.equals(other.don368id))) {
+        if (businessAddress != null ? !businessAddress.equals(that.businessAddress) : that.businessAddress != null)
             return false;
-        }
+        if (businessBrand != null ? !businessBrand.equals(that.businessBrand) : that.businessBrand != null)
+            return false;
+        if (businessField != null ? !businessField.equals(that.businessField) : that.businessField != null)
+            return false;
+        if (businessOfficeTel != null ? !businessOfficeTel.equals(that.businessOfficeTel) : that.businessOfficeTel != null)
+            return false;
+        if (businessSereterayName != null ? !businessSereterayName.equals(that.businessSereterayName) : that.businessSereterayName != null)
+            return false;
+        if (bussinessSecretaryTel != null ? !bussinessSecretaryTel.equals(that.bussinessSecretaryTel) : that.bussinessSecretaryTel != null)
+            return false;
+        if (bussinessFax != null ? !bussinessFax.equals(that.bussinessFax) : that.bussinessFax != null) return false;
+        if (businessEmail != null ? !businessEmail.equals(that.businessEmail) : that.businessEmail != null)
+            return false;
+        if (businessWebsite != null ? !businessWebsite.equals(that.businessWebsite) : that.businessWebsite != null)
+            return false;
+        if (businessBranchComp != null ? !businessBranchComp.equals(that.businessBranchComp) : that.businessBranchComp != null)
+            return false;
+        if (businessPastComps != null ? !businessPastComps.equals(that.businessPastComps) : that.businessPastComps != null)
+            return false;
+        if (businessCity != null ? !businessCity.equals(that.businessCity) : that.businessCity != null) return false;
+        if (businessDeleted != null ? !businessDeleted.equals(that.businessDeleted) : that.businessDeleted != null)
+            return false;
+        if (businessTag != null ? !businessTag.equals(that.businessTag) : that.businessTag != null) return false;
+        if (businessCountry != null ? !businessCountry.equals(that.businessCountry) : that.businessCountry != null)
+            return false;
+        if (businessSecretaryEmail != null ? !businessSecretaryEmail.equals(that.businessSecretaryEmail) : that.businessSecretaryEmail != null)
+            return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.donkiello.model.entity.common.DonBussiness[ don368id=" + don368id + " ]";
+    public int hashCode() {
+        int result = bussinessId;
+        result = 31 * result + customerId;
+        result = 31 * result + (businessName != null ? businessName.hashCode() : 0);
+        result = 31 * result + (businessPosition != null ? businessPosition.hashCode() : 0);
+        result = 31 * result + (businessAddress != null ? businessAddress.hashCode() : 0);
+        result = 31 * result + (businessBrand != null ? businessBrand.hashCode() : 0);
+        result = 31 * result + (businessField != null ? businessField.hashCode() : 0);
+        result = 31 * result + (businessOfficeTel != null ? businessOfficeTel.hashCode() : 0);
+        result = 31 * result + (businessSereterayName != null ? businessSereterayName.hashCode() : 0);
+        result = 31 * result + (bussinessSecretaryTel != null ? bussinessSecretaryTel.hashCode() : 0);
+        result = 31 * result + (bussinessFax != null ? bussinessFax.hashCode() : 0);
+        result = 31 * result + (businessEmail != null ? businessEmail.hashCode() : 0);
+        result = 31 * result + (businessWebsite != null ? businessWebsite.hashCode() : 0);
+        result = 31 * result + (businessBranchComp != null ? businessBranchComp.hashCode() : 0);
+        result = 31 * result + (businessPastComps != null ? businessPastComps.hashCode() : 0);
+        result = 31 * result + (businessCity != null ? businessCity.hashCode() : 0);
+        result = 31 * result + (businessDeleted != null ? businessDeleted.hashCode() : 0);
+        result = 31 * result + (businessTag != null ? businessTag.hashCode() : 0);
+        result = 31 * result + (businessCountry != null ? businessCountry.hashCode() : 0);
+        result = 31 * result + (businessSecretaryEmail != null ? businessSecretaryEmail.hashCode() : 0);
+        return result;
     }
-    
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
+    public DonCustomer getDonCustomerByCustomerId() {
+        return donCustomerByCustomerId;
+    }
+
+    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    }
 }

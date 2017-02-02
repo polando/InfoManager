@@ -37,12 +37,13 @@ public class DonBussinessDao extends AbstractDao implements IDonBussinessDao{
     }
 
     public void remove(DonBussiness t) {
-        t.setDeleted(Short.valueOf("1"));
+       // t.setDeleted(Short.valueOf("1"));
+        t.setBusinessDeleted(1);
         getEntityManager().merge(t);
     }
 
     public List<DonBussiness> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonBussiness c WHERE c.deleted = 0");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonBussiness c WHERE c.businessDeleted = 0");
         List<DonBussiness> bussinesses = query.getResultList();
         return bussinesses;
     }

@@ -104,7 +104,7 @@
                                 <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload3}" value="#{addCustomer.pfile3}"  dragDropSupport="true" rendered="#{!addCustomer.photoScanAvailable}"   mode="advanced"  
                                               sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
                                 <p:panel  rendered="#{addCustomer.photoScanAvailable}">
-                                    <a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.don360id}&amp;" data-fresco-caption="#{addCustomer.customer.don360name}" class="fresco" >
+                                    <a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.customerId}&amp;" data-fresco-caption="#{addCustomer.customer.don360name}" class="fresco" >
                                         Show Photo
                                     </a>
                                     <p:commandLink actionListener="#{addCustomer.removeImage3()}" style="float: right;" update="@form:tview">
@@ -319,45 +319,49 @@
                     </p:panel>
                 </p:tab>
                 <p:tab title="Business Information" transient="true"    >
+                    <c:forEach var="bussiness" items="${addCustomer.bussinessesList}">
                     <p:panel header="Business Information" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
                         <h:panelGrid columns="2" cellpadding="10"  style="margin-left: auto;margin-right: auto;display: block;" >
                             <h:panelGrid columns="2" cellpadding="10" >
                                 <p:outputLabel value="Business Name:" />
-                                <p:inputText id="bussinessName" value="#{addCustomer.bussiness.don368bussName}"></p:inputText>
+                                <p:inputText id="bussinessName" value="#{bussiness.businessName}"></p:inputText>
                                 <p:outputLabel value="Position:" />
-                                <p:inputText id="position" value="#{addCustomer.bussiness.don368position}"></p:inputText>
+                                <p:inputText id="position" value="#{bussiness.businessPosition}"></p:inputText>
+                                <p:outputLabel value="City:" />
+                                <p:inputText id="City" value="#{bussiness.businessCity}"></p:inputText>
+                                <p:outputLabel value="Country:" />
+                                <p:inputText id="Country" value="#{bussiness.businessCountry}"></p:inputText>
                                 <p:outputLabel value="Address:" />
-                                <p:inputTextarea rows="6" id="bussinessAddress" value="#{addCustomer.bussiness.don368bussAddress}" cols="33" />
+                                <p:inputTextarea rows="6" id="bussinessAddress" value="#{bussiness.businessAddress}" cols="33" />
 
                                 <p:outputLabel value="Office Tel:" />
-                                <p:inputText id="officeTel" value="#{addCustomer.bussiness.don368officeTel}">
+                                <p:inputText id="officeTel" value="#{bussiness.businessOfficeTel}">
                                     <p:clientValidator event="keyup"/>
                                 </p:inputText>
                                 <p:outputLabel value="Office Fax:" />
-                                <p:inputText id="officeFax" value="#{addCustomer.bussiness.don368fax}"></p:inputText>
+                                <p:inputText id="officeFax" value="#{bussiness.bussinessFax}"></p:inputText>
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="10" >
                                 <p:outputLabel value="BusinessField:" />
-                                <p:inputText id="bussinessField" value="#{addCustomer.bussiness.don368bussField}"></p:inputText>
+                                <p:inputText id="bussinessField" value="#{bussiness.businessField}"></p:inputText>
                                 <p:outputLabel value="Website:" />
-                                <p:inputText id="website" value="#{addCustomer.bussiness.don368bussWebsite}"></p:inputText>
+                                <p:inputText id="website" value="#{bussiness.businessWebsite}"></p:inputText>
                                 <p:outputLabel value="Business Email:" />
-                                <p:inputText id="bussinessEmail" value="#{addCustomer.bussiness.don368bussMail}"></p:inputText>
+                                <p:inputText id="bussinessEmail" value="#{bussiness.businessEmail}"></p:inputText>
                                 <p:outputLabel value="Business Tags:" />
-                                <p:inputText id="bussinessTags" value="#{addCustomer.bussiness.don368tag}"></p:inputText>
+                                <p:inputText id="bussinessTags" value="#{bussiness.businessTag}"></p:inputText>
                                 <p:outputLabel value="Business Branches:" />
-                                <p:inputText id="bussinessBranches" value="#{addCustomer.bussiness.don368branchComp}"></p:inputText>
+                                <p:inputText id="bussinessBranches" value="#{bussiness.businessBranchComp}"></p:inputText>
                                 <p:outputLabel value="Secretary Name:" />
-                                <p:inputText id="secretaryName" value="#{addCustomer.bussiness.don368secretaryName}"></p:inputText>
+                                <p:inputText id="secretaryName" value="#{bussiness.businessSereterayName}"></p:inputText>
                                 <p:outputLabel value="Secretary Tel:" />
-                                <p:inputText id="secretaryTel" value="#{addCustomer.bussiness.don368secretaryTel}">
-                                   
-                                </p:inputText>
-                                <p:outputLabel value="Business Description:" />
-                                <p:inputText id="bussinessDescp" value="#{addCustomer.bussiness.don368bussDescreption}"></p:inputText>
+                                <p:inputText id="secretaryTel" value="#{bussiness.bussinessSecretaryTel}"> </p:inputText>
+                                <p:outputLabel value="Secretary Email:" />
+                                <p:inputText id="secretaryEmail" value="#{bussiness.businessSecretaryEmail}"> </p:inputText>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:panel>
+                    </c:forEach>
                     <p:panel header="Customer Value" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
                         <h:panelGrid columns="2" cellpadding="10" style="margin-left: auto;margin-right: auto;display: block;" >
                             <h:panelGrid columns="2" cellpadding="10" >

@@ -42,7 +42,7 @@ public class DonBussinessInfoDao extends AbstractDao implements IDonBussinessInf
     }
 
     public List<DonBussinessInfo> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonBussinessInfo ");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonBussinessInfo c");
         List<DonBussinessInfo> bussinessInfos = query.getResultList();
         return bussinessInfos;
     }

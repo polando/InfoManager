@@ -37,25 +37,26 @@ public class DonUsersDao extends AbstractDao implements IDonUsersDao {
     }
 
     public void remove(DonUsers t) {
-        t.setDeleted(Short.valueOf("1"));
+       // t.setDeleted(Short.valueOf("1"));
+        t.setUsersDeleted(1);
         getEntityManager().merge(t);
     }
 
     public List<DonUsers> getAll() {
-        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.deleted = 0 ");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.usersDeleted = 0 ");
         List<DonUsers> users = query.getResultList();
         return users;
     }
 
     public String checkLogin(String username, String password){
-        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.deleted = 0 AND c.don369username=:un AND c.don369password=:pw");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.usersDeleted = 0 AND c.usersUsername=:un AND c.usersPassword=:pw");
         query.setParameter("un", username);
         query.setParameter("pw", password);
         List<DonUsers> users = query.getResultList();
         if (users==null || users.size() < 1) {
             return null;
         } else if (users.size() == 1) {
-            return users.get(0).getDon369username();
+            return users.get(0).getUsersName();
         } else {
             return null;
         }
@@ -63,7 +64,7 @@ public class DonUsersDao extends AbstractDao implements IDonUsersDao {
     
     public DonUsers getOnlineUser(String name){
         
-        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.deleted = 0 AND c.don369username=:un");
+        Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.usersDeleted = 0 AND c.usersUsername=:un");
         query.setParameter("un", name);
         DonUsers users = (DonUsers) query.getSingleResult();
         return users;
