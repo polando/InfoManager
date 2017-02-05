@@ -10,10 +10,7 @@ import com.donkiello.model.entity.common.DonBussiness;
 import com.donkiello.model.service.base.IService;
 import javax.ejb.Remote;
 
-/**
- *
- * @author Mohammad
- */
+
 @Remote
 public interface IDonBussinessService extends IService<DonBussiness> {
     

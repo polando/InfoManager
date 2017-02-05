@@ -6,17 +6,20 @@
 
 package com.donkiello.model.service.common.inter;
 
-import com.donkiello.model.entity.common.DonCustomer;
+import com.donkiello.dto.DonCustomerDTO;
+import com.donkiello.model.entity.common.*;
 import com.donkiello.model.exeption.BusinessException;
 import com.donkiello.model.service.base.IService;
 import javax.ejb.Remote;
 import javax.ejb.Local;
+import java.util.List;
 
-/**
- *
- * @author Mohammad
- */
+
 @Local
-public interface IDonCustomerService extends IService<DonCustomer>{
-    public void insertPhoto(byte[] image, int pid) throws BusinessException;
+public interface IDonCustomerService extends IService<DonCustomerDTO>{
+    void insertPhoto(byte[] image, int pid) throws BusinessException;
+    List<DonPast> getNotDeletedPasts(Integer object);
+    List<DonProgram> getNotDeletedPrograms(Integer object);
+    List<DonBussiness> getCustomerBusinessInfo(Integer object);
+    List<DonPersonal> getCustomerPersonalInfo(Integer object);
 }

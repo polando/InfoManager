@@ -11,6 +11,7 @@ import com.donkiello.model.entity.base.BaseEntity;
 import com.donkiello.model.entity.common.DonCustomer;
 import com.donkiello.model.exeption.BusinessException;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
@@ -19,7 +20,8 @@ import javax.persistence.Query;
  * @author Mohammad
  */
 @Stateless
-public class DonCustomerDao extends AbstractDao implements IDonCustomerDao {
+@LocalBean
+public class DonCustomerDao extends AbstractDao {
 
     public DonCustomerDao() {
         super();

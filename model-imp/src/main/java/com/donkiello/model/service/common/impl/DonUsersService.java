@@ -19,10 +19,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityTransaction;
 
-/**
- *
- * @author Mohammad
- */
+
 @Stateless
 @LocalBean
 @Local(IDonUsersService.class)

@@ -49,39 +49,33 @@
                 </p:column>
 
                 <p:column filterBy="#{customer.customerRate}" headerText="Class"  width="6%" sortBy="#{customer.customerRate}" filterMatchMode="contains">
-
                     <h:outputText value="#{customer.customerRate}" />
                 </p:column>
+
                 <p:column filterBy="#{customer.customerPrograms}" headerText="Programs" width="6%" filterMatchMode="contains">
                     <h:outputText value="#{customer.customerPrograms}" />
                 </p:column>
+
                 <p:column filterBy="#{customer.firstBusinessName}" headerText="Business Name" filterMatchMode="contains">
                     <h:outputText value="#{customer.firstBusinessName}" />
                 </p:column>
-<!--                <p:column  filterBy="#{customer.donPersonalList.get(0).don361description}" headerText="Comments" styleClass="not-show-at-start" filterMatchMode="contains">
-                    <h:outputText value="#{customer.donPersonalList.get(0).don361description}" />
-                </p:column>-->
-            <!--    <p:column  filterBy="#{customer.donPersonalList.get(0).don361homeAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
-                    <h:outputText value="#{customer.donPersonalList.get(0).don361homeAddress}" />
+
+                <p:column  filterBy="#{customer.firstBusinessCountry}" width="10%"  rowspan="1" headerText="Country" filterMatchMode="contains">
+                    <h:outputText value="#{customer.firstBusinessCountry}" />
                 </p:column>
-                  !-->
+
+                <p:column  filterBy="#{customer.firstBusinessCity}" width="10%"  rowspan="1" headerText="City" filterMatchMode="contains">
+                    <h:outputText value="#{customer.firstBusinessCity}" />
+                </p:column>
 
                 <p:column  filterBy="#{customer.firstBusinessAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
-                    <h:outputText value="#{customer.FirstBusinessAddress}" />
+                    <h:outputText value="#{customer.firstBusinessAddress}" />
                 </p:column>
 
-<!--                <p:column filterBy="#{customer.donBussinessList.get(0).don368tag}" headerText="Business Tags" filterMatchMode="contains">
-                    <h:outputText value="#{customer.donBussinessList.get(0).don368tag}" />
-                </p:column>-->
-<!--                <p:column filterBy="#{customer.don360customerEcoRate}" headerText="Financial status" sortBy="#{customer.don360customerEcoRate}" filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360customerEcoRate}" />
-                </p:column>
-                <p:column filterBy="#{customer.don360paymentStatus}" headerText="Payment status" sortBy="#{customer.don360paymentStatus}" filterMatchMode="contains">
-                    <h:outputText value="#{customer.don360paymentStatus}" />
-                </p:column>-->
                 <p:column filterBy="#{customer.firstBusinessField}" headerText="Business Fields" filterMatchMode="contains">
                     <h:outputText value="#{customer.firstBusinessField}" />
                 </p:column>
+
 
                 <p:column width="40" style="max-width: 40px;" exportable="false" >
                     <p:commandButton ajax="false" action="#{customerManager.viewCustomer(customer)}" icon="ui-icon-search" title="View"/>

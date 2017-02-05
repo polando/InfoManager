@@ -30,6 +30,32 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>fr.xebia.extras</groupId>-->
+            <!--<artifactId>selma-processor</artifactId>-->
+            <!--<version>0.15</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>fr.xebia.extras</groupId>-->
+            <!--<artifactId>selma</artifactId>-->
+            <!--<version>0.15</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.8.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.4.2</version><!-- or latest version -->
+        </dependency>
     </dependencies>
     <build>
         <plugins>

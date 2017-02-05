@@ -6,10 +6,10 @@ import javax.persistence.*;
  * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_bussiness", schema = "dondb", catalog = "")
+@Table(name = "don_bussiness", schema = "dondb")
 public class DonBussiness {
     private int bussinessId;
-    private int customerId;
+ //   private int customerId;
     private String businessName;
     private String businessPosition;
     private String businessAddress;
@@ -28,7 +28,7 @@ public class DonBussiness {
     private String businessTag;
     private String businessCountry;
     private String businessSecretaryEmail;
-    private DonCustomer donCustomerByCustomerId;
+    private DonCustomer donCustomerByCustomerIdInBusiness;
 
     @Id
     @Column(name = "BussinessID")
@@ -40,7 +40,7 @@ public class DonBussiness {
         this.bussinessId = bussinessId;
     }
 
-    @Basic
+  /*  @Basic
     @Column(name = "CustomerID")
     public int getCustomerId() {
         return customerId;
@@ -49,7 +49,7 @@ public class DonBussiness {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-
+*/
     @Basic
     @Column(name = "BusinessName")
     public String getBusinessName() {
@@ -238,7 +238,7 @@ public class DonBussiness {
         DonBussiness that = (DonBussiness) o;
 
         if (bussinessId != that.bussinessId) return false;
-        if (customerId != that.customerId) return false;
+    //    if (customerId != that.customerId) return false;
         if (businessName != null ? !businessName.equals(that.businessName) : that.businessName != null) return false;
         if (businessPosition != null ? !businessPosition.equals(that.businessPosition) : that.businessPosition != null)
             return false;
@@ -278,7 +278,7 @@ public class DonBussiness {
     @Override
     public int hashCode() {
         int result = bussinessId;
-        result = 31 * result + customerId;
+    //    result = 31 * result + customerId;
         result = 31 * result + (businessName != null ? businessName.hashCode() : 0);
         result = 31 * result + (businessPosition != null ? businessPosition.hashCode() : 0);
         result = 31 * result + (businessAddress != null ? businessAddress.hashCode() : 0);
@@ -302,11 +302,11 @@ public class DonBussiness {
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
-    public DonCustomer getDonCustomerByCustomerId() {
-        return donCustomerByCustomerId;
+    public DonCustomer getDonCustomerByCustomerIdInBusiness() {
+        return donCustomerByCustomerIdInBusiness;
     }
 
-    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
-        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInBusiness(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerIdInBusiness = donCustomerByCustomerId;
     }
 }

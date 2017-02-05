@@ -16,10 +16,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityTransaction;
 
-/**
- *
- * @author Mohammad
- */
+
 @Stateless
 public class DonPersonalService implements IDonPersonalService{
     

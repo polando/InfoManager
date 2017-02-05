@@ -5,12 +5,6 @@ import org.hibernate.event.spi.*;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Base Entity class that provide hibernate event feature.
- * This class also use for implement common methods that will use in all entities.
- *
- * Created by Mohammad Ghoreishi 9/4/2014.
- */
 public abstract class BaseEntity {
 
 	public static final Short DELETE_YES = Short.valueOf("1");

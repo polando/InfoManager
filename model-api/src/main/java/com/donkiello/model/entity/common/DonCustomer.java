@@ -2,7 +2,6 @@ package com.donkiello.model.entity.common;
 
 import javax.persistence.*;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -10,8 +9,24 @@ import java.util.List;
  */
 @Entity
 @Table(name = "don_customer", schema = "dondb", catalog = "")
+
+@NamedQueries({
+        @NamedQuery(
+                name = "ProgramNotDeleted",
+                query = "SELECT program from DonProgram program where  program.programDeleted = 0 and  program.donCustomerByCustomerIdInProgram.customerId = :CID"
+        ),
+        @NamedQuery(
+                name = "CustomerBusinesses",
+                query = "SELECT business from DonBussiness business where  business.businessDeleted = 0 and  business.donCustomerByCustomerIdInBusiness.customerId = :CID"
+        ),
+        @NamedQuery(
+                name = "CustomerPersonal",
+                query = "SELECT personal from DonPersonal personal where  personal.personalDeleted = 0 and  personal.donCustomerByCustomerIdInPersonal.customerId = :CID"
+        )
+})
+
 public class DonCustomer {
-    private int customerId;
+    private Integer customerId;
     private String customerRate;
     private String customerEcoRate;
     private Integer customerDeleted;
@@ -24,15 +39,19 @@ public class DonCustomer {
     private List<DonBussiness> donBussinessesByCustomerId;
     private List<DonPast> donPastsByCustomerId;
     private List<DonPersonal> donPersonalsByCustomerId;
+   // private DonPersonal donPersonalsByCustomerId;
     private List<DonProgram> donProgramsByCustomerId;
+
+    private String FirstBusinessEmail;
+
 
     @Id
     @Column(name = "CustomerID")
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -168,7 +187,7 @@ public class DonCustomer {
         return result;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInBusiness")
     public List<DonBussiness> getDonBussinessesByCustomerId() {
         return donBussinessesByCustomerId;
     }
@@ -177,7 +196,7 @@ public class DonCustomer {
         this.donBussinessesByCustomerId = donBussinessesByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInPast")
     public List<DonPast> getDonPastsByCustomerId() {
         return donPastsByCustomerId;
     }
@@ -186,7 +205,7 @@ public class DonCustomer {
         this.donPastsByCustomerId = donPastsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInPersonal")
     public List<DonPersonal> getDonPersonalsByCustomerId() {
         return donPersonalsByCustomerId;
     }
@@ -195,7 +214,7 @@ public class DonCustomer {
         this.donPersonalsByCustomerId = donPersonalsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerId")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInProgram")
     public List<DonProgram> getDonProgramsByCustomerId() {
         return donProgramsByCustomerId;
     }
@@ -204,41 +223,10 @@ public class DonCustomer {
         this.donProgramsByCustomerId = donProgramsByCustomerId;
     }
 
-    public String firstBusinessAddress()
-    {
-        if(donBussinessesByCustomerId != null)
-        {
-            return donBussinessesByCustomerId.get(0).getBusinessAddress();
-        }
-        else return "";
-    }
 
-    public String firstBusinessField()
-    {
-        if(donBussinessesByCustomerId != null)
-        {
-            return donBussinessesByCustomerId.get(0).getBusinessField();
-        }
-        else return "";
-    }
 
-    public String firstBusinessName()
-    {
-        if(donBussinessesByCustomerId != null)
-        {
-            return donBussinessesByCustomerId.get(0).getBusinessName();
-        }
-        else return "";
-    }
 
-    public String firstBusinessEmail()
-    {
-        if(donBussinessesByCustomerId != null)
-        {
-            return donBussinessesByCustomerId.get(0).getBusinessEmail();
-        }
-        else return "";
-    }
+
 
 
 }

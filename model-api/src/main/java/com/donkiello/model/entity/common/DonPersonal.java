@@ -9,10 +9,10 @@ import java.util.Arrays;
  * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_personal", schema = "dondb", catalog = "")
+@Table(name = "don_personal", schema = "dondb")
 public class DonPersonal {
     private int personalId;
-    private int customerId;
+//    private int customerId;
     private String persinalName;
     private String personalFamilyName;
     private BigInteger personalGender;
@@ -27,7 +27,7 @@ public class DonPersonal {
     private String personalHomeAddress;
     private String personalFhName;
     private String personalFhNameEn;
-    private Date personalBirthday;
+    private String personalBirthday;
     private String personalHomeAddressEn;
     private String personalBirthPlace;
     private String personalPassportNo;
@@ -38,7 +38,7 @@ public class DonPersonal {
     private String personalDisc;
     private String personalHobbies;
     private Integer personalDeleted;
-    private DonCustomer donCustomerByCustomerId;
+    private DonCustomer donCustomerByCustomerIdInPersonal;
 
     @Id
     @Column(name = "PersonalID")
@@ -50,7 +50,7 @@ public class DonPersonal {
         this.personalId = personalId;
     }
 
-    @Basic
+/*    @Basic
     @Column(name = "CustomerID")
     public int getCustomerId() {
         return customerId;
@@ -59,7 +59,7 @@ public class DonPersonal {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-
+*/
     @Basic
     @Column(name = "PersinalName")
     public String getPersinalName() {
@@ -202,11 +202,11 @@ public class DonPersonal {
 
     @Basic
     @Column(name = "PersonalBirthday")
-    public Date getPersonalBirthday() {
+    public String getPersonalBirthday() {
         return personalBirthday;
     }
 
-    public void setPersonalBirthday(Date personalBirthday) {
+    public void setPersonalBirthday(String personalBirthday) {
         this.personalBirthday = personalBirthday;
     }
 
@@ -318,7 +318,7 @@ public class DonPersonal {
         DonPersonal that = (DonPersonal) o;
 
         if (personalId != that.personalId) return false;
-        if (customerId != that.customerId) return false;
+      //  if (customerId != that.customerId) return false;
         if (persinalName != null ? !persinalName.equals(that.persinalName) : that.persinalName != null) return false;
         if (personalFamilyName != null ? !personalFamilyName.equals(that.personalFamilyName) : that.personalFamilyName != null)
             return false;
@@ -372,7 +372,7 @@ public class DonPersonal {
     @Override
     public int hashCode() {
         int result = personalId;
-        result = 31 * result + customerId;
+      //  result = 31 * result + customerId;
         result = 31 * result + (persinalName != null ? persinalName.hashCode() : 0);
         result = 31 * result + (personalFamilyName != null ? personalFamilyName.hashCode() : 0);
         result = 31 * result + (personalGender != null ? personalGender.hashCode() : 0);
@@ -403,11 +403,11 @@ public class DonPersonal {
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
-    public DonCustomer getDonCustomerByCustomerId() {
-        return donCustomerByCustomerId;
+    public DonCustomer getDonCustomerByCustomerIdInPersonal() {
+        return donCustomerByCustomerIdInPersonal;
     }
 
-    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
-        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInPersonal(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerIdInPersonal = donCustomerByCustomerId;
     }
 }

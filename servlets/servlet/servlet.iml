@@ -22,7 +22,25 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="model-api" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:4.2.14.SP1-redhat-1" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final-redhat-2" level="project" />
+    <orderEntry type="library" name="Maven: antlr:antlr:2.7.7.redhat-4" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final-redhat-2" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.1.Final-redhat-2" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.18.1-GA-redhat-1" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.dozer:dozer:5.4.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.6" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.6.6" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.6.6" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: javassist:javassist:3.8.0.GA" level="project" />
+    <orderEntry type="library" name="Maven: ma.glasnost.orika:orika-core:1.4.2" level="project" />
+    <orderEntry type="library" name="Maven: com.thoughtworks.paranamer:paranamer:2.3" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.2_jdk5" level="project" />
     <orderEntry type="module" module-name="model-imp" />
+    <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:4.2.14.SP1-redhat-1" level="project" />
     <orderEntry type="library" name="Maven: com.donkiello:utility:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.1.4" level="project" />

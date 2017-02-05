@@ -10,10 +10,7 @@ import com.donkiello.model.entity.common.DonProgram;
 import com.donkiello.model.service.base.IService;
 import javax.ejb.Local;
 
-/**
- *
- * @author Mohammad
- */
+
 @Local
 public interface IDonProgramService extends IService<DonProgram>{
     

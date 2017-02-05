@@ -9,10 +9,6 @@
       <class>com.donkiello.model.entity.common.DonPersonal</class>
       <class>com.donkiello.model.entity.common.DonProgram</class>
       <class>com.donkiello.model.entity.common.DonUsers</class>
-      <class>com.donkiello.model.entity.common.DonBussinessInfo</class>
-      <class>com.donkiello.model.entity.common.DonEducationalInfo</class>
-      <class>com.donkiello.model.entity.common.DonHobbies</class>
-      <class>com.donkiello.model.entity.common.DonProducts</class>
       <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.datasource" value="java:jboss/datasources/DonDs"/>

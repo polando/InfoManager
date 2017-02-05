@@ -13,10 +13,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
-/**
- *
- * @author Mohammad
- */
+
 @Stateless
 public class DonBussinessDao extends AbstractDao implements IDonBussinessDao{
 

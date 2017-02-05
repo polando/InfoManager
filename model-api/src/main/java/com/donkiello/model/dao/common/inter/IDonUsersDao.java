@@ -10,10 +10,6 @@ import com.donkiello.model.dao.base.CRUD;
 import com.donkiello.model.entity.common.DonUsers;
 import com.donkiello.model.exeption.BusinessException;
 
-/**
- *
- * @author Mohammad
- */
 public interface IDonUsersDao extends CRUD<DonUsers>{
     public String checkLogin(String username, String password) throws BusinessException;
     public DonUsers getOnlineUser(String name) throws BusinessException;

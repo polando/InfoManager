@@ -9,10 +9,6 @@ package com.donkiello.model.dao.common.inter;
 import com.donkiello.model.dao.base.CRUD;
 import com.donkiello.model.entity.common.DonProgram;
 
-/**
- *
- * @author Mohammad
- */
 public interface IDonProgramDao extends CRUD<DonProgram>{
     
 }

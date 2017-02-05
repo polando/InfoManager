@@ -7,17 +7,33 @@ import java.sql.Date;
  * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_past", schema = "dondb", catalog = "")
+@Table(name = "don_past", schema = "dondb")
+
+//@NamedQueries({
+//        @NamedQuery(
+//                name = "PastNotDeleted",
+//                query = "SELECT past from DonPast past where (past.donCustomerByCustomerIdInPast.customerId =: customerID and past.pastDeleted = 0)"
+//
+//        )
+//})
+
+@NamedQueries({
+        @NamedQuery(
+                name = "PastNotDeleted",
+                query = "SELECT past from DonPast past where  past.pastDeleted = 0 and  past.donCustomerByCustomerIdInPast.customerId = :CID"
+                    )
+})
+
 public class DonPast {
     private Integer pastId;
-    private Integer customerId;
+  //  private Integer customerIdFK;
     private String pastDegree;
     private String pastEduField;
     private String pastUniName;
     private String pastUniCity;
-    private Date pastGradDate;
+    private String pastGradDate;
     private Integer pastDeleted;
-    private DonCustomer donCustomerByCustomerId;
+    private DonCustomer donCustomerByCustomerIdInPast;
 
     @Id
     @Column(name = "PastID")
@@ -29,15 +45,15 @@ public class DonPast {
         this.pastId = pastId;
     }
 
-    @Basic
-    @Column(name = "CustomerID")
-    public Integer getCustomerId() {
-        return customerId;
+  /*  @Basic
+    @Column(name = "CustomerIDFK")
+    public Integer getCustomerIdFK() {
+        return customerIdFK;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
+    public void setCustomerIdFK(Integer customerId) {
+        this.customerIdFK = customerId;
+    }*/
 
     @Basic
     @Column(name = "PastDegree")
@@ -81,11 +97,11 @@ public class DonPast {
 
     @Basic
     @Column(name = "PastGradDate")
-    public Date getPastGradDate() {
+    public String getPastGradDate() {
         return pastGradDate;
     }
 
-    public void setPastGradDate(Date pastGradDate) {
+    public void setPastGradDate(String pastGradDate) {
         this.pastGradDate = pastGradDate;
     }
 
@@ -107,7 +123,7 @@ public class DonPast {
         DonPast donPast = (DonPast) o;
 
         if (pastId != donPast.pastId) return false;
-        if (customerId != donPast.customerId) return false;
+     //   if (customerIdFK != donPast.customerIdFK) return false;
         if (pastDegree != null ? !pastDegree.equals(donPast.pastDegree) : donPast.pastDegree != null) return false;
         if (pastEduField != null ? !pastEduField.equals(donPast.pastEduField) : donPast.pastEduField != null)
             return false;
@@ -123,7 +139,7 @@ public class DonPast {
     @Override
     public int hashCode() {
         int result = pastId;
-        result = 31 * result + customerId;
+    //    result = 31 * result + customerIdFK;
         result = 31 * result + (pastDegree != null ? pastDegree.hashCode() : 0);
         result = 31 * result + (pastEduField != null ? pastEduField.hashCode() : 0);
         result = 31 * result + (pastUniName != null ? pastUniName.hashCode() : 0);
@@ -134,12 +150,12 @@ public class DonPast {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
-    public DonCustomer getDonCustomerByCustomerId() {
-        return donCustomerByCustomerId;
+    @JoinColumn(name = "CustomerIDFK", referencedColumnName = "CustomerID", nullable = false)
+    public DonCustomer getDonCustomerByCustomerIdInPast() {
+        return donCustomerByCustomerIdInPast;
     }
 
-    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
-        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInPast(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerIdInPast = donCustomerByCustomerId;
     }
 }

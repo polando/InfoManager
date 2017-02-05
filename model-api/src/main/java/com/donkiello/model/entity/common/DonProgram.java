@@ -6,10 +6,10 @@ import javax.persistence.*;
  * Created by ussocom on 2/1/2017.
  */
 @Entity
-@Table(name = "don_program", schema = "dondb", catalog = "")
+@Table(name = "don_program", schema = "dondb")
 public class DonProgram {
     private Integer programId;
-    private Integer customerId;
+   // private Integer customerId;
     private String programProgramName;
     private String programMasterThesis;
     private String programThesisSubject;
@@ -20,7 +20,7 @@ public class DonProgram {
     private Integer programDeleted;
     private String programIsStudying;
     private String programPaymentStatus;
-    private DonCustomer donCustomerByCustomerId;
+    private DonCustomer donCustomerByCustomerIdInProgram;
 
     @Id
     @Column(name = "ProgramID")
@@ -32,7 +32,7 @@ public class DonProgram {
         this.programId = programId;
     }
 
-    @Basic
+ /*   @Basic
     @Column(name = "CustomerID")
     public Integer getCustomerId() {
         return customerId;
@@ -41,7 +41,7 @@ public class DonProgram {
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
-
+*/
     @Basic
     @Column(name = "ProgramProgramName")
     public String getProgramProgramName() {
@@ -150,7 +150,7 @@ public class DonProgram {
         DonProgram that = (DonProgram) o;
 
         if (programId != that.programId) return false;
-        if (customerId != that.customerId) return false;
+     //   if (customerId != that.customerId) return false;
         if (programProgramName != null ? !programProgramName.equals(that.programProgramName) : that.programProgramName != null)
             return false;
         if (programMasterThesis != null ? !programMasterThesis.equals(that.programMasterThesis) : that.programMasterThesis != null)
@@ -178,7 +178,7 @@ public class DonProgram {
     @Override
     public int hashCode() {
         int result = programId;
-        result = 31 * result + customerId;
+    //    result = 31 * result + customerId;
         result = 31 * result + (programProgramName != null ? programProgramName.hashCode() : 0);
         result = 31 * result + (programMasterThesis != null ? programMasterThesis.hashCode() : 0);
         result = 31 * result + (programThesisSubject != null ? programThesisSubject.hashCode() : 0);
@@ -194,11 +194,11 @@ public class DonProgram {
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
-    public DonCustomer getDonCustomerByCustomerId() {
-        return donCustomerByCustomerId;
+    public DonCustomer getDonCustomerByCustomerIdInProgram() {
+        return donCustomerByCustomerIdInProgram;
     }
 
-    public void setDonCustomerByCustomerId(DonCustomer donCustomerByCustomerId) {
-        this.donCustomerByCustomerId = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInProgram(DonCustomer donCustomerByCustomerId) {
+        this.donCustomerByCustomerIdInProgram = donCustomerByCustomerId;
     }
 }

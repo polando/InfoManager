@@ -5,11 +5,15 @@
  */
 package com.mohammad.donkiello;
 
+import com.donkiello.dto.DonCustomerDTO;
 import com.donkiello.model.entity.base.BaseEntity;
 import com.donkiello.model.entity.common.*;
 import com.donkiello.model.service.common.inter.IDonCustomerService;
 import com.donkiello.utility.JSFUtils;
 import com.donkiello.utility.JndiUtils;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 
@@ -29,8 +33,8 @@ import java.util.List;
 @ViewScoped
 public class CustomerManager implements Serializable {
 
-    private DonCustomer selectedCustomer;
-    private List<DonCustomer> customerList, filteredCustomers;
+    private DonCustomerDTO selectedCustomer;
+    private List<DonCustomerDTO> customerList, filteredCustomers;
     private DonUsers onlineUser;
     private IDonCustomerService customerService;
     private String[] programms;
@@ -51,9 +55,9 @@ public class CustomerManager implements Serializable {
         programms[1] = "DBA";
     }
 
-    public String removeRow(DonCustomer selectedCustomer) {
+    public String removeRow(DonCustomerDTO selectedCustomer) {
         System.out.println("deleted");
-        DonCustomer selectedCustomer1 = null;
+        DonCustomerDTO selectedCustomer1 = null;
 
         if (selectedCustomer != null) {
             selectedCustomer1 = customerService.searchById(selectedCustomer.getCustomerId());
@@ -94,7 +98,12 @@ public class CustomerManager implements Serializable {
 		}
 	}
 
-    public String viewCustomer(DonCustomer selectedCustomer) {
+    public String viewCustomer(DonCustomerDTO selectedCustomerDTO) {
+        //DTO to entity
+        DonCustomer selectedCustomer= new DonCustomer();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        MapperFacade mapper = mapperFactory.getMapperFacade();
+        mapper.map(selectedCustomerDTO,selectedCustomer);
         
         JSFUtils.storeOnSession("selectedCustomer", selectedCustomer);
         
@@ -115,27 +124,27 @@ public class CustomerManager implements Serializable {
         return (IDonCustomerService) JndiUtils.getModelEjb("DonCustomerService");
     }*/
 
-    public DonCustomer getSelectedCustomer() {
+    public DonCustomerDTO getSelectedCustomer() {
         return selectedCustomer;
     }
 
-    public void setSelectedCustomer(DonCustomer selectedCustomer) {
+    public void setSelectedCustomer(DonCustomerDTO selectedCustomer) {
         this.selectedCustomer = selectedCustomer;
     }
 
-    public List<DonCustomer> getCustomerList() {
+    public List<DonCustomerDTO> getCustomerList() {
         return customerList;
     }
 
-    public void setCustomerList(List<DonCustomer> customerList) {
+    public void setCustomerList(List<DonCustomerDTO> customerList) {
         this.customerList = customerList;
     }
 
-    public List<DonCustomer> getFilteredCustomers() {
+    public List<DonCustomerDTO> getFilteredCustomers() {
         return filteredCustomers;
     }
 
-    public void setFilteredCustomers(List<DonCustomer> filteredCustomers) {
+    public void setFilteredCustomers(List<DonCustomerDTO> filteredCustomers) {
         this.filteredCustomers = filteredCustomers;
     }
 

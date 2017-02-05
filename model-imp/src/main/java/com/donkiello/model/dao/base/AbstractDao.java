@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 public abstract class AbstractDao {
 
 	@PersistenceContext( unitName="DonPU")
-	private EntityManager em;
+	protected EntityManager em;
 //	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPASamplePU");
 
 	protected AbstractDao() {
