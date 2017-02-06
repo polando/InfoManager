@@ -5,12 +5,12 @@
  */
 package com.mohammad.donkiello;
 
-import com.donkiello.dto.DonCustomerDTO;
+import com.donkiello.dto.*;
 import com.donkiello.model.entity.common.*;
-import com.donkiello.model.service.common.inter.IDonCustomerService;
-import com.donkiello.model.service.common.inter.IDonPastService;
-import com.donkiello.model.service.common.inter.IDonPersonalService;
-import com.donkiello.model.service.common.inter.IDonProgramService;
+import com.donkiello.model.service.common.impl.DonCustomerService;
+import com.donkiello.model.service.common.impl.DonPastService;
+import com.donkiello.model.service.common.impl.DonPersonalService;
+import com.donkiello.model.service.common.impl.DonProgramService;
 import com.donkiello.utility.JSFUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
@@ -19,7 +19,6 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import java.math.BigInteger;
-import java.util.Collection;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -39,73 +38,61 @@ import java.util.List;
 @ViewScoped
 public class AddCustomer implements Serializable {
 
-    private DonCustomer customer;
-    private List<DonPersonal> listPersonal;
-    private List<DonBussiness> listBusiness;
+    private DonCustomerDTO customer;
+    private List<DonPersonalDTO> listPersonal;
+    private List<DonBussinessDTO> listBusiness;
 
-    private List<DonPast> listPast = null;
+    private List<DonPastDTO> listPast = null;
   //  private List<DonPast> templistPast = null;
-    private List<DonPast> deletedListPast = null;
+    private List<DonPastDTO> deletedListPast = null;
 
-    private List<DonProgram> listIdaq = null;
+    private List<DonProgramDTO> listIdaq = null;
    // private List<DonProgram> templistIdaq = null;
 
 
 
 
   //  private Collection<DonProgram> templistIdaq = null;
-    private List<DonProgram> deletedListIdaq = null;
-    private DonPersonal personal;
-    private DonBussiness bussiness;
-    private DonPast pastEdu;
+    private List<DonProgramDTO> deletedListIdaq = null;
+    private DonPersonalDTO personal;
+    private DonBussinessDTO bussiness;
+    private DonPastDTO pastEdu;
     private int activeIndex, selectedIndex;
-    private IDonCustomerService customerService;
+    private DonCustomerService customerService;
     private String gender = "Male";
     private String tempDate = "";
     private File passScan;
     private boolean passScanAvailable;
     private boolean birthCertScanAvailable;
     private boolean PhotoScanAvailable;
-    private IDonPastService donPastService;
-    private IDonProgramService donProgramService;
-    private IDonPersonalService donPersonalService;
+    private DonPastService donPastService;
+    private DonProgramService donProgramService;
+    private DonPersonalService donPersonalService;
     private UploadedFile pfile, pfile2, pfile3;
     private String tmpFirstPayment;
 
     private StreamedContent passImage, birthCertScan, photoScan;
 
     @EJB
-    public void setCustomerService(IDonCustomerService iDonCustomerService){
+    public void setCustomerService(DonCustomerService iDonCustomerService){
         this.customerService = iDonCustomerService;
     }
 
     @EJB
-    public void setDonPastService(IDonPastService iDonPastService){
+    public void setDonPastService(DonPastService iDonPastService){
         this.donPastService = iDonPastService;
     }
 
     @EJB
-    public void setDonProgramService(IDonProgramService iDonProgramService){
+    public void setDonProgramService(DonProgramService iDonProgramService){
         this.donProgramService = iDonProgramService;
     }
 
     @EJB
-    public void setDonPersonalService(IDonPersonalService iDonPersonalServiceo){
+    public void setDonPersonalService(DonPersonalService iDonPersonalServiceo){
         this.donPersonalService = iDonPersonalServiceo;
     }
 
-
-
-
-  /*  private IDonCustomerService getService() {
-        return customerService = (IDonCustomerService) JndiUtils.getModelEjb("DonCustomerService");
-    }*/
-
-   /* public AddCustomer() {
-        donPastService = (IDonPastService) JndiUtils.getModelEjb("DonPastService");
-        donProgramService = (IDonProgramService) JndiUtils.getModelEjb("DonProgramService");
-        donPersonalService = (IDonPersonalService) JndiUtils.getModelEjb("DonPersonalService");
-    }*/
 
     public void initialize() {
         passScanAvailable = false;
@@ -116,14 +103,14 @@ public class AddCustomer implements Serializable {
         }
         
         if (null == listPast) {
-            listBusiness = new ArrayList<DonBussiness>();
-            listPast = new ArrayList<DonPast>();
-            listPersonal = new ArrayList<DonPersonal>();
-            listIdaq = new ArrayList<DonProgram>();
+            listBusiness = new ArrayList<DonBussinessDTO>();
+            listPast = new ArrayList<DonPastDTO>();
+            listPersonal = new ArrayList<DonPersonalDTO>();
+            listIdaq = new ArrayList<DonProgramDTO>();
         }
 
        // getService();
-        customer = (DonCustomer) JSFUtils.getFromSession("selectedCustomer");
+        customer = (DonCustomerDTO) JSFUtils.getFromSession("selectedCustomer");
         if (customer != null) {
             if (null != customer.getCustomerImage()) {
                 PhotoScanAvailable = true;
@@ -160,10 +147,10 @@ public class AddCustomer implements Serializable {
 
 
         } else {
-            customer = new DonCustomer();
-            bussiness = new DonBussiness();
-            personal = new DonPersonal();
-            pastEdu = new DonPast();
+            customer = new DonCustomerDTO();
+            bussiness = new DonBussinessDTO();
+            personal = new DonPersonalDTO();
+            pastEdu = new DonPastDTO();
 
         }
     }
@@ -218,22 +205,22 @@ public class AddCustomer implements Serializable {
     }
 
     public void addPast() {
-        DonPast t = new DonPast();
+        DonPastDTO t = new DonPastDTO();
         t.setDonCustomerByCustomerIdInPast(customer);
         t.setPastDeleted(0);
         listPast.add(t);
     }
 
     public void addIdaq() {
-        DonProgram t = new DonProgram();
+        DonProgramDTO t = new DonProgramDTO();
         t.setDonCustomerByCustomerIdInProgram(customer);
         t.setProgramDeleted(0);
         listIdaq.add(t);
     }
 
-    public void deletePastRow(DonPast p) {
+    public void deletePastRow(DonPastDTO p) {
         if (null == deletedListPast) {
-            deletedListPast = new ArrayList<DonPast>();
+            deletedListPast = new ArrayList<DonPastDTO>();
         }
         p.setPastDeleted(1);
         deletedListPast.add(p);
@@ -241,9 +228,9 @@ public class AddCustomer implements Serializable {
 
     }
 
-    public void deleteIdaqRow(DonProgram p) {
+    public void deleteIdaqRow(DonProgramDTO p) {
         if (null == deletedListIdaq) {
-            deletedListIdaq = new ArrayList<DonProgram>();
+            deletedListIdaq = new ArrayList<DonProgramDTO>();
         }
         p.setProgramDeleted(1);
         deletedListIdaq.add(p);
@@ -272,7 +259,7 @@ public class AddCustomer implements Serializable {
         }
 
         /// adding father to childs
-        for (DonPast p : listPast) {
+        for (DonPastDTO p : listPast) {
             if (null == p.getDonCustomerByCustomerIdInPast() && null == p.getPastDeleted()) {
                 p.setPastDeleted(0);
                 p.setDonCustomerByCustomerIdInPast(customer);
@@ -280,19 +267,19 @@ public class AddCustomer implements Serializable {
         }
 
         if (null != deletedListPast) {
-            for (DonPast p : deletedListPast) {
+            for (DonPastDTO p : deletedListPast) {
                 donPastService.remove(p);
             }
         }
 
-        for (DonProgram p : listIdaq) {
+        for (DonProgramDTO p : listIdaq) {
             if (null == p.getDonCustomerByCustomerIdInProgram()&& null == p.getProgramDeleted()) {
                 p.setProgramDeleted(0);
                 p.setDonCustomerByCustomerIdInProgram(customer);
             }
         }
         if (null != deletedListIdaq) {
-            for (DonProgram p : deletedListIdaq) {
+            for (DonProgramDTO p : deletedListIdaq) {
                 donProgramService.remove(p);
             }
         }
@@ -323,10 +310,10 @@ public class AddCustomer implements Serializable {
         return "firstPage?faces-redirect=true";
     }
 
-    public String managePrograms(List<DonProgram> programList) {
+    public String managePrograms(List<DonProgramDTO> programList) {
         String s = "";
         int i = 0;
-        for (DonProgram p : programList) {
+        for (DonProgramDTO p : programList) {
             if (null != p.getProgramProgramName()) {
                 if (i == 0) {
                     s += p.getProgramProgramName();
@@ -339,10 +326,10 @@ public class AddCustomer implements Serializable {
         return s;
     }
     
-    public String managePayment(List<DonProgram> programList) {
+    public String managePayment(List<DonProgramDTO> programList) {
         String payment = "";
         boolean isPaid=true;
-        for (DonProgram p : programList) {
+        for (DonProgramDTO p : programList) {
             if (null != p.getProgramFirstPayment()) {
                 if(p.getProgramFirstPayment().equalsIgnoreCase("not Paid")||p.getProgramSecondPayment().equalsIgnoreCase("not Paid")){
                     isPaid=false;
@@ -358,35 +345,35 @@ public class AddCustomer implements Serializable {
     }
     
     ///Setters And Getters
-    public DonCustomer getCustomer() {
+    public DonCustomerDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(DonCustomer customer) {
+    public void setCustomer(DonCustomerDTO customer) {
         this.customer = customer;
     }
 
-    public DonPersonal getPersonal() {
+    public DonPersonalDTO getPersonal() {
         return personal;
     }
 
-    public void setPersonal(DonPersonal personal) {
+    public void setPersonal(DonPersonalDTO personal) {
         this.personal = personal;
     }
 
-    public DonBussiness getBussiness() {
+    public DonBussinessDTO getBussiness() {
         return bussiness;
     }
 
-    public void setBussiness(DonBussiness bussiness) {
+    public void setBussiness(DonBussinessDTO bussiness) {
         this.bussiness = bussiness;
     }
 
-    public DonPast getPastEdu() {
+    public DonPastDTO getPastEdu() {
         return pastEdu;
     }
 
-    public void setPastEdu(DonPast pastEdu) {
+    public void setPastEdu(DonPastDTO pastEdu) {
         this.pastEdu = pastEdu;
     }
 
@@ -432,19 +419,19 @@ public class AddCustomer implements Serializable {
         this.activeIndex = activeIndex;
     }
 
-    public List<DonPast> getListPast() {
+    public List<DonPastDTO> getListPast() {
         return listPast;
     }
 
-    public void setListPast(List<DonPast> listPast) {
+    public void setListPast(List<DonPastDTO> listPast) {
         this.listPast = listPast;
     }
 
-    public List<DonProgram> getListIdaq() {
+    public List<DonProgramDTO> getListIdaq() {
         return listIdaq;
     }
 
-    public void setListIdaq(List<DonProgram> listIdaq) {
+    public void setListIdaq(List<DonProgramDTO> listIdaq) {
         this.listIdaq = listIdaq;
     }
 
@@ -535,11 +522,11 @@ public class AddCustomer implements Serializable {
         this.photoScan = photoScan;
     }
 
-    public List<DonBussiness> getListBusiness() {
+    public List<DonBussinessDTO> getListBusiness() {
         return listBusiness;
     }
 
-    public void setListBusiness(List<DonBussiness> listBusiness) {
+    public void setListBusiness(List<DonBussinessDTO> listBusiness) {
         this.listBusiness = listBusiness;
     }
 }

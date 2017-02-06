@@ -5,6 +5,7 @@
  */
 package com.donkiello.model.dao.common.impl;
 
+import com.donkiello.dto.DonCustomerDTO;
 import com.donkiello.model.dao.base.AbstractDao;
 import com.donkiello.model.dao.common.inter.IDonCustomerDao;
 import com.donkiello.model.entity.base.BaseEntity;

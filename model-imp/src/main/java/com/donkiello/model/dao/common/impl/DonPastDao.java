@@ -10,12 +10,14 @@ import com.donkiello.model.dao.base.AbstractDao;
 import com.donkiello.model.dao.common.inter.IDonPastDao;
 import com.donkiello.model.entity.common.DonPast;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 
 @Stateless
-public class DonPastDao extends AbstractDao implements IDonPastDao{
+@LocalBean
+public class DonPastDao extends AbstractDao {
     
     public DonPastDao(){
     super();

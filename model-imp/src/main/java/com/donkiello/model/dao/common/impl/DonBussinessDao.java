@@ -10,12 +10,14 @@ import com.donkiello.model.dao.base.AbstractDao;
 import com.donkiello.model.dao.common.inter.IDonBussinessDao;
 import com.donkiello.model.entity.common.DonBussiness;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 
 @Stateless
-public class DonBussinessDao extends AbstractDao implements IDonBussinessDao{
+@LocalBean
+public class DonBussinessDao extends AbstractDao {
 
     public DonBussinessDao(){
     super();

@@ -24,10 +24,10 @@ public class DonCustomerDTO {
     private String customerPrograms;
     private String customerPaymentStatus;
     private String customerMobileNo;
-    private List<DonBussiness> donBussinessesByCustomerId;
-    private List<DonPast> donPastsByCustomerId;
-    private List<DonPersonal> donPersonalsByCustomerId;
-    private List<DonProgram> donProgramsByCustomerId;
+    private List<DonBussinessDTO> donBussinessesByCustomerId;
+    private List<DonPastDTO> donPastsByCustomerId;
+    private List<DonPersonalDTO> donPersonalsByCustomerId;
+    private List<DonProgramDTO> donProgramsByCustomerId;
 
     private String FirstBusinessName;
     private String FirstBusinessAddress;
@@ -118,38 +118,38 @@ public class DonCustomerDTO {
     }
 
 
-    public List<DonBussiness> getDonBussinessesByCustomerId() {
+    public List<DonBussinessDTO> getDonBussinessesByCustomerId() {
         return donBussinessesByCustomerId;
     }
 
-    public void setDonBussinessesByCustomerId(List<DonBussiness> donBussinessesByCustomerId) {
+    public void setDonBussinessesByCustomerId(List<DonBussinessDTO> donBussinessesByCustomerId) {
         this.donBussinessesByCustomerId = donBussinessesByCustomerId;
     }
 
 
-    public List<DonPast> getDonPastsByCustomerId() {
+    public List<DonPastDTO> getDonPastsByCustomerId() {
         return donPastsByCustomerId;
     }
 
-    public void setDonPastsByCustomerId(List<DonPast> donPastsByCustomerId) {
+    public void setDonPastsByCustomerId(List<DonPastDTO> donPastsByCustomerId) {
         this.donPastsByCustomerId = donPastsByCustomerId;
     }
 
 
-    public List<DonPersonal> getDonPersonalsByCustomerId() {
+    public List<DonPersonalDTO> getDonPersonalsByCustomerId() {
         return donPersonalsByCustomerId;
     }
 
-    public void setDonPersonalsByCustomerId(List<DonPersonal> donPersonalsByCustomerId) {
+    public void setDonPersonalsByCustomerId(List<DonPersonalDTO> donPersonalsByCustomerId) {
         this.donPersonalsByCustomerId = donPersonalsByCustomerId;
     }
 
 
-    public List<DonProgram> getDonProgramsByCustomerId() {
+    public List<DonProgramDTO> getDonProgramsByCustomerId() {
         return donProgramsByCustomerId;
     }
 
-    public void setDonProgramsByCustomerId(List<DonProgram> donProgramsByCustomerId) {
+    public void setDonProgramsByCustomerId(List<DonProgramDTO> donProgramsByCustomerId) {
         this.donProgramsByCustomerId = donProgramsByCustomerId;
     }
 

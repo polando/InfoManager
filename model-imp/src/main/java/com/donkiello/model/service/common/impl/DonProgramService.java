@@ -6,41 +6,65 @@
 
 package com.donkiello.model.service.common.impl;
 
+import com.donkiello.dto.DonProgramDTO;
 import com.donkiello.model.dao.base.AbstractDao;
-import com.donkiello.model.dao.common.inter.IDonProgramDao;
+import com.donkiello.model.dao.common.impl.DonProgramDao;
 import com.donkiello.model.entity.common.DonProgram;
 import com.donkiello.model.exeption.BusinessException;
-import com.donkiello.model.service.common.inter.IDonProgramService;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityTransaction;
 
 
 @Stateless
-public class DonProgramService implements IDonProgramService{
-    
+@LocalBean
+public class DonProgramService {
+
+    MapperFactory mapperFactory;
+    MapperFacade mapper;
+    DonProgram donProgram;
+
     @EJB
-    private IDonProgramDao programDao;
+    private DonProgramDao programDao;
+
+    @PostConstruct
+    private void init(){
+        mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapper = mapperFactory.getMapperFacade();
+        donProgram = new DonProgram();
+    }
+
 
     public EntityTransaction getTransaction() {
         return ((AbstractDao)programDao).getEntityManager().getTransaction();
     }
 
-    public void create(DonProgram t) throws BusinessException {
-        programDao.create(t);
+    public void create(DonProgramDTO donProgramDTO) throws BusinessException {
+        mapper.map(donProgramDTO,donProgram);
+        programDao.create(donProgram);
     }
 
-    public DonProgram searchById(Object id) throws BusinessException {
-        return programDao.searchById(id);
+    public DonProgramDTO searchById(Object id) throws BusinessException {
+        DonProgramDTO donProgramDTO =new DonProgramDTO();
+        mapper.map(programDao.searchById(id),donProgramDTO);
+        return donProgramDTO;
     }
 
-    public void update(DonProgram t) throws BusinessException {
-        programDao.update(t);
+    public void update(DonProgramDTO donProgramDTO) throws BusinessException {
+        mapper.map(donProgramDTO,donProgram);
+        programDao.update(donProgram);
     }
 
-    public void remove(DonProgram t) throws BusinessException {
-        programDao.remove(t);
+    public void remove(DonProgramDTO donProgramDTO) throws BusinessException {
+        mapper.map(donProgramDTO,donProgram);
+        programDao.remove(donProgram);
     }
 
     public List<DonProgram> getAll() throws BusinessException {

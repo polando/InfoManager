@@ -8,14 +8,15 @@ package com.donkiello.model.dao.common.impl;
 import com.donkiello.model.dao.base.AbstractDao;
 import com.donkiello.model.dao.common.inter.IDonUsersDao;
 import com.donkiello.model.entity.common.DonUsers;
-import com.donkiello.model.exeption.BusinessException;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 
 @Stateless
-public class DonUsersDao extends AbstractDao implements IDonUsersDao {
+@LocalBean
+public class DonUsersDao extends AbstractDao {
 
     public DonUsersDao() {
         super();

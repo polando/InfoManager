@@ -6,15 +6,18 @@
 
 package com.donkiello.model.service.common.impl;
 
+import com.donkiello.dto.DonUsersDTO;
 import com.donkiello.model.dao.base.AbstractDao;
-import com.donkiello.model.dao.common.inter.IDonUsersDao;
+import com.donkiello.model.dao.common.impl.DonUsersDao;
 import com.donkiello.model.entity.common.DonUsers;
 import com.donkiello.model.exeption.BusinessException;
-import com.donkiello.model.service.common.inter.IDonUsersService;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityTransaction;
@@ -22,30 +25,47 @@ import javax.persistence.EntityTransaction;
 
 @Stateless
 @LocalBean
-@Local(IDonUsersService.class)
-public class DonUsersService implements IDonUsersService{
-    
+
+public class DonUsersService {
+
+    MapperFactory mapperFactory;
+    MapperFacade mapper;
+    DonUsers donUsers;
+
     @EJB
-    private IDonUsersDao donUsersService;
+    private DonUsersDao donUsersService;
+
+    @PostConstruct
+    private void init(){
+        mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapper = mapperFactory.getMapperFacade();
+        donUsers = new DonUsers();
+    }
+
 
     public EntityTransaction getTransaction() {
         return ((AbstractDao)donUsersService).getEntityManager().getTransaction();
     }
 
-    public void create(DonUsers t) throws BusinessException {
-        donUsersService.create(t);
+    public void create(DonUsersDTO donUsersDTO) throws BusinessException {
+        mapper.map(donUsersDTO,donUsers);
+        donUsersService.create(donUsers);
     }
 
-    public DonUsers searchById(Object id) throws BusinessException {
-        return donUsersService.searchById(id);
+    public DonUsersDTO searchById(Object id) throws BusinessException {
+        DonUsersDTO donUsersDTO =new DonUsersDTO();
+        mapper.map(donUsersService.searchById(id),donUsersDTO);
+        return donUsersDTO;
     }
 
-    public void update(DonUsers t) throws BusinessException {
-        donUsersService.update(t);
+    public void update(DonUsersDTO donUsersDTO) throws BusinessException {
+        mapper.map(donUsersDTO,donUsers);
+        donUsersService.update(donUsers);
     }
 
-    public void remove(DonUsers t) throws BusinessException {
-        donUsersService.remove(t);
+    public void remove(DonUsersDTO donUsersDTO) throws BusinessException {
+        mapper.map(donUsersDTO,donUsers);
+        donUsersService.remove(donUsers);
     }
 
     public List<DonUsers> getAll() throws BusinessException {

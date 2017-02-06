@@ -7,15 +7,16 @@
 package com.donkiello.model.dao.common.impl;
 
 import com.donkiello.model.dao.base.AbstractDao;
-import com.donkiello.model.dao.common.inter.IDonProgramDao;
 import com.donkiello.model.entity.common.DonProgram;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 
 @Stateless
-public class DonProgramDao extends AbstractDao implements IDonProgramDao{
+@LocalBean
+public class DonProgramDao extends AbstractDao {
     
     public DonProgramDao(){
      super();   

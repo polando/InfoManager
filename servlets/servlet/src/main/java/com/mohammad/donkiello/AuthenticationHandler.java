@@ -6,11 +6,10 @@
 package com.mohammad.donkiello;
 
 import com.donkiello.model.entity.common.DonUsers;
-import com.donkiello.model.service.common.inter.IDonCustomerService;
-import com.donkiello.model.service.common.inter.IDonPersonalService;
-import com.donkiello.model.service.common.inter.IDonUsersService;
+import com.donkiello.model.service.common.impl.DonCustomerService;
+import com.donkiello.model.service.common.impl.DonPersonalService;
+import com.donkiello.model.service.common.impl.DonUsersService;
 import com.donkiello.utility.JSFUtils;
-import com.donkiello.utility.JndiUtils;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -31,10 +30,10 @@ public class AuthenticationHandler implements Serializable {
    // @EJB(lookup = "ejb:ear-1.0/model-imp-1.0/com.donkiello.model.service.common.impl.DonUsersService")
 
 
-    private IDonUsersService donUsersService;
+    private DonUsersService donUsersService;
 
     @EJB
-   public void setDonUsersService(IDonUsersService calculator)
+   public void setDonUsersService(DonUsersService calculator)
    {
        this.donUsersService = calculator;
    }
@@ -44,12 +43,12 @@ public class AuthenticationHandler implements Serializable {
 
 
 
-    private IDonCustomerService customerService;
+    private DonCustomerService customerService;
     private String userName;
     private String password;
     private DonUsers onlineUser = null;
     private List<DonUsers> dus;
-    private IDonPersonalService donPersonalService;
+    private DonPersonalService donPersonalService;
     private DonUsers user;
     private String salam;
 
@@ -139,8 +138,7 @@ public class AuthenticationHandler implements Serializable {
         this.password = password;
     }
 
-    private IDonUsersService getDonUsersService() {
-     //   return (IDonUsersService) JndiUtils.getModelEjb("DonUsersService");
+    private DonUsersService getDonUsersService() {
         return donUsersService;
     }
 

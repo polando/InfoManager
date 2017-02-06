@@ -5,10 +5,10 @@
  */
 package com.mohammad.donkiello;
 
-import com.donkiello.dto.DonCustomerDTO;
+import com.donkiello.dto.*;
 import com.donkiello.model.entity.base.BaseEntity;
 import com.donkiello.model.entity.common.*;
-import com.donkiello.model.service.common.inter.IDonCustomerService;
+import com.donkiello.model.service.common.impl.DonCustomerService;
 import com.donkiello.utility.JSFUtils;
 import com.donkiello.utility.JndiUtils;
 import ma.glasnost.orika.MapperFacade;
@@ -36,11 +36,11 @@ public class CustomerManager implements Serializable {
     private DonCustomerDTO selectedCustomer;
     private List<DonCustomerDTO> customerList, filteredCustomers;
     private DonUsers onlineUser;
-    private IDonCustomerService customerService;
+    private DonCustomerService customerService;
     private String[] programms;
 
     @EJB
-   public void setCustomerService(IDonCustomerService customerService){
+   public void setCustomerService(DonCustomerService customerService){
         this.customerService=customerService;
     }
 
@@ -65,16 +65,16 @@ public class CustomerManager implements Serializable {
             
             //cascading remove
             if(selectedCustomer1.getDonPersonalsByCustomerId()!=null)
-                for( DonPersonal p : selectedCustomer.getDonPersonalsByCustomerId())
+                for( DonPersonalDTO p : selectedCustomer.getDonPersonalsByCustomerId())
                     p.setPersonalDeleted(1);
             if(selectedCustomer1.getDonBussinessesByCustomerId()!=null)
-                for( DonBussiness p : selectedCustomer.getDonBussinessesByCustomerId())
+                for( DonBussinessDTO p : selectedCustomer.getDonBussinessesByCustomerId())
                     p.setBusinessDeleted(1);
             if(selectedCustomer1.getDonPastsByCustomerId()!=null)
-                for( DonPast p : selectedCustomer.getDonPastsByCustomerId())
+                for( DonPastDTO p : selectedCustomer.getDonPastsByCustomerId())
                     p.setPastDeleted(1);
             if(selectedCustomer1.getDonProgramsByCustomerId()!=null)
-                for( DonProgram p : selectedCustomer.getDonProgramsByCustomerId())
+                for( DonProgramDTO p : selectedCustomer.getDonProgramsByCustomerId())
                     p.setProgramDeleted(1);
             customerService.remove(selectedCustomer);
             customerList.remove(selectedCustomer);
@@ -100,12 +100,12 @@ public class CustomerManager implements Serializable {
 
     public String viewCustomer(DonCustomerDTO selectedCustomerDTO) {
         //DTO to entity
-        DonCustomer selectedCustomer= new DonCustomer();
+     /*   DonCustomer selectedCustomer= new DonCustomer();
         MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         MapperFacade mapper = mapperFactory.getMapperFacade();
-        mapper.map(selectedCustomerDTO,selectedCustomer);
+        mapper.map(selectedCustomerDTO,selectedCustomer);*/
         
-        JSFUtils.storeOnSession("selectedCustomer", selectedCustomer);
+        JSFUtils.storeOnSession("selectedCustomer", selectedCustomerDTO);
         
         try {
             return "addCustomerPage?faces-redirect=true";

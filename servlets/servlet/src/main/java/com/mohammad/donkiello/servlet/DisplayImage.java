@@ -7,8 +7,8 @@ package com.mohammad.donkiello.servlet;
 
 import com.donkiello.model.entity.common.DonCustomer;
 import com.donkiello.model.entity.common.DonPersonal;
-import com.donkiello.model.service.common.inter.IDonCustomerService;
-import com.donkiello.model.service.common.inter.IDonPersonalService;
+import com.donkiello.model.service.common.impl.DonCustomerService;
+import com.donkiello.model.service.common.impl.DonPersonalService;
 import com.donkiello.utility.JndiUtils;
 
 import javax.ejb.EJB;
@@ -27,16 +27,16 @@ public class DisplayImage extends HttpServlet implements Serializable {
 
     private static final long serialVersionUID = 4593558495041379082L;
 
-    private IDonCustomerService customerService;
-    private IDonPersonalService personalService;
+    private DonCustomerService customerService;
+    private DonPersonalService personalService;
 
     @EJB
-    public void setCustomerService(IDonCustomerService customerService) {
+    public void setCustomerService(DonCustomerService customerService) {
         this.customerService = customerService;
     }
 
     @EJB
-    public void setPersonalService(IDonPersonalService personalService) {
+    public void setPersonalService(DonPersonalService personalService) {
         this.personalService = personalService;
     }
 

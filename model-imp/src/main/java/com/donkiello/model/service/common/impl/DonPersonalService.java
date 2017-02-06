@@ -6,43 +6,67 @@
 
 package com.donkiello.model.service.common.impl;
 
+import com.donkiello.dto.DonPersonalDTO;
 import com.donkiello.model.dao.base.AbstractDao;
-import com.donkiello.model.dao.common.inter.IDonPersonalDao;
+import com.donkiello.model.dao.common.impl.DonPersonalDao;
+import com.donkiello.model.entity.common.DonCustomer;
+import com.donkiello.model.entity.common.DonPast;
 import com.donkiello.model.entity.common.DonPersonal;
 import com.donkiello.model.exeption.BusinessException;
-import com.donkiello.model.service.common.inter.IDonPersonalService;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityTransaction;
 
 
 @Stateless
-public class DonPersonalService implements IDonPersonalService{
+@LocalBean
+public class DonPersonalService {
+
+    MapperFactory mapperFactory;
+    MapperFacade mapper;
+    DonPersonal donPersonal;
     
     @EJB
-    private IDonPersonalDao donPersonalDao;
-    
+    private DonPersonalDao donPersonalDao;
+
+    @PostConstruct
+    private void init(){
+        mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapper = mapperFactory.getMapperFacade();
+        donPersonal = new DonPersonal();
+    }
     
     
     public EntityTransaction getTransaction() {
         return ((AbstractDao)donPersonalDao).getEntityManager().getTransaction();
     }
 
-    public void create(DonPersonal t) throws BusinessException {
-        donPersonalDao.create(t);
+    public void create(DonPersonalDTO donPersonalDTO) throws BusinessException {
+        mapper.map(donPersonalDTO,donPersonal);
+        donPersonalDao.create(donPersonal);
     }
 
-    public DonPersonal searchById(Object id) throws BusinessException {
-        return donPersonalDao.searchById(id);
+    public DonPersonalDTO searchById(Object id) throws BusinessException {
+        DonPersonalDTO donPersonalDTO =new DonPersonalDTO();
+        mapper.map(donPersonalDao.searchById(id),donPersonalDTO);
+        return donPersonalDTO;
     }
 
-    public void update(DonPersonal t) throws BusinessException {
-       donPersonalDao.update(t);
+    public void update(DonPersonalDTO donPersonalDTO) throws BusinessException {
+        mapper.map(donPersonalDTO,donPersonal);
+       donPersonalDao.update(donPersonal);
     }
 
-    public void remove(DonPersonal t) throws BusinessException {
-        donPersonalDao.remove(t);
+    public void remove(DonPersonalDTO donPersonalDTO) throws BusinessException {
+        mapper.map(donPersonalDTO,donPersonal);
+        donPersonalDao.remove(donPersonal);
     }
 
     public List<DonPersonal> getAll() throws BusinessException {
