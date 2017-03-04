@@ -11,8 +11,7 @@ import java.util.Arrays;
 @Entity
 @Table(name = "don_personal", schema = "dondb")
 public class DonPersonal {
-    private int personalId;
-//    private int customerId;
+    private Integer personalId;
     private String persinalName;
     private String personalFamilyName;
     private BigInteger personalGender;
@@ -41,12 +40,13 @@ public class DonPersonal {
     private DonCustomer donCustomerByCustomerIdInPersonal;
 
     @Id
-    @Column(name = "PersonalID")
-    public int getPersonalId() {
+ //   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PersonalID",unique = true)
+    public Integer getPersonalId() {
         return personalId;
     }
 
-    public void setPersonalId(int personalId) {
+    public void setPersonalId(Integer personalId) {
         this.personalId = personalId;
     }
 

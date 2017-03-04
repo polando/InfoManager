@@ -11,7 +11,6 @@ import java.sql.Date;
 
 public class DonPastDTO {
     private Integer pastId;
-    //  private Integer customerIdFK;
     private String pastDegree;
     private String pastEduField;
     private String pastUniName;

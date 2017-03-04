@@ -36,7 +36,8 @@ public class DonPast {
     private DonCustomer donCustomerByCustomerIdInPast;
 
     @Id
-    @Column(name = "PastID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PastID",unique = true)
     public Integer getPastId() {
         return pastId;
     }

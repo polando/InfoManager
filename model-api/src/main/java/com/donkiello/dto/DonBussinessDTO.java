@@ -3,12 +3,13 @@ package com.donkiello.dto;
 import com.donkiello.model.entity.common.DonCustomer;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * Created by ussocom on 2/1/2017.
  */
 public class DonBussinessDTO {
-    private int bussinessId;
+    private Integer bussinessId;
  //   private int customerId;
     private String businessName;
     private String businessPosition;
@@ -31,11 +32,11 @@ public class DonBussinessDTO {
     private DonCustomerDTO donCustomerByCustomerIdInBusiness;
 
 
-    public int getBussinessId() {
+    public Integer getBussinessId() {
         return bussinessId;
     }
 
-    public void setBussinessId(int bussinessId) {
+    public void setBussinessId(Integer bussinessId) {
         this.bussinessId = bussinessId;
     }
 

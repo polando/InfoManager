@@ -61,7 +61,7 @@ public class DonPastService {
 
     public void update(DonPastDTO donPastDTO) throws BusinessException {
         mapper.map(donPastDTO,donPast);
-        pastDao.create(donPast);
+        pastDao.update(donPast);
     }
 
     public void remove(DonPastDTO donPastDTO) throws BusinessException {

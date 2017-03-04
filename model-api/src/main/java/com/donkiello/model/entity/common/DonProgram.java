@@ -23,25 +23,17 @@ public class DonProgram {
     private DonCustomer donCustomerByCustomerIdInProgram;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ProgramID")
-    public int getProgramId() {
+    public Integer getProgramId() {
         return programId;
     }
 
-    public void setProgramId(int programId) {
+    public void setProgramId(Integer programId) {
         this.programId = programId;
     }
 
- /*   @Basic
-    @Column(name = "CustomerID")
-    public Integer getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-*/
     @Basic
     @Column(name = "ProgramProgramName")
     public String getProgramProgramName() {

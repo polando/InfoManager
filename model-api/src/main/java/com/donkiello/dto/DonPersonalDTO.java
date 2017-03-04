@@ -12,8 +12,7 @@ import java.util.Arrays;
  */
 
 public class DonPersonalDTO {
-    private int personalId;
-    //    private int customerId;
+    private Integer personalId;
     private String persinalName;
     private String personalFamilyName;
     private BigInteger personalGender;
@@ -43,11 +42,11 @@ public class DonPersonalDTO {
 
     @Id
     @Column(name = "PersonalID")
-    public int getPersonalId() {
+    public Integer getPersonalId() {
         return personalId;
     }
 
-    public void setPersonalId(int personalId) {
+    public void setPersonalId(Integer personalId) {
         this.personalId = personalId;
     }
 

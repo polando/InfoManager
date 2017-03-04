@@ -31,12 +31,13 @@ public class DonBussiness {
     private DonCustomer donCustomerByCustomerIdInBusiness;
 
     @Id
-    @Column(name = "BussinessID")
-    public int getBussinessId() {
+ //   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BussinessID",unique = true)
+    public Integer getBussinessId() {
         return bussinessId;
     }
 
-    public void setBussinessId(int bussinessId) {
+    public void setBussinessId(Integer bussinessId) {
         this.bussinessId = bussinessId;
     }
 

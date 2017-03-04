@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 public class DonProgramDTO {
     private Integer programId;
-    // private Integer customerId;
     private String programProgramName;
     private String programMasterThesis;
     private String programThesisSubject;
@@ -24,11 +23,15 @@ public class DonProgramDTO {
     private DonCustomerDTO donCustomerByCustomerIdInProgram;
 
 
-    public int getProgramId() {
-        return programId;
+    public Integer getProgramId() {
+        if(programId == null) {
+            //make ID
+        }
+          return programId;
+
     }
 
-    public void setProgramId(int programId) {
+    public void setProgramId(Integer programId) {
         this.programId = programId;
     }
 

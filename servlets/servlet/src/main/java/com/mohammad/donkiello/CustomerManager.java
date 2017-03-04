@@ -22,15 +22,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- *
- * @author Mohammad
- */
-@ManagedBean
-@ViewScoped
+
+@ManagedBean(name = "customerManager")
+@SessionScoped
 public class CustomerManager implements Serializable {
 
     private DonCustomerDTO selectedCustomer;
@@ -38,6 +36,8 @@ public class CustomerManager implements Serializable {
     private DonUsers onlineUser;
     private DonCustomerService customerService;
     private String[] programms;
+
+    private DonCustomerDTO currentselectedDTO;
 
     @EJB
    public void setCustomerService(DonCustomerService customerService){
@@ -47,8 +47,8 @@ public class CustomerManager implements Serializable {
 
     public CustomerManager() {}
 
-    @PostConstruct
-    private void init(){
+//    @PostConstruct
+    public void init(){
         customerList = customerService.getAll();
         programms = new String[2];
         programms[0] = "MBA";
@@ -98,22 +98,23 @@ public class CustomerManager implements Serializable {
 		}
 	}
 
-    public String viewCustomer(DonCustomerDTO selectedCustomerDTO) {
+    public void viewCustomer(DonCustomerDTO selectedCustomerDTO) {
         //DTO to entity
      /*   DonCustomer selectedCustomer= new DonCustomer();
         MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         MapperFacade mapper = mapperFactory.getMapperFacade();
         mapper.map(selectedCustomerDTO,selectedCustomer);*/
         
-        JSFUtils.storeOnSession("selectedCustomer", selectedCustomerDTO);
+
+       // addCustomer.initialize();
         
-        try {
+      /*  try {
             return "addCustomerPage?faces-redirect=true";
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return "";
-        }
-        
+        }*/
+
     }
 
     public String addCustomer() {
@@ -164,5 +165,11 @@ public class CustomerManager implements Serializable {
         this.programms = programms;
     }
 
-    
+    public DonCustomerDTO getCurrentselectedDTO() {
+        return currentselectedDTO;
+    }
+
+    public void setCurrentselectedDTO(DonCustomerDTO currentselectedDTO) {
+        this.currentselectedDTO = currentselectedDTO;
+    }
 }

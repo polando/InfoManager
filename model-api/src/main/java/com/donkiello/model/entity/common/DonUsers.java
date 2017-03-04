@@ -19,7 +19,8 @@ public class DonUsers {
     private Integer usersDeleted;
 
     @Id
-    @Column(name = "UsersID")
+  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "UsersID",unique = true,nullable = false)
     public int getUsersId() {
         return usersId;
     }

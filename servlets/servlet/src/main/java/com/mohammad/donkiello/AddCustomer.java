@@ -7,10 +7,7 @@ package com.mohammad.donkiello;
 
 import com.donkiello.dto.*;
 import com.donkiello.model.entity.common.*;
-import com.donkiello.model.service.common.impl.DonCustomerService;
-import com.donkiello.model.service.common.impl.DonPastService;
-import com.donkiello.model.service.common.impl.DonPersonalService;
-import com.donkiello.model.service.common.impl.DonProgramService;
+import com.donkiello.model.service.common.impl.*;
 import com.donkiello.utility.JSFUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
@@ -20,9 +17,13 @@ import org.primefaces.model.UploadedFile;
 
 import java.math.BigInteger;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -30,10 +31,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Keyvan Sasani
- */
+
 @ManagedBean(name = "addCustomer")
 @ViewScoped
 public class AddCustomer implements Serializable {
@@ -43,33 +41,36 @@ public class AddCustomer implements Serializable {
     private List<DonBussinessDTO> listBusiness;
 
     private List<DonPastDTO> listPast = null;
-  //  private List<DonPast> templistPast = null;
     private List<DonPastDTO> deletedListPast = null;
-
     private List<DonProgramDTO> listIdaq = null;
-   // private List<DonProgram> templistIdaq = null;
-
-
-
-
-  //  private Collection<DonProgram> templistIdaq = null;
     private List<DonProgramDTO> deletedListIdaq = null;
+
+    private DonCustomerDTO selectedCustomer;
     private DonPersonalDTO personal;
     private DonBussinessDTO bussiness;
     private DonPastDTO pastEdu;
+
     private int activeIndex, selectedIndex;
-    private DonCustomerService customerService;
+
+
     private String gender = "Male";
     private String tempDate = "";
     private File passScan;
+
     private boolean passScanAvailable;
     private boolean birthCertScanAvailable;
     private boolean PhotoScanAvailable;
+
+
+    private DonCustomerService customerService;
     private DonPastService donPastService;
     private DonProgramService donProgramService;
     private DonPersonalService donPersonalService;
+    private DonBussinessService donBussinessService;
+
     private UploadedFile pfile, pfile2, pfile3;
     private String tmpFirstPayment;
+
 
     private StreamedContent passImage, birthCertScan, photoScan;
 
@@ -93,66 +94,101 @@ public class AddCustomer implements Serializable {
         this.donPersonalService = iDonPersonalServiceo;
     }
 
+    @EJB
+    public void setDonBussinessService(DonBussinessService iDonBussinessService){
+        this.donBussinessService = iDonBussinessService;
+    }
+
+
+
+//    @Inject
+//    private CustomerManager customerManager;
+
+//    public CustomerManager getCustomerManager() {
+//        return customerManager;
+//    }
+//
+//    public void setCustomerManager(CustomerManager customerManager) {
+//        this.customerManager = customerManager;
+//    }
 
     public void initialize() {
-        passScanAvailable = false;
-        birthCertScanAvailable = false;
-        PhotoScanAvailable = false;
-        if(null!=JSFUtils.getFromRequestParameter("add")&&JSFUtils.getFromRequestParameter("add").equalsIgnoreCase("true")){
+     //   customer = customerManager.getCurrentselectedDTO();
+
+       // customer =(DonCustomerDTO) JSFUtils.getFromSession("selectedCustomer");
+
+        if (customer !=null){
+            passScanAvailable = false;
+            birthCertScanAvailable = false;
+            PhotoScanAvailable = false;
+       /* if(null!=JSFUtils.getFromRequestParameter("add")&&JSFUtils.getFromRequestParameter("add").equalsIgnoreCase("true")){
             JSFUtils.removeFromSession("selectedCustomer");
-        }
-        
-        if (null == listPast) {
-            listBusiness = new ArrayList<DonBussinessDTO>();
-            listPast = new ArrayList<DonPastDTO>();
-            listPersonal = new ArrayList<DonPersonalDTO>();
-            listIdaq = new ArrayList<DonProgramDTO>();
-        }
 
-       // getService();
-        customer = (DonCustomerDTO) JSFUtils.getFromSession("selectedCustomer");
-        if (customer != null) {
-            if (null != customer.getCustomerImage()) {
-                PhotoScanAvailable = true;
+        }*/
+
+            //    JSFUtils.removeFromSession("selectedCustomer");
+
+            if (null == listPast) {
+                listBusiness = new ArrayList<DonBussinessDTO>();
+                listPast = new ArrayList<DonPastDTO>();
+                listPersonal = new ArrayList<DonPersonalDTO>();
+                listIdaq = new ArrayList<DonProgramDTO>();
             }
-            if (null != customer.getDonPersonalsByCustomerId() && null != customer.getDonProgramsByCustomerId()) {
+
+            // getService();
+
+            // JSFUtils.removeFromSession("selectedCustomer");
+            if (customer != null) {
+                if (null != customer.getCustomerImage()) {
+                    PhotoScanAvailable = true;
+                }
+                if (null != customer.getDonPersonalsByCustomerId() && null != customer.getDonProgramsByCustomerId()) {
 
 
 
-                listPast = customerService.getNotDeletedPasts(customer.getCustomerId());
-                listIdaq = customerService.getNotDeletedPrograms(customer.getCustomerId());
-                listBusiness = customerService.getCustomerBusinessInfo(customer.getCustomerId());
-                listPersonal =  customerService.getCustomerPersonalInfo(customer.getCustomerId());
+                    listPast = customerService.getNotDeletedPasts(customer.getCustomerId());
+                    listIdaq = customerService.getNotDeletedPrograms(customer.getCustomerId());
+                    listBusiness = customerService.getCustomerBusinessInfo(customer.getCustomerId());
+                    listPersonal =  customerService.getCustomerPersonalInfo(customer.getCustomerId());
 
 
-                if(listPersonal != null && listPersonal.size() > 0) {
-                    //loading Photos
-                    personal = listPersonal.get(0);
-                    if (null != personal.getPersonalPassportScan()) {
-                        passScanAvailable = true;
+                    if(listPersonal != null && listPersonal.size() > 0) {
+                        //loading Photos
+                        personal = listPersonal.get(0);
+                        if (null != personal.getPersonalPassportScan()) {
+                            passScanAvailable = true;
+                        }
+                        if (null != personal.getPersonalBirthCertScan()) {
+                            birthCertScanAvailable = true;
+                        }
+
+                        if (personal.getPersonalGender().equals(1)) {
+                            gender = "Male";
+                        } else {
+                            gender = "Female";
+                        }
                     }
-                    if (null != personal.getPersonalBirthCertScan()) {
-                        birthCertScanAvailable = true;
-                    }
 
-                    if (personal.getPersonalGender().equals(1)) {
-                        gender = "Male";
-                    } else {
-                        gender = "Female";
-                    }
                 }
 
+
+
+            } else {
+                customer = new DonCustomerDTO();
+                bussiness = new DonBussinessDTO();
+                personal = new DonPersonalDTO();
+                pastEdu = new DonPastDTO();
+
             }
-
-
-
-        } else {
-            customer = new DonCustomerDTO();
-            bussiness = new DonBussinessDTO();
-            personal = new DonPersonalDTO();
-            pastEdu = new DonPastDTO();
-
         }
+    }
+
+    public DonCustomerDTO getSelectedCustomer() {
+        return selectedCustomer;
+    }
+
+    public void setSelectedCustomer(DonCustomerDTO selectedCustomer) {
+        this.selectedCustomer = selectedCustomer;
     }
 
     public void onRowEdit(RowEditEvent event) {
@@ -284,23 +320,51 @@ public class AddCustomer implements Serializable {
             }
         }
 
-        bussiness.setDonCustomerByCustomerIdInBusiness(customer);
-        personal.setDonCustomerByCustomerIdInPersonal(customer);
-        personal.setPersonalDeleted(0);
-        bussiness.setBusinessDeleted(0);
-      //  listBussiness.add(bussiness);
-     //   listPersonal.add(personal);
-    //    customer.setDonBussinessesByCustomerId(listBussiness);
-     //   customer.setDonPersonalsByCustomerId(listPersonal);
+        for (DonBussinessDTO p:listBusiness) {
+            p.setDonCustomerByCustomerIdInBusiness(customer);
+            p.setBusinessDeleted(0);
+        }
+
+        for (DonPersonalDTO p:listPersonal) {
+            p.setDonCustomerByCustomerIdInPersonal(customer);
+            p.setPersonalDeleted(0);
+        }
+
+
+
+        customer.setDonPersonalsByCustomerId(listPersonal);
+        customer.setDonBussinessesByCustomerId(listBusiness);
         customer.setDonProgramsByCustomerId(listIdaq);
         customer.setDonPastsByCustomerId(listPast);
+
+
+        personal.setPersonalDeleted(0);
         customer.setCustomerDeleted(0);
         customer.setCustomerName(personal.getPersonalNameEn() + " " + personal.getPersonalFamilyNameEn());
-        customer.setCustomerMobileNo(personal.getPersonalMobileNum());
-        customer.setCustomerBusinessName(bussiness.getBusinessName());
         customer.setCustomerPrograms(managePrograms(listIdaq));
         customer.setCustomerPaymentStatus(managePayment(listIdaq));
+
         customerService.update(customer);
+
+        for (DonBussinessDTO p: listBusiness) {
+            donBussinessService.update(p);
+        }
+
+        for (DonPersonalDTO p: listPersonal) {
+            donPersonalService.update(p);
+        }
+
+        for (DonProgramDTO p: listIdaq) {
+            donProgramService.update(p);
+        }
+
+        for (DonPastDTO p: listPast) {
+            donPastService.update(p);
+        }
+
+
+
+
         if (customer.getCustomerImage() == null) {
         }
         return "firstPage?faces-redirect=true";
@@ -354,7 +418,7 @@ public class AddCustomer implements Serializable {
     }
 
     public DonPersonalDTO getPersonal() {
-        return personal;
+          return personal;
     }
 
     public void setPersonal(DonPersonalDTO personal) {

@@ -1,397 +1,397 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<f:view 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <script type="text/javascript" src="#{request.contextPath}/resources/js/fresco/fresco.js"></script>
-        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/fresco/fresco.css"/>
-        <link rel="shortcut icon" href="#{request.contextPath}/resources/images/idaq.png"/>
-    </h:head>
-    <h:body >
-        <h:outputStylesheet name="css/default.css" />
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<f:view -->
+    <!--xmlns="http://www.w3.org/1999/xhtml"-->
+    <!--xmlns:f="http://java.sun.com/jsf/core"-->
+    <!--xmlns:h="http://java.sun.com/jsf/html"-->
+    <!--xmlns:p="http://primefaces.org/ui"-->
+    <!--xmlns:ui="http://java.sun.com/jsf/facelets">-->
+    <!--<h:head>-->
+        <!--<script type="text/javascript" src="#{request.contextPath}/resources/js/fresco/fresco.js"></script>-->
+        <!--<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/fresco/fresco.css"/>-->
+        <!--<link rel="shortcut icon" href="#{request.contextPath}/resources/images/idaq.png"/>-->
+    <!--</h:head>-->
+    <!--<h:body >-->
+        <!--<h:outputStylesheet name="css/default.css" />-->
 
 
-        <h:form id="form"  >
-            <f:event type="preRenderComponent" listener="#{login.checkSession}"/>
-            <f:event type="preRenderComponent" listener="#{addCustomer.initialize()}"/>    
-            <p:growl id="growl" />
-            <p:tabView  activeIndex="#{addCustomer.activeIndex}" id="tview" effect="fade" effectDuration="fast">
-                <p:tab title="Personal Information" transient="true">
-                    <p:panel header="Personal info:Part 1" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-                        <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:outputLabel for="firstnamepersian" value="Firstname(Persian):" />
-                                <p:inputText id="firstnamepersian" value="#{addCustomer.personal.persinalName}"  label="Firstname(Persian)" >
-                                </p:inputText>
-                                <p:outputLabel for="firstname" value="Firstname:" />
-                                <p:inputText id="firstname" value="#{addCustomer.personal.personalNameEn}"  label="Firstname" required="true" requiredMessage="Please Enter First Name !">
-                                </p:inputText>
-                                <p:outputLabel for="lastnamepersian" value="Lasttname(Persian):" />
-                                <p:inputText id="lastnamepersian" value="#{addCustomer.personal.personalFamilyName}"  label="Lastname(Persian)">
-                                </p:inputText>
-                                <p:outputLabel for="lastname" value="Lastname:" />
-                                <p:inputText id="lastname" value="#{addCustomer.personal.personalFamilyNameEn}"  label="Lastname" required="true" requiredMessage="Please Enter Last Name !">
-                                </p:inputText>
-                                <p:outputLabel for="sex" value="Gender:" />
-                                <p:selectOneMenu id="sex" value="#{addCustomer.gender}">
-                                    <f:selectItem itemLabel="Male" itemValue="Male" />
-                                    <f:selectItem itemLabel="Female" itemValue="Female" />
-                                </p:selectOneMenu>
-                                <p:outputLabel for="prefix" value="Prefix:" />
-                                <p:inputText id="prefix" value="#{addCustomer.personal.personalPrefix}"  label="Prefix">
-                                </p:inputText>
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <p:outputLabel for="birthdate" value="Birthdate:" />
-                                <p:calendar yearRange="c-60:c+10" id="birthdate" value="#{addCustomer.personal.personalBirthday}" locale="de" navigator="true" pattern="yyyy-MMM-dd" >
-                                    <f:convertDateTime pattern="yyyy-MMM-dd"/>
-                                </p:calendar>
-                                <p:outputLabel for="melliCodenum" value="MelliCode Number:" />
-                                <p:inputText id="melliCodenum" maxlength="10"  value="#{addCustomer.personal.personalBirthCertNo}" >
-                                </p:inputText>
-                                <p:outputLabel for="Passportnum" value="Passport Number:" />
-                                <p:inputText id="Passportnum" value="#{addCustomer.personal.personalPassportNo}"  label="passportNum">
-                                </p:inputText>
-                                <p:outputLabel for="nationality" value="Nationality:" />
-                                <p:inputText id="nationality" value="#{addCustomer.personal.personalBirthPlace}"  label="nationality">
-                                </p:inputText>
-                                <p:outputLabel for="fathernamepersian" value="FatherName(Persian):" />
-                                <p:inputText id="fathernamepersian" value="#{addCustomer.personal.personalFhName}"  label="fathernamepersian">
-                                </p:inputText>
-                                <p:outputLabel for="fathername" value="FatherName:" />
-                                <p:inputText id="fathername" value="#{addCustomer.personal.personalFhNameEn}"  label="Fathername">
-                                </p:inputText>
+        <!--<h:form id="form"  >-->
+            <!--<f:event type="preRenderComponent" listener="#{login.checkSession}"/>-->
+            <!--<f:event type="preRenderComponent" listener="#{addCustomer.initialize()}"/>    -->
+            <!--<p:growl id="growl" />-->
+            <!--<p:tabView  activeIndex="#{addCustomer.activeIndex}" id="tview" effect="fade" effectDuration="fast">-->
+                <!--<p:tab title="Personal Information" transient="true">-->
+                    <!--<p:panel header="Personal info:Part 1" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">-->
+                        <!--<h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >-->
+                            <!--<h:panelGrid columns="2" cellpadding="10">-->
+                                <!--<p:outputLabel for="firstnamepersian" value="Firstname(Persian):" />-->
+                                <!--<p:inputText id="firstnamepersian" value="#{addCustomer.personal.persinalName}"  label="Firstname(Persian)" >-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="firstname" value="Firstname:" />-->
+                                <!--<p:inputText id="firstname" value="#{addCustomer.personal.personalNameEn}"  label="Firstname" required="true" requiredMessage="Please Enter First Name !">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="lastnamepersian" value="Lasttname(Persian):" />-->
+                                <!--<p:inputText id="lastnamepersian" value="#{addCustomer.personal.personalFamilyName}"  label="Lastname(Persian)">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="lastname" value="Lastname:" />-->
+                                <!--<p:inputText id="lastname" value="#{addCustomer.personal.personalFamilyNameEn}"  label="Lastname" required="true" requiredMessage="Please Enter Last Name !">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="sex" value="Gender:" />-->
+                                <!--<p:selectOneMenu id="sex" value="#{addCustomer.gender}">-->
+                                    <!--<f:selectItem itemLabel="Male" itemValue="Male" />-->
+                                    <!--<f:selectItem itemLabel="Female" itemValue="Female" />-->
+                                <!--</p:selectOneMenu>-->
+                                <!--<p:outputLabel for="prefix" value="Prefix:" />-->
+                                <!--<p:inputText id="prefix" value="#{addCustomer.personal.personalPrefix}"  label="Prefix">-->
+                                <!--</p:inputText>-->
+                            <!--</h:panelGrid>-->
+                            <!--<h:panelGrid columns="2" cellpadding="10" >-->
+                                <!--<p:outputLabel for="birthdate" value="Birthdate:" />-->
+                                <!--<p:calendar yearRange="c-60:c+10" id="birthdate" value="#{addCustomer.personal.personalBirthday}" locale="de" navigator="true" pattern="yyyy-MMM-dd" >-->
+                                    <!--<f:convertDateTime pattern="yyyy-MMM-dd"/>-->
+                                <!--</p:calendar>-->
+                                <!--<p:outputLabel for="melliCodenum" value="MelliCode Number:" />-->
+                                <!--<p:inputText id="melliCodenum" maxlength="10"  value="#{addCustomer.personal.personalBirthCertNo}" >-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="Passportnum" value="Passport Number:" />-->
+                                <!--<p:inputText id="Passportnum" value="#{addCustomer.personal.personalPassportNo}"  label="passportNum">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="nationality" value="Nationality:" />-->
+                                <!--<p:inputText id="nationality" value="#{addCustomer.personal.personalBirthPlace}"  label="nationality">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="fathernamepersian" value="FatherName(Persian):" />-->
+                                <!--<p:inputText id="fathernamepersian" value="#{addCustomer.personal.personalFhName}"  label="fathernamepersian">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="fathername" value="FatherName:" />-->
+                                <!--<p:inputText id="fathername" value="#{addCustomer.personal.personalFhNameEn}"  label="Fathername">-->
+                                <!--</p:inputText>-->
 
-                            </h:panelGrid>
-                        </h:panelGrid>
-                    </p:panel>
-                    <br/>
-                    <p:panel id="panel1" header="Personal info:Part 2" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-                        <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:outputLabel for="email" value="Email:" />
-                                <p:inputText id="email" value="#{addCustomer.personal.personalPersonalEmail}"  label="Email:" validatorMessage="Email is not Valid!">
-                                    <f:validateRegex pattern="([\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])?" />                                
-                                </p:inputText>
-                                <p:outputLabel for="mobilenum" value="Mobile Number:" />
-                                <p:inputText  id="mobilenum" value="#{addCustomer.personal.personalMobileNum}"  label="MobileNumber">
-                                </p:inputText>
-                                <p:outputLabel for="homeNumber" value="Home Number:" />
-                                <p:inputText id="homeNumber" value="#{addCustomer.personal.personalHomeTel}"  label="homeNumber">
-                                </p:inputText>
-                                <p:outputLabel for="homefax" value="Home Fax:" />
-                                <p:inputText id="homefax" value="#{addCustomer.personal.personalHomeFax}"  label="homeFax">
-                                </p:inputText>
-                                <p:outputLabel for="homepostalcode" value="Postal Code(Home):" />
-                                <p:inputText id="homepostalcode" value="#{addCustomer.personal.personalPostalCode}"  label="postal code(home)">
-                                </p:inputText>
-                                <p:outputLabel value="Home Address(Persian):" />
-                                <p:inputTextarea rows="2" id="homeaddresspersian" value="#{addCustomer.personal.personalHomeAddress}"   cols="20" />
+                            <!--</h:panelGrid>-->
+                        <!--</h:panelGrid>-->
+                    <!--</p:panel>-->
+                    <!--<br/>-->
+                    <!--<p:panel id="panel1" header="Personal info:Part 2" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">-->
+                        <!--<h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >-->
+                            <!--<h:panelGrid columns="2" cellpadding="10">-->
+                                <!--<p:outputLabel for="email" value="Email:" />-->
+                                <!--<p:inputText id="email" value="#{addCustomer.personal.personalPersonalEmail}"  label="Email:" validatorMessage="Email is not Valid!">-->
+                                    <!--<f:validateRegex pattern="([\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])?" />                                -->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="mobilenum" value="Mobile Number:" />-->
+                                <!--<p:inputText  id="mobilenum" value="#{addCustomer.personal.personalMobileNum}"  label="MobileNumber">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="homeNumber" value="Home Number:" />-->
+                                <!--<p:inputText id="homeNumber" value="#{addCustomer.personal.personalHomeTel}"  label="homeNumber">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="homefax" value="Home Fax:" />-->
+                                <!--<p:inputText id="homefax" value="#{addCustomer.personal.personalHomeFax}"  label="homeFax">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel for="homepostalcode" value="Postal Code(Home):" />-->
+                                <!--<p:inputText id="homepostalcode" value="#{addCustomer.personal.personalPostalCode}"  label="postal code(home)">-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel value="Home Address(Persian):" />-->
+                                <!--<p:inputTextarea rows="2" id="homeaddresspersian" value="#{addCustomer.personal.personalHomeAddress}"   cols="20" />-->
 
-                                <p:outputLabel for="hobbies" value="Hobbies:" />
-                                <p:inputTextarea rows="2" id="hobbies" value="#{addCustomer.personal.personalHobbies}"   cols="20" />
-                                <p:outputLabel for="comments" value="Comments:" />
-                                <p:inputTextarea rows="2" id="comments" value="#{addCustomer.personal.personalDisc}" cols="20" />
+                                <!--<p:outputLabel for="hobbies" value="Hobbies:" />-->
+                                <!--<p:inputTextarea rows="2" id="hobbies" value="#{addCustomer.personal.personalHobbies}"   cols="20" />-->
+                                <!--<p:outputLabel for="comments" value="Comments:" />-->
+                                <!--<p:inputTextarea rows="2" id="comments" value="#{addCustomer.personal.personalDisc}" cols="20" />-->
 
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="10">
+                            <!--</h:panelGrid>-->
+                            <!--<h:panelGrid columns="2" cellpadding="10">-->
 
-                                <p:outputLabel  value="Photo Scan:" />
-                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload3}" value="#{addCustomer.pfile3}"  dragDropSupport="true" rendered="#{!addCustomer.photoScanAvailable}"   mode="advanced"  
-                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                <p:panel  rendered="#{addCustomer.photoScanAvailable}">
-                                    <a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.customerId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >
-                                        Show Photo
-                                    </a>
-                                    <p:commandLink actionListener="#{addCustomer.removeImage3()}" style="float: right;" update="@form:tview">
-                                        <span class="ui-icon ui-icon-close">Delete</span>
-                                    </p:commandLink>
-                                </p:panel>
+                                <!--<p:outputLabel  value="Photo Scan:" />-->
+                                <!--<p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload3}" value="#{addCustomer.pfile3}"  dragDropSupport="true" rendered="#{!addCustomer.photoScanAvailable}"   mode="advanced"  -->
+                                              <!--sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>-->
+                                <!--<p:panel  rendered="#{addCustomer.photoScanAvailable}">-->
+                                    <!--<a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.customerId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >-->
+                                        <!--Show Photo-->
+                                    <!--</a>-->
+                                    <!--<p:commandLink actionListener="#{addCustomer.removeImage3()}" style="float: right;" update="@form:tview">-->
+                                        <!--<span class="ui-icon ui-icon-close">Delete</span>-->
+                                    <!--</p:commandLink>-->
+                                <!--</p:panel>-->
 
-                                <p:outputLabel value="Passport Scan:" />
-                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload1}" value="#{addCustomer.pfile}"  dragDropSupport="true" rendered="#{!addCustomer.passScanAvailable}"   mode="advanced"  
-                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                <p:panel  rendered="#{addCustomer.passScanAvailable}">
-                                    <a href="#{request.contextPath}/DisplayImage?type=pps&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" style="overflow: scroll; overflow-style: auto" class="fresco" >
-                                        Show Photo</a>
-                                    <p:commandLink actionListener="#{addCustomer.removeImage1()}" style="float: right;" update="@form:tview">
-                                        <span class="ui-icon ui-icon-close">Delete</span>
-                                    </p:commandLink>
-                                </p:panel>
-                                <p:outputLabel  value="Shenasname Scan:" />
-                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload2}" value="#{addCustomer.pfile2}"  dragDropSupport="true" rendered="#{!addCustomer.birthCertScanAvailable}"   mode="advanced"  
-                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                <p:panel  rendered="#{addCustomer.birthCertScanAvailable}">
-                                    <a href="#{request.contextPath}/DisplayImage?type=bcs&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >
-                                        Show Photo
-                                    </a>
-                                    <p:commandLink actionListener="#{addCustomer.removeImage2()}" style="float: right;" update="@form:tview">
-                                        <span class="ui-icon ui-icon-close">Delete</span>
-                                    </p:commandLink>
-                                </p:panel>
+                                <!--<p:outputLabel value="Passport Scan:" />-->
+                                <!--<p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload1}" value="#{addCustomer.pfile}"  dragDropSupport="true" rendered="#{!addCustomer.passScanAvailable}"   mode="advanced"  -->
+                                              <!--sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>-->
+                                <!--<p:panel  rendered="#{addCustomer.passScanAvailable}">-->
+                                    <!--<a href="#{request.contextPath}/DisplayImage?type=pps&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" style="overflow: scroll; overflow-style: auto" class="fresco" >-->
+                                        <!--Show Photo</a>-->
+                                    <!--<p:commandLink actionListener="#{addCustomer.removeImage1()}" style="float: right;" update="@form:tview">-->
+                                        <!--<span class="ui-icon ui-icon-close">Delete</span>-->
+                                    <!--</p:commandLink>-->
+                                <!--</p:panel>-->
+                                <!--<p:outputLabel  value="Shenasname Scan:" />-->
+                                <!--<p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload2}" value="#{addCustomer.pfile2}"  dragDropSupport="true" rendered="#{!addCustomer.birthCertScanAvailable}"   mode="advanced"  -->
+                                              <!--sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>-->
+                                <!--<p:panel  rendered="#{addCustomer.birthCertScanAvailable}">-->
+                                    <!--<a href="#{request.contextPath}/DisplayImage?type=bcs&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >-->
+                                        <!--Show Photo-->
+                                    <!--</a>-->
+                                    <!--<p:commandLink actionListener="#{addCustomer.removeImage2()}" style="float: right;" update="@form:tview">-->
+                                        <!--<span class="ui-icon ui-icon-close">Delete</span>-->
+                                    <!--</p:commandLink>-->
+                                <!--</p:panel>-->
 
-                            </h:panelGrid>
-                        </h:panelGrid>
+                            <!--</h:panelGrid>-->
+                        <!--</h:panelGrid>-->
 
-                    </p:panel>
+                    <!--</p:panel>-->
 
-                </p:tab>
-                <p:tab title="Educational Information" transient="true">
-                    <p:panel header="Past edu info">
-                        <p:dataTable id="pastInfo" var="past" value="#{addCustomer.listPast}" editable="true" style="margin-bottom:20px" emptyMessage="There is no past educational information for this customer">
-                            <f:facet name="header">
-                                <p:commandButton value="Add"  action="#{addCustomer.addPast()}" icon="ui-icon-plus" update="pastInfo" />
-                                Past Educational Information
-                            </f:facet>
+                <!--</p:tab>-->
+                <!--<p:tab title="Educational Information" transient="true">-->
+                    <!--<p:panel header="Past edu info">-->
+                        <!--<p:dataTable id="pastInfo" var="past" value="#{addCustomer.listPast}" editable="true" style="margin-bottom:20px" emptyMessage="There is no past educational information for this customer">-->
+                            <!--<f:facet name="header">-->
+                                <!--<p:commandButton value="Add"  action="#{addCustomer.addPast()}" icon="ui-icon-plus" update="pastInfo" />-->
+                                <!--Past Educational Information-->
+                            <!--</f:facet>-->
 
-                            <p:ajax event="rowEdit" listener="#{addCustomer.onRowEdit}" update="@none" />
-                            <p:ajax event="rowEditCancel" listener="#{addCustomer.onRowCancel}" update="@none" />
+                            <!--<p:ajax event="rowEdit" listener="#{addCustomer.onRowEdit}" update="@none" />-->
+                            <!--<p:ajax event="rowEditCancel" listener="#{addCustomer.onRowCancel}" update="@none" />-->
 
-                            <p:column headerText="Field">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{past.pastEduField}" /></f:facet>
-                                    <f:facet name="input"><p:inputText id="modelInput" value="#{past.pastEduField}" style="width: 100%;" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                            <!--<p:column headerText="Field">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{past.pastEduField}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText id="modelInput" value="#{past.pastEduField}" style="width: 100%;" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
 
-                            <p:column headerText="Degree">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{past.pastDegree}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:selectOneMenu value="#{past.pastDegree}" style="width: 100%;">
-                                            <f:selectItem itemLabel="Bachelor" itemValue="Bachelor" />
-                                            <f:selectItem itemLabel="Master" itemValue="Master"/>
-                                            <f:selectItem itemLabel="Phd" itemValue="Phd"/>
+                            <!--<p:column headerText="Degree">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{past.pastDegree}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:selectOneMenu value="#{past.pastDegree}" style="width: 100%;">-->
+                                            <!--<f:selectItem itemLabel="Bachelor" itemValue="Bachelor" />-->
+                                            <!--<f:selectItem itemLabel="Master" itemValue="Master"/>-->
+                                            <!--<f:selectItem itemLabel="Phd" itemValue="Phd"/>-->
 
-                                        </p:selectOneMenu></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Graduation Date">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{past.pastGradDate}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:calendar yearRange="c-10:c+10"
-                                                    id="graduationdate" value="#{past.pastGradDate}"
-                                                    locale="de" navigator="true" pattern="yyyy-MMM-dd" >
-                                            <f:convertDateTime pattern="yyyy-MMM-dd"/>
-                                        </p:calendar></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="University name">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{past.pastUniName}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{past.pastUniName}" style="width:100%" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="University City">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{past.pastUniCity}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{past.pastUniCity}" style="width:100%" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-
-
-                            <p:column style="width:32px">
-                                <p:rowEditor />
-
-                            </p:column>
-                            <p:column style="width:32px">
-
-                                <p:commandButton action="#{addCustomer.deletePastRow(past)}" value="X" style="background: transparent; border: transparent;" update="pastInfo" process="@form" />
-                            </p:column>
-
-                        </p:dataTable>    
-                    </p:panel>
-
-                    <p:panel header="Idaq edu info">
-
-                        <p:dataTable id="eduInfo" var="idaq" value="#{addCustomer.listIdaq}" editable="true" style="margin-bottom:20px" emptyMessage="There is no idaq educational information for this customer">
-                            <f:facet name="header">
-                                <p:commandButton value="Add"  action="#{addCustomer.addIdaq()}" icon="ui-icon-plus" update="eduInfo" />
-                                Idaq Educational Information
-                            </f:facet>
-
-                            <p:ajax event="rowEdit" listener="#{addCustomer.onRowEdit}" update="@none" />
-                            <p:ajax event="rowEditCancel" listener="#{addCustomer.onRowCancel}" update="@none" />
-
-                            <p:column headerText="Program Name">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programProgramName}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:selectOneMenu value="#{idaq.programProgramName}"  style="width: 100%;" >
-                                            <f:selectItem itemLabel="JPC1" itemValue="JPC1" />
-                                            <f:selectItem itemLabel="JPC2" itemValue="JPC2" />
-                                            <f:selectItem itemLabel="JPC3" itemValue="JPC3" />
-                                            <f:selectItem itemLabel="W1" itemValue="W1" />
-                                            <f:selectItem itemLabel="W2" itemValue="W2" />
-                                            <f:selectItem itemLabel="W3" itemValue="W3" />
-                                            <f:selectItem itemLabel="W4" itemValue="W4" />
-                                            <f:selectItem itemLabel="W5" itemValue="W5" />
-                                            <f:selectItem itemLabel="W6" itemValue="W6" />
-                                            <f:selectItem itemLabel="W7" itemValue="W7" />
-                                            <f:selectItem itemLabel="K1" itemValue="K1" />
-                                            <f:selectItem itemLabel="K2" itemValue="K2" />
-                                            <f:selectItem itemLabel="K3" itemValue="K3" />
-                                            <f:selectItem itemLabel="K4" itemValue="K4" />
-                                            <f:selectItem itemLabel="K5" itemValue="K5" />
-                                            <f:selectItem itemLabel="K6" itemValue="K6" />
-                                            <f:selectItem itemLabel="K7" itemValue="K7" />
-                                            <f:selectItem itemLabel="MF1" itemValue="MF1" />
-                                            <f:selectItem itemLabel="MF2" itemValue="MF2" />
-                                            
-
-                                        </p:selectOneMenu></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="Thesis Subject">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programThesisSubject}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{idaq.programThesisSubject}" style="width:100%" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="Supervisor">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programSupervisor}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{idaq.programSupervisor}" style="width:100%" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="First Payment">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programFirstPayment}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:selectOneMenu value="#{idaq.programFirstPayment}" style="width: 100%;">
-                                            <f:selectItem itemLabel="Not paid" itemValue="Not paid" />
-                                            <f:selectItem itemLabel="Paid" itemValue="Paid"/>
-                                        </p:selectOneMenu>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Second Payment">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programSecondPayment}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:selectOneMenu value="#{idaq.programSecondPayment}" style="width: 100%;">
-                                            <f:selectItem itemLabel="Not paid"  itemValue="Not paid" />
-
-                                            <f:selectItem itemLabel="Paid"  itemValue="Paid"/>
-                                        </p:selectOneMenu></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="Studying Status">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programIsStudying}" /></f:facet>
-                                    <f:facet name="input">
-                                        <p:selectOneMenu value="#{idaq.programIsStudying}" style="width: 100%;">
-                                            <f:selectItem itemLabel="Student"  itemValue="Student" />
-                                            <f:selectItem itemLabel="Graduate"  itemValue="Graduate"/>
-                                        </p:selectOneMenu></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                            <p:column headerText="other Payment">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{idaq.programPaymentDisc}" /></f:facet>
-                                    <f:facet name="input"><p:inputText value="#{idaq.programPaymentDisc}" style="width:100%" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                                        <!--</p:selectOneMenu></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+                            <!--<p:column headerText="Graduation Date">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{past.pastGradDate}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:calendar yearRange="c-10:c+10"-->
+                                                    <!--id="graduationdate" value="#{past.pastGradDate}"-->
+                                                    <!--locale="de" navigator="true" pattern="yyyy-MMM-dd" >-->
+                                            <!--<f:convertDateTime pattern="yyyy-MMM-dd"/>-->
+                                        <!--</p:calendar></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+                            <!--<p:column headerText="University name">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{past.pastUniName}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText value="#{past.pastUniName}" style="width:100%" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+                         <!--&lt;!&ndash;   <p:column headerText="University City">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{past.pastUniCity}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText value="#{past.pastUniCity}" style="width:100%" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>&ndash;&gt;-->
 
 
 
-                            <p:column style="width:32px">
-                                <p:rowEditor />
+                            <!--<p:column style="width:32px">-->
+                                <!--<p:rowEditor />-->
 
-                            </p:column>
-                            <p:column style="width:32px">
+                            <!--</p:column>-->
+                            <!--<p:column style="width:32px">-->
 
-                                <p:commandButton action="#{addCustomer.deleteIdaqRow(idaq)}" value="X" style="background: transparent; border: transparent;" update="eduInfo" process="@form" />
-                            </p:column>
-                        </p:dataTable> 
+                                <!--<p:commandButton action="#{addCustomer.deletePastRow(past)}" value="X" style="background: transparent; border: transparent;" update="pastInfo" process="@form" />-->
+                            <!--</p:column>-->
 
-                    </p:panel>
-                </p:tab>
-                <p:tab title="Business Information" transient="true"    >
-                    <ui:repeat var="bussiness" value="${addCustomer.listBusiness}">
-                    <p:panel header="Business Information" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-                        <h:panelGrid columns="2" cellpadding="10"  style="margin-left: auto;margin-right: auto;display: block;" >
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <p:outputLabel for="bussinessName" value="Business Name:" />
-                                <p:inputText id="bussinessName" value="#{bussiness.businessName}" label="asdsad"/>
-                                <p:outputLabel for="position" value="Position:" />
-                                <p:inputText id="position" value="#{bussiness.businessPosition}"/>
-                                <p:outputLabel for="city" value="City:" />
-                                <p:inputText id="city" value="#{bussiness.businessCity}"/>
-                                <p:outputLabel for="country" value="Country:" />
-                                <p:inputText id="country" value="#{bussiness.businessCountry}"/>
-                                <p:outputLabel for="bussinessAddress" value="Address:" />
-                                <p:inputTextarea rows="6" id="bussinessAddress" value="#{bussiness.businessAddress}" cols="33" />
+                        <!--</p:dataTable>    -->
+                    <!--</p:panel>-->
 
-                                <p:outputLabel value="Office Tel:" />
-                                <p:inputText id="officeTel" value="#{bussiness.businessOfficeTel}">
-                                    <p:clientValidator event="keyup"/>
-                                </p:inputText>
-                                <p:outputLabel value="Office Fax:" />
-                                <p:inputText id="officeFax" value="#{bussiness.bussinessFax}"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <p:outputLabel value="BusinessField:" />
-                                <p:inputText id="bussinessField" value="#{bussiness.businessField}"/>
-                                <p:outputLabel value="Website:" />
-                                <p:inputText id="website" value="#{bussiness.businessWebsite}"/>
-                                <p:outputLabel value="Business Email:" />
-                                <p:inputText id="bussinessEmail" value="#{bussiness.businessEmail}"/>
-                                <p:outputLabel value="Business Tags:" />
-                                <p:inputText id="bussinessTags" value="#{bussiness.businessTag}"/>
-                                <p:outputLabel value="Business Branches:" />
-                                <p:inputText id="bussinessBranches" value="#{bussiness.businessBranchComp}"/>
-                                <p:outputLabel value="Secretary Name:" />
-                                <p:inputText id="secretaryName" value="#{bussiness.businessSereterayName}"/>
-                                <p:outputLabel value="Secretary Tel:" />
-                                <p:inputText id="secretaryTel" value="#{bussiness.bussinessSecretaryTel}"> </p:inputText>
-                                <p:outputLabel value="Secretary Email:" />
-                                <p:inputText id="secretaryEmail" value="#{bussiness.businessSecretaryEmail}"> </p:inputText>
-                            </h:panelGrid>
-                        </h:panelGrid>
-                    </p:panel>
-                    </ui:repeat>
-                    <p:panel header="Customer Value" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-                        <h:panelGrid columns="2" cellpadding="10" style="margin-left: auto;margin-right: auto;display: block;" >
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <p:outputLabel value="Financial Status:" />
-                                <p:selectOneMenu id="financialStatus" value="#{addCustomer.customer.customerEcoRate}">
-                                    <f:selectItem itemLabel="1" itemValue="1" />
-                                    <f:selectItem itemLabel="2" itemValue="2" />
-                                    <f:selectItem itemLabel="3" itemValue="3" />
-                                    <f:selectItem itemLabel="4" itemValue="4" />
-                                </p:selectOneMenu>     
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="10" >
-                                <p:outputLabel value="Customer Importance:" />
-                                <p:selectOneMenu id="customerImportance" value="#{addCustomer.customer.customerRate}">
-                                    <f:selectItem itemLabel="A" itemValue="A" />
-                                    <f:selectItem itemLabel="B" itemValue="B" />
-                                    <f:selectItem itemLabel="C" itemValue="C" />
-                                </p:selectOneMenu>     
-                            </h:panelGrid>
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-            </p:tabView>
-            <p:blockUI block="tview" trigger="save">
-                SAVING<br/>
-                <p:graphicImage value="/resources/images/ajaxloadingbar.gif"/>
-            </p:blockUI>
-            <p:commandButton id="save" value="Submit" style="float: right;" action="#{addCustomer.commitCustomer()}" update="growl" validateClient="true" ajax="false" type="submit"/>
-            <p:commandButton value="Cancel" style="float: right;" action="#{addCustomer.cancelCustomer()}" ajax="false"   type="cancel" immediate="true"/>
+                    <!--<p:panel header="Idaq edu info">-->
 
-        </h:form>
+                        <!--<p:dataTable id="eduInfo" var="idaq" value="#{addCustomer.listIdaq}" editable="true" style="margin-bottom:20px" emptyMessage="There is no idaq educational information for this customer">-->
+                            <!--<f:facet name="header">-->
+                                <!--<p:commandButton value="Add"  action="#{addCustomer.addIdaq()}" icon="ui-icon-plus" update="eduInfo" />-->
+                                <!--Idaq Educational Information-->
+                            <!--</f:facet>-->
 
-    </h:body>
-</f:view>
+                            <!--<p:ajax event="rowEdit" listener="#{addCustomer.onRowEdit}" update="@none" />-->
+                            <!--<p:ajax event="rowEditCancel" listener="#{addCustomer.onRowCancel}" update="@none" />-->
+
+                            <!--<p:column headerText="Program Name">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programProgramName}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:selectOneMenu value="#{idaq.programProgramName}"  style="width: 100%;" >-->
+                                            <!--<f:selectItem itemLabel="JPC1" itemValue="JPC1" />-->
+                                            <!--<f:selectItem itemLabel="JPC2" itemValue="JPC2" />-->
+                                            <!--<f:selectItem itemLabel="JPC3" itemValue="JPC3" />-->
+                                            <!--<f:selectItem itemLabel="W1" itemValue="W1" />-->
+                                            <!--<f:selectItem itemLabel="W2" itemValue="W2" />-->
+                                            <!--<f:selectItem itemLabel="W3" itemValue="W3" />-->
+                                            <!--<f:selectItem itemLabel="W4" itemValue="W4" />-->
+                                            <!--<f:selectItem itemLabel="W5" itemValue="W5" />-->
+                                            <!--<f:selectItem itemLabel="W6" itemValue="W6" />-->
+                                            <!--<f:selectItem itemLabel="W7" itemValue="W7" />-->
+                                            <!--<f:selectItem itemLabel="K1" itemValue="K1" />-->
+                                            <!--<f:selectItem itemLabel="K2" itemValue="K2" />-->
+                                            <!--<f:selectItem itemLabel="K3" itemValue="K3" />-->
+                                            <!--<f:selectItem itemLabel="K4" itemValue="K4" />-->
+                                            <!--<f:selectItem itemLabel="K5" itemValue="K5" />-->
+                                            <!--<f:selectItem itemLabel="K6" itemValue="K6" />-->
+                                            <!--<f:selectItem itemLabel="K7" itemValue="K7" />-->
+                                            <!--<f:selectItem itemLabel="MF1" itemValue="MF1" />-->
+                                            <!--<f:selectItem itemLabel="MF2" itemValue="MF2" />-->
+                                            <!---->
+
+                                        <!--</p:selectOneMenu></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+                            <!--<p:column headerText="Thesis Subject">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programThesisSubject}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText value="#{idaq.programThesisSubject}" style="width:100%" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+                            <!--<p:column headerText="Supervisor">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programSupervisor}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText value="#{idaq.programSupervisor}" style="width:100%" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+                            <!--<p:column headerText="First Payment">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programFirstPayment}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:selectOneMenu value="#{idaq.programFirstPayment}" style="width: 100%;">-->
+                                            <!--<f:selectItem itemLabel="Not paid" itemValue="Not paid" />-->
+                                            <!--<f:selectItem itemLabel="Paid" itemValue="Paid"/>-->
+                                        <!--</p:selectOneMenu>-->
+                                    <!--</f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+                            <!--<p:column headerText="Second Payment">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programSecondPayment}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:selectOneMenu value="#{idaq.programSecondPayment}" style="width: 100%;">-->
+                                            <!--<f:selectItem itemLabel="Not paid"  itemValue="Not paid" />-->
+
+                                            <!--<f:selectItem itemLabel="Paid"  itemValue="Paid"/>-->
+                                        <!--</p:selectOneMenu></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+                            <!--<p:column headerText="Studying Status">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programIsStudying}" /></f:facet>-->
+                                    <!--<f:facet name="input">-->
+                                        <!--<p:selectOneMenu value="#{idaq.programIsStudying}" style="width: 100%;">-->
+                                            <!--<f:selectItem itemLabel="Student"  itemValue="Student" />-->
+                                            <!--<f:selectItem itemLabel="Graduate"  itemValue="Graduate"/>-->
+                                        <!--</p:selectOneMenu></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+                            <!--<p:column headerText="other Payment">-->
+                                <!--<p:cellEditor>-->
+                                    <!--<f:facet name="output"><h:outputText value="#{idaq.programPaymentDisc}" /></f:facet>-->
+                                    <!--<f:facet name="input"><p:inputText value="#{idaq.programPaymentDisc}" style="width:100%" /></f:facet>-->
+                                <!--</p:cellEditor>-->
+                            <!--</p:column>-->
+
+
+
+                            <!--<p:column style="width:32px">-->
+                                <!--<p:rowEditor />-->
+
+                            <!--</p:column>-->
+                            <!--<p:column style="width:32px">-->
+
+                                <!--<p:commandButton action="#{addCustomer.deleteIdaqRow(idaq)}" value="X" style="background: transparent; border: transparent;" update="eduInfo" process="@form" />-->
+                            <!--</p:column>-->
+                        <!--</p:dataTable> -->
+
+                    <!--</p:panel>-->
+                <!--</p:tab>-->
+                <!--<p:tab title="Business Information" transient="true"    >-->
+                    <!--<ui:repeat var="bussiness" value="${addCustomer.listBusiness}">-->
+                    <!--<p:panel header="Business Information" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">-->
+                        <!--<h:panelGrid columns="2" cellpadding="10"  style="margin-left: auto;margin-right: auto;display: block;" >-->
+                            <!--<h:panelGrid columns="2" cellpadding="10" >-->
+                                <!--<p:outputLabel for="bussinessName" value="Business Name:" />-->
+                                <!--<p:inputText id="bussinessName" value="#{bussiness.businessName}" label="asdsad"/>-->
+                                <!--<p:outputLabel for="position" value="Position:" />-->
+                                <!--<p:inputText id="position" value="#{bussiness.businessPosition}"/>-->
+                                <!--<p:outputLabel for="city" value="City:" />-->
+                                <!--<p:inputText id="city" value="#{bussiness.businessCity}"/>-->
+                                <!--<p:outputLabel for="country" value="Country:" />-->
+                                <!--<p:inputText id="country" value="#{bussiness.businessCountry}"/>-->
+                                <!--<p:outputLabel for="bussinessAddress" value="Address:" />-->
+                                <!--<p:inputTextarea rows="6" id="bussinessAddress" value="#{bussiness.businessAddress}" cols="33" />-->
+
+                                <!--<p:outputLabel value="Office Tel:" />-->
+                                <!--<p:inputText id="officeTel" value="#{bussiness.businessOfficeTel}">-->
+                                    <!--<p:clientValidator event="keyup"/>-->
+                                <!--</p:inputText>-->
+                                <!--<p:outputLabel value="Office Fax:" />-->
+                                <!--<p:inputText id="officeFax" value="#{bussiness.bussinessFax}"/>-->
+                            <!--</h:panelGrid>-->
+                            <!--<h:panelGrid columns="2" cellpadding="10" >-->
+                                <!--<p:outputLabel value="BusinessField:" />-->
+                                <!--<p:inputText id="bussinessField" value="#{bussiness.businessField}"/>-->
+                                <!--<p:outputLabel value="Website:" />-->
+                                <!--<p:inputText id="website" value="#{bussiness.businessWebsite}"/>-->
+                                <!--<p:outputLabel value="Business Email:" />-->
+                                <!--<p:inputText id="bussinessEmail" value="#{bussiness.businessEmail}"/>-->
+                                <!--<p:outputLabel value="Business Tags:" />-->
+                                <!--<p:inputText id="bussinessTags" value="#{bussiness.businessTag}"/>-->
+                                <!--<p:outputLabel value="Business Branches:" />-->
+                                <!--<p:inputText id="bussinessBranches" value="#{bussiness.businessBranchComp}"/>-->
+                                <!--<p:outputLabel value="Secretary Name:" />-->
+                                <!--<p:inputText id="secretaryName" value="#{bussiness.businessSereterayName}"/>-->
+                                <!--<p:outputLabel value="Secretary Tel:" />-->
+                                <!--<p:inputText id="secretaryTel" value="#{bussiness.bussinessSecretaryTel}"> </p:inputText>-->
+                                <!--<p:outputLabel value="Secretary Email:" />-->
+                                <!--<p:inputText id="secretaryEmail" value="#{bussiness.businessSecretaryEmail}"> </p:inputText>-->
+                            <!--</h:panelGrid>-->
+                        <!--</h:panelGrid>-->
+                    <!--</p:panel>-->
+                    <!--</ui:repeat>-->
+                    <!--<p:panel header="Customer Value" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">-->
+                        <!--<h:panelGrid columns="2" cellpadding="10" style="margin-left: auto;margin-right: auto;display: block;" >-->
+                            <!--<h:panelGrid columns="2" cellpadding="10" >-->
+                                <!--<p:outputLabel value="Financial Status:" />-->
+                                <!--<p:selectOneMenu id="financialStatus" value="#{addCustomer.customer.customerEcoRate}">-->
+                                    <!--<f:selectItem itemLabel="1" itemValue="1" />-->
+                                    <!--<f:selectItem itemLabel="2" itemValue="2" />-->
+                                    <!--<f:selectItem itemLabel="3" itemValue="3" />-->
+                                    <!--<f:selectItem itemLabel="4" itemValue="4" />-->
+                                <!--</p:selectOneMenu>     -->
+                            <!--</h:panelGrid>-->
+                            <!--<h:panelGrid columns="2" cellpadding="10" >-->
+                                <!--<p:outputLabel value="Customer Importance:" />-->
+                                <!--<p:selectOneMenu id="customerImportance" value="#{addCustomer.customer.customerRate}">-->
+                                    <!--<f:selectItem itemLabel="A" itemValue="A" />-->
+                                    <!--<f:selectItem itemLabel="B" itemValue="B" />-->
+                                    <!--<f:selectItem itemLabel="C" itemValue="C" />-->
+                                <!--</p:selectOneMenu>     -->
+                            <!--</h:panelGrid>-->
+                        <!--</h:panelGrid>-->
+                    <!--</p:panel>-->
+                <!--</p:tab>-->
+            <!--</p:tabView>-->
+            <!--<p:blockUI block="tview" trigger="save">-->
+                <!--SAVING<br/>-->
+                <!--<p:graphicImage value="/resources/images/ajaxloadingbar.gif"/>-->
+            <!--</p:blockUI>-->
+            <!--<p:commandButton id="save" value="Submit" style="float: right;" actionListener="#{addCustomer.commitCustomer()}" />-->
+            <!--<p:commandButton value="Cancel" style="float: right;" action="#{addCustomer.cancelCustomer()}"    type="cancel" immediate="true"/>-->
+
+        <!--</h:form>-->
+
+    <!--</h:body>-->
+<!--</f:view>-->

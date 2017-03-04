@@ -6,6 +6,7 @@ import com.donkiello.model.entity.common.DonPersonal;
 import com.donkiello.model.entity.common.DonProgram;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DonCustomerDTO {
     private Integer customerDeleted;
     private String customerName;
     private byte[] customerImage;
-    private String customerBusinessName;
+ //   private String customerBusinessName;
     private String customerPrograms;
     private String customerPaymentStatus;
     private String customerMobileNo;
@@ -36,11 +37,11 @@ public class DonCustomerDTO {
     private String FirstBusinessCity;
     private String FirstBusinessCountry;
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -85,13 +86,13 @@ public class DonCustomerDTO {
         this.customerImage = customerImage;
     }
 
-    public String getCustomerBusinessName() {
+   /* public String getCustomerBusinessName() {
         return customerBusinessName;
     }
 
     public void setCustomerBusinessName(String customerBusinessName) {
         this.customerBusinessName = customerBusinessName;
-    }
+    }*/
 
     public String getCustomerPrograms() {
         return customerPrograms;
@@ -109,9 +110,9 @@ public class DonCustomerDTO {
         this.customerPaymentStatus = customerPaymentStatus;
     }
 
-    public String getCustomerMobileNo() {
-        return customerMobileNo;
-    }
+//    public String getCustomerMobileNo() {
+//        return customerMobileNo;
+//    }
 
     public void setCustomerMobileNo(String customerMobileNo) {
         this.customerMobileNo = customerMobileNo;

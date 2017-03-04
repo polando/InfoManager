@@ -32,7 +32,7 @@ public class DonCustomer {
     private Integer customerDeleted;
     private String customerName;
     private byte[] customerImage;
-    private String customerBusinessName;
+ //   private String customerBusinessName;
     private String customerPrograms;
     private String customerPaymentStatus;
     private String customerMobileNo;
@@ -46,7 +46,8 @@ public class DonCustomer {
 
 
     @Id
-    @Column(name = "CustomerID")
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CustomerID",unique = true)
     public Integer getCustomerId() {
         return customerId;
     }
@@ -105,7 +106,7 @@ public class DonCustomer {
         this.customerImage = customerImage;
     }
 
-    @Basic
+  /*  @Basic
     @Column(name = "CustomerBusinessName")
     public String getCustomerBusinessName() {
         return customerBusinessName;
@@ -114,7 +115,7 @@ public class DonCustomer {
     public void setCustomerBusinessName(String customerBusinessName) {
         this.customerBusinessName = customerBusinessName;
     }
-
+*/
     @Basic
     @Column(name = "CustomerPrograms")
     public String getCustomerPrograms() {
@@ -135,15 +136,15 @@ public class DonCustomer {
         this.customerPaymentStatus = customerPaymentStatus;
     }
 
-    @Basic
-    @Column(name = "CustomerMobileNo")
-    public String getCustomerMobileNo() {
-        return customerMobileNo;
-    }
-
-    public void setCustomerMobileNo(String customerMobileNo) {
-        this.customerMobileNo = customerMobileNo;
-    }
+//    @Basic
+//    @Column(name = "CustomerMobileNo")
+//    public String getCustomerMobileNo() {
+//        return customerMobileNo;
+//    }
+//
+//    public void setCustomerMobileNo(String customerMobileNo) {
+//        this.customerMobileNo = customerMobileNo;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -160,8 +161,8 @@ public class DonCustomer {
             return false;
         if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null) return false;
         if (!Arrays.equals(customerImage, that.customerImage)) return false;
-        if (customerBusinessName != null ? !customerBusinessName.equals(that.customerBusinessName) : that.customerBusinessName != null)
-            return false;
+    /*    if (customerBusinessName != null ? !customerBusinessName.equals(that.customerBusinessName) : that.customerBusinessName != null)
+            return false;*/
         if (customerPrograms != null ? !customerPrograms.equals(that.customerPrograms) : that.customerPrograms != null)
             return false;
         if (customerPaymentStatus != null ? !customerPaymentStatus.equals(that.customerPaymentStatus) : that.customerPaymentStatus != null)
@@ -180,7 +181,7 @@ public class DonCustomer {
         result = 31 * result + (customerDeleted != null ? customerDeleted.hashCode() : 0);
         result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(customerImage);
-        result = 31 * result + (customerBusinessName != null ? customerBusinessName.hashCode() : 0);
+     //   result = 31 * result + (customerBusinessName != null ? customerBusinessName.hashCode() : 0);
         result = 31 * result + (customerPrograms != null ? customerPrograms.hashCode() : 0);
         result = 31 * result + (customerPaymentStatus != null ? customerPaymentStatus.hashCode() : 0);
         result = 31 * result + (customerMobileNo != null ? customerMobileNo.hashCode() : 0);
