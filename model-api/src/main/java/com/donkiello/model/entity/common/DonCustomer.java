@@ -30,17 +30,15 @@ public class DonCustomer {
     private String customerRate;
     private String customerEcoRate;
     private Integer customerDeleted;
-    private String customerName;
+    private String customerNameEN;
+    private String customerNameFA;
     private byte[] customerImage;
- //   private String customerBusinessName;
     private String customerPrograms;
     private String customerPaymentStatus;
-    private String customerMobileNo;
-    private List<DonBussiness> donBussinessesByCustomerId;
     private List<DonPast> donPastsByCustomerId;
-    private List<DonPersonal> donPersonalsByCustomerId;
-   // private DonPersonal donPersonalsByCustomerId;
     private List<DonProgram> donProgramsByCustomerId;
+    private List<DonPersonal> donPersonalsByCustomerId;
+    private List<DonBussiness> DonBusinessesByCustomerId;
 
     private String FirstBusinessEmail;
 
@@ -87,13 +85,23 @@ public class DonCustomer {
     }
 
     @Basic
-    @Column(name = "CustomerName")
-    public String getCustomerName() {
-        return customerName;
+    @Column(name = "CustomerNameEN")
+    public String getCustomerNameEN() {
+        return customerNameEN;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerNameEN(String customerName) {
+        this.customerNameEN = customerName;
+    }
+
+    @Basic
+    @Column(name = "CustomerNameFA")
+    public String getCustomerNameFA() {
+        return customerNameFA;
+    }
+
+    public void setCustomerNameFA(String customerNameFA) {
+        this.customerNameFA = customerNameFA;
     }
 
     @Basic
@@ -159,16 +167,18 @@ public class DonCustomer {
             return false;
         if (customerDeleted != null ? !customerDeleted.equals(that.customerDeleted) : that.customerDeleted != null)
             return false;
-        if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null) return false;
+        if (customerNameEN != null ? !customerNameEN.equals(that.customerNameEN) : that.customerNameEN != null) return false;
+
+        if (customerNameFA != null ? !customerNameFA.equals(that.customerNameFA) : that.customerNameFA != null) return false;
+
         if (!Arrays.equals(customerImage, that.customerImage)) return false;
-    /*    if (customerBusinessName != null ? !customerBusinessName.equals(that.customerBusinessName) : that.customerBusinessName != null)
-            return false;*/
+
         if (customerPrograms != null ? !customerPrograms.equals(that.customerPrograms) : that.customerPrograms != null)
             return false;
         if (customerPaymentStatus != null ? !customerPaymentStatus.equals(that.customerPaymentStatus) : that.customerPaymentStatus != null)
             return false;
-        if (customerMobileNo != null ? !customerMobileNo.equals(that.customerMobileNo) : that.customerMobileNo != null)
-            return false;
+
+
 
         return true;
     }
@@ -179,22 +189,12 @@ public class DonCustomer {
         result = 31 * result + (customerRate != null ? customerRate.hashCode() : 0);
         result = 31 * result + (customerEcoRate != null ? customerEcoRate.hashCode() : 0);
         result = 31 * result + (customerDeleted != null ? customerDeleted.hashCode() : 0);
-        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
+        result = 31 * result + (customerNameEN != null ? customerNameEN.hashCode() : 0);
+        result = 31 * result + (customerNameFA != null ? customerNameFA.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(customerImage);
-     //   result = 31 * result + (customerBusinessName != null ? customerBusinessName.hashCode() : 0);
         result = 31 * result + (customerPrograms != null ? customerPrograms.hashCode() : 0);
         result = 31 * result + (customerPaymentStatus != null ? customerPaymentStatus.hashCode() : 0);
-        result = 31 * result + (customerMobileNo != null ? customerMobileNo.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInBusiness")
-    public List<DonBussiness> getDonBussinessesByCustomerId() {
-        return donBussinessesByCustomerId;
-    }
-
-    public void setDonBussinessesByCustomerId(List<DonBussiness> donBussinessesByCustomerId) {
-        this.donBussinessesByCustomerId = donBussinessesByCustomerId;
     }
 
     @OneToMany(mappedBy = "donCustomerByCustomerIdInPast")
@@ -206,15 +206,6 @@ public class DonCustomer {
         this.donPastsByCustomerId = donPastsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInPersonal")
-    public List<DonPersonal> getDonPersonalsByCustomerId() {
-        return donPersonalsByCustomerId;
-    }
-
-    public void setDonPersonalsByCustomerId(List<DonPersonal> donPersonalsByCustomerId) {
-        this.donPersonalsByCustomerId = donPersonalsByCustomerId;
-    }
-
     @OneToMany(mappedBy = "donCustomerByCustomerIdInProgram")
     public List<DonProgram> getDonProgramsByCustomerId() {
         return donProgramsByCustomerId;
@@ -224,10 +215,21 @@ public class DonCustomer {
         this.donProgramsByCustomerId = donProgramsByCustomerId;
     }
 
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInPersonal")
+    public List<DonPersonal> getDonPersonalsByCustomerId() {
+        return donPersonalsByCustomerId;
+    }
 
+    public void setDonPersonalsByCustomerId(List<DonPersonal> donPersonalsByCustomerId) {
+        this.donPersonalsByCustomerId = donPersonalsByCustomerId;
+    }
 
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInBusiness")
+    public List<DonBussiness> getDonBusinessesByCustomerId() {
+        return DonBusinessesByCustomerId;
+    }
 
-
-
-
+    public void setDonBusinessesByCustomerId(List<DonBussiness> donBusinessesByCustomerId) {
+        DonBusinessesByCustomerId = donBusinessesByCustomerId;
+    }
 }

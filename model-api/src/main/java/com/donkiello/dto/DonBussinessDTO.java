@@ -1,5 +1,6 @@
 package com.donkiello.dto;
 
+import com.donkiello.model.entity.common.DonBussiness;
 import com.donkiello.model.entity.common.DonCustomer;
 
 import javax.persistence.*;
@@ -9,11 +10,13 @@ import javax.persistence.criteria.CriteriaBuilder;
  * Created by ussocom on 2/1/2017.
  */
 public class DonBussinessDTO {
+
     private Integer bussinessId;
- //   private int customerId;
-    private String businessName;
-    private String businessPosition;
-    private String businessAddress;
+    private String businessNameFa;
+    private String businessPositionFa;
+    private String businessAddressFa;
+    private String businessCityFa;
+    private String businessCountryFa;
     private String businessBrand;
     private String businessField;
     private String businessOfficeTel;
@@ -27,8 +30,14 @@ public class DonBussinessDTO {
     private String businessCity;
     private Integer businessDeleted;
     private String businessTag;
-    private String businessCountry;
     private String businessSecretaryEmail;
+    private String businessCountryEn;
+    private String businessCityEn;
+    private String businessAddressEn;
+    private String businessPositionEn;
+    private String businessNameEn;
+    private String businessTagSecond;
+
     private DonCustomerDTO donCustomerByCustomerIdInBusiness;
 
 
@@ -41,29 +50,48 @@ public class DonBussinessDTO {
     }
 
 
-    public String getBusinessName() {
-        return businessName;
+    public String getBusinessNameFa() {
+        return businessNameFa;
     }
 
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
-
-    public String getBusinessPosition() {
-        return businessPosition;
-    }
-
-    public void setBusinessPosition(String businessPosition) {
-        this.businessPosition = businessPosition;
+    public void setBusinessNameFa(String businessNameFa) {
+        this.businessNameFa = businessNameFa;
     }
 
 
-    public String getBusinessAddress() {
-        return businessAddress;
+    public String getBusinessPositionFa() {
+        return businessPositionFa;
     }
 
-    public void setBusinessAddress(String businessAddress) {
-        this.businessAddress = businessAddress;
+    public void setBusinessPositionFa(String businessPositionFa) {
+        this.businessPositionFa = businessPositionFa;
+    }
+
+
+    public String getBusinessAddressFa() {
+        return businessAddressFa;
+    }
+
+    public void setBusinessAddressFa(String businessAddressFa) {
+        this.businessAddressFa = businessAddressFa;
+    }
+
+
+    public String getBusinessCityFa() {
+        return businessCityFa;
+    }
+
+    public void setBusinessCityFa(String businessCityFa) {
+        this.businessCityFa = businessCityFa;
+    }
+
+
+    public String getBusinessCountryFa() {
+        return businessCountryFa;
+    }
+
+    public void setBusinessCountryFa(String businessCountryFa) {
+        this.businessCountryFa = businessCountryFa;
     }
 
 
@@ -74,6 +102,7 @@ public class DonBussinessDTO {
     public void setBusinessBrand(String businessBrand) {
         this.businessBrand = businessBrand;
     }
+
 
     public String getBusinessField() {
         return businessField;
@@ -91,6 +120,7 @@ public class DonBussinessDTO {
     public void setBusinessOfficeTel(String businessOfficeTel) {
         this.businessOfficeTel = businessOfficeTel;
     }
+
 
     public String getBusinessSereterayName() {
         return businessSereterayName;
@@ -126,6 +156,7 @@ public class DonBussinessDTO {
     public void setBusinessEmail(String businessEmail) {
         this.businessEmail = businessEmail;
     }
+
 
     public String getBusinessWebsite() {
         return businessWebsite;
@@ -180,13 +211,7 @@ public class DonBussinessDTO {
         this.businessTag = businessTag;
     }
 
-    public String getBusinessCountry() {
-        return businessCountry;
-    }
 
-    public void setBusinessCountry(String businessCountry) {
-        this.businessCountry = businessCountry;
-    }
 
 
     public String getBusinessSecretaryEmail() {
@@ -198,12 +223,64 @@ public class DonBussinessDTO {
     }
 
 
+    public String getBusinessCountryEn() {
+        return businessCountryEn;
+    }
+
+    public void setBusinessCountryEn(String businessCountryEn) {
+        this.businessCountryEn = businessCountryEn;
+    }
+
+
+    public String getBusinessCityEn() {
+        return businessCityEn;
+    }
+
+    public void setBusinessCityEn(String businessCityEn) {
+        this.businessCityEn = businessCityEn;
+    }
+
+
+    public String getBusinessAddressEn() {
+        return businessAddressEn;
+    }
+
+    public void setBusinessAddressEn(String businessAddressEn) {
+        this.businessAddressEn = businessAddressEn;
+    }
+
+
+    public String getBusinessPositionEn() {
+        return businessPositionEn;
+    }
+
+    public void setBusinessPositionEn(String businessPositionEn) {
+        this.businessPositionEn = businessPositionEn;
+    }
+
+
+    public String getBusinessNameEn() {
+        return businessNameEn;
+    }
+
+    public void setBusinessNameEn(String businessNameEn) {
+        this.businessNameEn = businessNameEn;
+    }
+
+
+    public String getBusinessTagSecond() {
+        return businessTagSecond;
+    }
+
+    public void setBusinessTagSecond(String businessTagSecond) {
+        this.businessTagSecond = businessTagSecond;
+    }
 
     public DonCustomerDTO getDonCustomerByCustomerIdInBusiness() {
         return donCustomerByCustomerIdInBusiness;
     }
 
-    public void setDonCustomerByCustomerIdInBusiness(DonCustomerDTO donCustomerByCustomerId) {
-        this.donCustomerByCustomerIdInBusiness = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInBusiness(DonCustomerDTO donCustomerByCustomerIdInBusiness) {
+        this.donCustomerByCustomerIdInBusiness = donCustomerByCustomerIdInBusiness;
     }
 }

@@ -1,13 +1,5 @@
 package com.donkiello.dto;
 
-import com.donkiello.model.entity.common.DonBussiness;
-import com.donkiello.model.entity.common.DonPast;
-import com.donkiello.model.entity.common.DonPersonal;
-import com.donkiello.model.entity.common.DonProgram;
-
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,23 +11,38 @@ public class DonCustomerDTO {
     private String customerRate;
     private String customerEcoRate;
     private Integer customerDeleted;
-    private String customerName;
+    private String customerNameEN;
+    private String customerNameFA;
     private byte[] customerImage;
- //   private String customerBusinessName;
     private String customerPrograms;
     private String customerPaymentStatus;
-    private String customerMobileNo;
-    private List<DonBussinessDTO> donBussinessesByCustomerId;
+    private List<DonBussinessDTO> donBusinessesByCustomerId;
     private List<DonPastDTO> donPastsByCustomerId;
     private List<DonPersonalDTO> donPersonalsByCustomerId;
     private List<DonProgramDTO> donProgramsByCustomerId;
 
-    private String FirstBusinessName;
-    private String FirstBusinessAddress;
+    private String FirstBusinessNameEN;
+    private String FirstBusinessAddressEN;
+    private String FirstBusinessCityEN;
+    private String FirstBusinessCountryEN;
+
+    private String FirstBusinessNameFA;
+    private String FirstBusinessAddressFA;
+    private String FirstBusinessCityFA;
+    private String FirstBusinessCountryFA;
+
+    private  String FirstMobileNumber;
+
+
+
     private String FirstBusinessField;
     private String FirstBusinessEmail;
-    private String FirstBusinessCity;
-    private String FirstBusinessCountry;
+
+
+
+    private DonBussinessDTO FirstBusiness;
+    private DonPersonalDTO FirstPersonal;
+
 
     public Integer getCustomerId() {
         return customerId;
@@ -44,7 +51,6 @@ public class DonCustomerDTO {
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
-
 
     public String getCustomerRate() {
         return customerRate;
@@ -70,12 +76,20 @@ public class DonCustomerDTO {
         this.customerDeleted = customerDeleted;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerNameEN() {
+        return customerNameEN;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerNameEN(String customerNameEN) {
+        this.customerNameEN = customerNameEN;
+    }
+
+    public String getCustomerNameFA() {
+        return customerNameFA;
+    }
+
+    public void setCustomerNameFA(String customerNameFA) {
+        this.customerNameFA = customerNameFA;
     }
 
     public byte[] getCustomerImage() {
@@ -85,14 +99,6 @@ public class DonCustomerDTO {
     public void setCustomerImage(byte[] customerImage) {
         this.customerImage = customerImage;
     }
-
-   /* public String getCustomerBusinessName() {
-        return customerBusinessName;
-    }
-
-    public void setCustomerBusinessName(String customerBusinessName) {
-        this.customerBusinessName = customerBusinessName;
-    }*/
 
     public String getCustomerPrograms() {
         return customerPrograms;
@@ -110,32 +116,14 @@ public class DonCustomerDTO {
         this.customerPaymentStatus = customerPaymentStatus;
     }
 
-//    public String getCustomerMobileNo() {
-//        return customerMobileNo;
-//    }
 
-    public void setCustomerMobileNo(String customerMobileNo) {
-        this.customerMobileNo = customerMobileNo;
+    public List<DonBussinessDTO> getDonBusinessesByCustomerId() {
+        return donBusinessesByCustomerId;
     }
 
-
-    public List<DonBussinessDTO> getDonBussinessesByCustomerId() {
-        return donBussinessesByCustomerId;
+    public void setDonBusinessesByCustomerId(List<DonBussinessDTO> donBusinessesByCustomerId) {
+        this.donBusinessesByCustomerId = donBusinessesByCustomerId;
     }
-
-    public void setDonBussinessesByCustomerId(List<DonBussinessDTO> donBussinessesByCustomerId) {
-        this.donBussinessesByCustomerId = donBussinessesByCustomerId;
-    }
-
-
-    public List<DonPastDTO> getDonPastsByCustomerId() {
-        return donPastsByCustomerId;
-    }
-
-    public void setDonPastsByCustomerId(List<DonPastDTO> donPastsByCustomerId) {
-        this.donPastsByCustomerId = donPastsByCustomerId;
-    }
-
 
     public List<DonPersonalDTO> getDonPersonalsByCustomerId() {
         return donPersonalsByCustomerId;
@@ -145,6 +133,13 @@ public class DonCustomerDTO {
         this.donPersonalsByCustomerId = donPersonalsByCustomerId;
     }
 
+    public List<DonPastDTO> getDonPastsByCustomerId() {
+        return donPastsByCustomerId;
+    }
+
+    public void setDonPastsByCustomerId(List<DonPastDTO> donPastsByCustomerId) {
+        this.donPastsByCustomerId = donPastsByCustomerId;
+    }
 
     public List<DonProgramDTO> getDonProgramsByCustomerId() {
         return donProgramsByCustomerId;
@@ -154,44 +149,148 @@ public class DonCustomerDTO {
         this.donProgramsByCustomerId = donProgramsByCustomerId;
     }
 
-    public void setFirstBusinessName(String  firstBusinessName){
-        this.FirstBusinessName = firstBusinessName;
+    public void setFirstBusinessNameFA(String firstBusinessNameFA){
+        this.FirstBusinessNameFA = firstBusinessNameFA;
     }
 
-    public String getFirstBusinessName(){
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0 )
+    public String getFirstBusinessNameFA(){
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0 )
         {
-            FirstBusinessName = donBussinessesByCustomerId.get(0).getBusinessName();
+            FirstBusinessNameFA = donBusinessesByCustomerId.get(0).getBusinessNameFa();
         }
         else
             {
-                 FirstBusinessName ="";
+                 FirstBusinessNameFA ="";
             }
 
-        return FirstBusinessName;
+        return FirstBusinessNameFA;
     }
 
-    public String getFirstBusinessAddress() {
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0)
+    public String getFirstBusinessAddressFA() {
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
         {
-            FirstBusinessAddress = donBussinessesByCustomerId.get(0).getBusinessAddress();
+            FirstBusinessAddressFA = donBusinessesByCustomerId.get(0).getBusinessAddressFa();
         }
         else
         {
-            FirstBusinessName ="";
+            FirstBusinessNameFA ="";
         }
 
-        return FirstBusinessAddress;
+        return FirstBusinessAddressFA;
     }
 
-    public void setFirstBusinessAddress(String firstBusinessAddress) {
-        FirstBusinessAddress = firstBusinessAddress;
+    public void setFirstBusinessAddressFA(String firstBusinessAddressFA) {
+        FirstBusinessAddressFA = firstBusinessAddressFA;
+    }
+
+    public String getFirstBusinessCityFA() {
+
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
+        {
+            FirstBusinessCityFA = donBusinessesByCustomerId.get(0).getBusinessCityFa();
+        }
+        else
+        {
+            FirstBusinessCityFA ="";
+        }
+
+        return FirstBusinessCityFA;
+    }
+
+    public void setFirstBusinessCityFA(String firstBusinessCityFA) {
+        FirstBusinessCityFA = firstBusinessCityFA;
+    }
+
+    public String getFirstBusinessCountryFA() {
+
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
+        {
+            FirstBusinessCountryFA = donBusinessesByCustomerId.get(0).getBusinessCountryFa();
+        }
+        else
+        {
+            FirstBusinessCountryFA ="";
+        }
+
+        return FirstBusinessCountryFA;
+    }
+
+    public void setFirstBusinessCountryFA(String firstBusinessCountryFA) {
+        FirstBusinessCountryFA = firstBusinessCountryFA;
+    }
+
+
+    public String getFirstBusinessNameEN() {
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0 )
+        {
+            FirstBusinessNameEN = donBusinessesByCustomerId.get(0).getBusinessNameEn();
+        }
+        else
+        {
+            FirstBusinessNameEN ="";
+        }
+
+        return FirstBusinessNameEN;
+    }
+
+    public void setFirstBusinessNameEN(String firstBusinessNameEN) {
+        FirstBusinessNameEN = firstBusinessNameEN;
+    }
+
+    public String getFirstBusinessAddressEN() {
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
+        {
+            FirstBusinessAddressEN = donBusinessesByCustomerId.get(0).getBusinessAddressEn();
+        }
+        else
+        {
+            FirstBusinessAddressEN ="";
+        }
+
+        return FirstBusinessAddressEN;
+    }
+
+    public void setFirstBusinessAddressEN(String firstBusinessAddressEN) {
+        FirstBusinessAddressEN = firstBusinessAddressEN;
+    }
+
+    public String getFirstBusinessCityEN() {
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
+        {
+            FirstBusinessCityEN = donBusinessesByCustomerId.get(0).getBusinessCityEn();
+        }
+        else
+        {
+            FirstBusinessCityEN ="";
+        }
+        return FirstBusinessCityEN;
+    }
+
+    public void setFirstBusinessCityEN(String firstBusinessCityEN) {
+        FirstBusinessCityEN = firstBusinessCityEN;
+    }
+
+    public String getFirstBusinessCountryEN() {
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
+        {
+            FirstBusinessCountryEN = donBusinessesByCustomerId.get(0).getBusinessCountryEn();
+        }
+        else
+        {
+            FirstBusinessCountryEN ="";
+        }
+
+        return FirstBusinessCountryEN;
+    }
+
+    public void setFirstBusinessCountryEN(String firstBusinessCountryEN) {
+        FirstBusinessCountryEN = firstBusinessCountryEN;
     }
 
     public String getFirstBusinessField() {
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0)
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
         {
-            FirstBusinessField = donBussinessesByCustomerId.get(0).getBusinessField();
+            FirstBusinessField = donBusinessesByCustomerId.get(0).getBusinessField();
         }
         else
         {
@@ -207,9 +306,9 @@ public class DonCustomerDTO {
 
     public String getFirstBusinessEmail() {
 
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0)
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
         {
-            FirstBusinessEmail = donBussinessesByCustomerId.get(0).getBusinessEmail();
+            FirstBusinessEmail = donBusinessesByCustomerId.get(0).getBusinessEmail();
         }
         else
         {
@@ -223,39 +322,59 @@ public class DonCustomerDTO {
         FirstBusinessEmail = firstBusinessEmail;
     }
 
-    public String getFirstBusinessCity() {
+    public DonBussinessDTO getFirstBusiness() {
 
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0)
+        if(donBusinessesByCustomerId != null && donBusinessesByCustomerId.size() > 0)
         {
-            FirstBusinessCity = donBussinessesByCustomerId.get(0).getBusinessCity();
+            FirstBusiness = donBusinessesByCustomerId.get(0);
         }
         else
         {
-            FirstBusinessCity ="";
+            FirstBusiness = new DonBussinessDTO();
         }
 
-        return FirstBusinessCity;
+
+        return FirstBusiness;
     }
 
-    public void setFirstBusinessCity(String firstBusinessCity) {
-        FirstBusinessCity = firstBusinessCity;
+    public void setFirstBusiness(DonBussinessDTO firstBusiness) {
+        FirstBusiness = firstBusiness;
     }
 
-    public String getFirstBusinessCountry() {
+    public DonPersonalDTO getFirstPersonal() {
 
-        if(donBussinessesByCustomerId != null && donBussinessesByCustomerId.size() > 0)
+        if(donPersonalsByCustomerId != null && donPersonalsByCustomerId.size() > 0)
         {
-            FirstBusinessCountry = donBussinessesByCustomerId.get(0).getBusinessCountry();
+            FirstPersonal  = donPersonalsByCustomerId.get(0);
         }
         else
         {
-            FirstBusinessCountry ="";
+            FirstPersonal = new DonPersonalDTO();
         }
 
-        return FirstBusinessCountry;
+        return FirstPersonal;
     }
 
-    public void setFirstBusinessCountry(String firstBusinessCountry) {
-        FirstBusinessCountry = firstBusinessCountry;
+    public void setFirstPersonal(DonPersonalDTO firstPersonal) {
+        FirstPersonal = firstPersonal;
+    }
+
+    public String getFirstMobileNumber() {
+
+        if(donPersonalsByCustomerId != null && donPersonalsByCustomerId.size() > 0)
+        {
+            FirstMobileNumber = donPersonalsByCustomerId.get(0).getPersonalMobileNum();
+        }
+        else
+        {
+            FirstMobileNumber ="";
+        }
+
+
+        return FirstMobileNumber;
+    }
+
+    public void setFirstMobileNumber(String firstMobileNumber) {
+        FirstMobileNumber = firstMobileNumber;
     }
 }

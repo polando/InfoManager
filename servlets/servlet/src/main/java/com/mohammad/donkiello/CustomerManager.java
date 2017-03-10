@@ -6,23 +6,15 @@
 package com.mohammad.donkiello;
 
 import com.donkiello.dto.*;
-import com.donkiello.model.entity.base.BaseEntity;
 import com.donkiello.model.entity.common.*;
 import com.donkiello.model.service.common.impl.DonCustomerService;
 import com.donkiello.utility.JSFUtils;
-import com.donkiello.utility.JndiUtils;
-import ma.glasnost.orika.MapperFacade;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
@@ -55,20 +47,44 @@ public class CustomerManager implements Serializable {
         programms[1] = "DBA";
     }
 
+    public void DoPrint() {
+        if (filteredCustomers == null) {
+            ExcelOutput.wrtiteData(customerList);
+        } else {
+            ExcelOutput.wrtiteData(filteredCustomers);
+        }
+    }
+
+//    public void merge()
+//    {
+//        for (DonCustomerDTO d: customerList) {
+//            if(d.getFirstPersonal().getPersonalFirstNameFa() != null && d.getFirstPersonal().getPersonalFamilyNameFa() != null)
+//                d.setCustomerNameFA(d.getFirstPersonal().getPersonalFirstNameFa() + " " + d.getFirstPersonal().getPersonalFamilyNameFa());
+//            else {
+//                d.setCustomerNameFA("");
+//            }
+//
+//            customerService.update(d);
+//        }
+//
+//    }
+
+
+
     public String removeRow(DonCustomerDTO selectedCustomer) {
         System.out.println("deleted");
         DonCustomerDTO selectedCustomer1 = null;
 
         if (selectedCustomer != null) {
             selectedCustomer1 = customerService.searchById(selectedCustomer.getCustomerId());
-            String temp = selectedCustomer.getCustomerName();
+            String temp = selectedCustomer.getCustomerNameEN();
             
             //cascading remove
             if(selectedCustomer1.getDonPersonalsByCustomerId()!=null)
                 for( DonPersonalDTO p : selectedCustomer.getDonPersonalsByCustomerId())
                     p.setPersonalDeleted(1);
-            if(selectedCustomer1.getDonBussinessesByCustomerId()!=null)
-                for( DonBussinessDTO p : selectedCustomer.getDonBussinessesByCustomerId())
+            if(selectedCustomer1.getDonBusinessesByCustomerId()!=null)
+                for( DonBussinessDTO p : selectedCustomer.getDonBusinessesByCustomerId())
                     p.setBusinessDeleted(1);
             if(selectedCustomer1.getDonPastsByCustomerId()!=null)
                 for( DonPastDTO p : selectedCustomer.getDonPastsByCustomerId())

@@ -6,9 +6,7 @@
 package com.mohammad.donkiello;
 
 import com.donkiello.dto.*;
-import com.donkiello.model.entity.common.*;
 import com.donkiello.model.service.common.impl.*;
-import com.donkiello.utility.JSFUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -17,13 +15,9 @@ import org.primefaces.model.UploadedFile;
 
 import java.math.BigInteger;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -333,14 +327,16 @@ public class AddCustomer implements Serializable {
 
 
         customer.setDonPersonalsByCustomerId(listPersonal);
-        customer.setDonBussinessesByCustomerId(listBusiness);
+        customer.setDonBusinessesByCustomerId(listBusiness);
         customer.setDonProgramsByCustomerId(listIdaq);
         customer.setDonPastsByCustomerId(listPast);
 
 
         personal.setPersonalDeleted(0);
         customer.setCustomerDeleted(0);
-        customer.setCustomerName(personal.getPersonalNameEn() + " " + personal.getPersonalFamilyNameEn());
+        customer.setCustomerNameEN(personal.getPersonalFirstNameEn() + " " + personal.getPersonalFamilyNameEn());
+        customer.setCustomerNameFA(personal.getPersonalFirstNameFa() + " " + personal.getPersonalFamilyNameFa());
+
         customer.setCustomerPrograms(managePrograms(listIdaq));
         customer.setCustomerPaymentStatus(managePayment(listIdaq));
 
@@ -449,14 +445,6 @@ public class AddCustomer implements Serializable {
         this.gender = gender;
     }
 
-   /* public String getTempDate() {
-        return tempDate;
-    }*/
-
-   /* public void setTempDate(String tempDate) {
-
-        this.tempDate = tempDate;
-    }*/
 
     public File getPassScan() {
         return passScan;

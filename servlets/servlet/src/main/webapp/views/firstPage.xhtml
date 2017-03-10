@@ -17,62 +17,44 @@
 
 
         <h:form id="form1" >
-        <p:dialog header="Basic Dialog" widgetVar="dlg1"  modal="true" maximizable="true" responsive="true" >
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" position="center top" modal="true" resizable="false" width="1200"  height="650" >
             <p:outputPanel id="customerDlg" >
                 <f:event type="preRenderComponent" listener="#{login.checkSession}"/>
                 <p:tabView id="tview" effect="fade" effectDuration="fast">
                     <p:tab title="Personal Information" transient="true">
-                        <p:panel header="Personal info:Part 1" style="width: 80%;margin-left: auto;margin-right: auto;display: block;" >
+                        <p:panel header="Personal info: English" style="width: 80%;margin-left: auto;margin-right: auto;display: block;" >
                             <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;"  >
                                 <h:panelGrid columns="2" cellpadding="10" >
-                                    <p:outputLabel for="firstnamepersian" value="Firstname(Persian):" />
-                                    <p:inputText id="firstnamepersian" value="#{addCustomer.personal.persinalName}"  label="Firstname(Persian)" >
-                                    </p:inputText>
                                     <p:outputLabel for="firstname" value="Firstname:" />
-                                    <p:inputText id="firstname" value="#{addCustomer.personal.personalNameEn}"  label="Firstname" required="true" requiredMessage="Please Enter First Name !">
-                                    </p:inputText>
-                                    <p:outputLabel for="lastnamepersian" value="Lasttname(Persian):" />
-                                    <p:inputText id="lastnamepersian" value="#{addCustomer.personal.personalFamilyName}"  label="Lastname(Persian)">
+                                    <p:inputText id="firstname" value="#{addCustomer.personal.personalFirstNameEn}"  label="Firstname" required="true" requiredMessage="Please Enter First Name !">
                                     </p:inputText>
                                     <p:outputLabel for="lastname" value="Lastname:" />
                                     <p:inputText id="lastname" value="#{addCustomer.personal.personalFamilyNameEn}"  label="Lastname" required="true" requiredMessage="Please Enter Last Name !">
                                     </p:inputText>
+                                    <p:outputLabel for="prefix" value="Prefix:" />
+                                    <p:inputText id="prefix" value="#{addCustomer.personal.personalPrefixEn}"  label="Prefix">
+                                    </p:inputText>
+                                    <p:outputLabel for="birthdate" value="Birthdate:" />
+                                    <p:calendar yearRange="c-60:c+10" id="birthdate" value="#{addCustomer.personal.personalBirthdayEn}" locale="de" navigator="true" pattern="yyyy-MMM-dd" >
+                                        <f:convertDateTime pattern="yyyy-MMM-dd"/>
+                                    </p:calendar>
                                     <p:outputLabel for="sex" value="Gender:" />
                                     <p:selectOneMenu id="sex" value="#{addCustomer.gender}">
                                         <f:selectItem itemLabel="Male" itemValue="Male" />
                                         <f:selectItem itemLabel="Female" itemValue="Female" />
                                     </p:selectOneMenu>
-                                    <p:outputLabel for="prefix" value="Prefix:" />
-                                    <p:inputText id="prefix" value="#{addCustomer.personal.personalPrefix}"  label="Prefix">
-                                    </p:inputText>
-                                </h:panelGrid>
-                                <h:panelGrid columns="2" cellpadding="10" >
-                                    <p:outputLabel for="birthdate" value="Birthdate:" />
-                                    <p:calendar yearRange="c-60:c+10" id="birthdate" value="#{addCustomer.personal.personalBirthday}" locale="de" navigator="true" pattern="yyyy-MMM-dd" >
-                                        <f:convertDateTime pattern="yyyy-MMM-dd"/>
-                                    </p:calendar>
-                                    <p:outputLabel for="melliCodenum" value="MelliCode Number:" />
-                                    <p:inputText id="melliCodenum" maxlength="10"  value="#{addCustomer.personal.personalBirthCertNo}" >
-                                    </p:inputText>
                                     <p:outputLabel for="Passportnum" value="Passport Number:" />
                                     <p:inputText id="Passportnum" value="#{addCustomer.personal.personalPassportNo}"  label="passportNum">
                                     </p:inputText>
                                     <p:outputLabel for="nationality" value="Nationality:" />
-                                    <p:inputText id="nationality" value="#{addCustomer.personal.personalBirthPlace}"  label="nationality">
-                                    </p:inputText>
-                                    <p:outputLabel for="fathernamepersian" value="FatherName(Persian):" />
-                                    <p:inputText id="fathernamepersian" value="#{addCustomer.personal.personalFhName}"  label="fathernamepersian">
+                                    <p:inputText id="nationality" value="#{addCustomer.personal.personalNationalityEn}"  label="nationality">
                                     </p:inputText>
                                     <p:outputLabel for="fathername" value="FatherName:" />
-                                    <p:inputText id="fathername" value="#{addCustomer.personal.personalFhNameEn}"  label="Fathername">
+                                    <p:inputText id="fathername" value="#{addCustomer.personal.personalFatherNameEn}"  label="Fathername">
                                     </p:inputText>
 
+
                                 </h:panelGrid>
-                            </h:panelGrid>
-                        </p:panel>
-                        <br/>
-                        <p:panel id="panel1" header="Personal info:Part 2" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-                            <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <p:outputLabel for="email" value="Email:" />
                                     <p:inputText id="email" value="#{addCustomer.personal.personalPersonalEmail}"  label="Email:" validatorMessage="Email is not Valid!">
@@ -90,56 +72,87 @@
                                     <p:outputLabel for="homepostalcode" value="Postal Code(Home):" />
                                     <p:inputText id="homepostalcode" value="#{addCustomer.personal.personalPostalCode}"  label="postal code(home)">
                                     </p:inputText>
-                                    <p:outputLabel value="Home Address(Persian):" />
-                                    <p:inputTextarea rows="2" id="homeaddresspersian" value="#{addCustomer.personal.personalHomeAddress}"   cols="20" />
-
                                     <p:outputLabel for="hobbies" value="Hobbies:" />
-                                    <p:inputTextarea rows="2" id="hobbies" value="#{addCustomer.personal.personalHobbies}"   cols="20" />
+                                    <p:inputTextarea rows="2" id="hobbies" value="#{addCustomer.personal.personalHobbiesEn}"   cols="20" />
                                     <p:outputLabel for="comments" value="Comments:" />
-                                    <p:inputTextarea rows="2" id="comments" value="#{addCustomer.personal.personalDisc}" cols="20" />
-
-                                </h:panelGrid>
-                                <h:panelGrid columns="2" cellpadding="10">
-
-                                    <p:outputLabel  value="Photo Scan:" />
-                                    <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload3}" value="#{addCustomer.pfile3}"  dragDropSupport="true" rendered="#{!addCustomer.photoScanAvailable}"   mode="advanced"
-                                                  sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                    <p:panel  rendered="#{addCustomer.photoScanAvailable}">
-                                        <a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.customerId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >
-                                            Show Photo
-                                        </a>
-                                        <p:commandLink actionListener="#{addCustomer.removeImage3()}" style="float: right;" update="@form:tview">
-                                            <span class="ui-icon ui-icon-close">Delete</span>
-                                        </p:commandLink>
-                                    </p:panel>
-
-                                    <p:outputLabel value="Passport Scan:" />
-                                    <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload1}" value="#{addCustomer.pfile}"  dragDropSupport="true" rendered="#{!addCustomer.passScanAvailable}"   mode="advanced"
-                                                  sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                    <p:panel  rendered="#{addCustomer.passScanAvailable}">
-                                        <a href="#{request.contextPath}/DisplayImage?type=pps&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" style="overflow: scroll; overflow-style: auto" class="fresco" >
-                                            Show Photo</a>
-                                        <p:commandLink actionListener="#{addCustomer.removeImage1()}" style="float: right;" update="@form:tview">
-                                            <span class="ui-icon ui-icon-close">Delete</span>
-                                        </p:commandLink>
-                                    </p:panel>
-                                    <p:outputLabel  value="Shenasname Scan:" />
-                                    <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload2}" value="#{addCustomer.pfile2}"  dragDropSupport="true" rendered="#{!addCustomer.birthCertScanAvailable}"   mode="advanced"
-                                                  sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
-                                    <p:panel  rendered="#{addCustomer.birthCertScanAvailable}">
-                                        <a href="#{request.contextPath}/DisplayImage?type=bcs&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerName}" class="fresco" >
-                                            Show Photo
-                                        </a>
-                                        <p:commandLink actionListener="#{addCustomer.removeImage2()}" style="float: right;" update="@form:tview">
-                                            <span class="ui-icon ui-icon-close">Delete</span>
-                                        </p:commandLink>
-                                    </p:panel>
-
-                                </h:panelGrid>
+                                    <p:inputTextarea rows="2" id="comments" value="#{addCustomer.personal.personalDiscEn}" cols="20" />
+                                    <p:outputLabel value="Home Address :" />
+                                    <p:inputTextarea rows="2" id="homeaddress" value="#{addCustomer.personal.personalHomeAddressEn}"   cols="20" />
+                               </h:panelGrid>
                             </h:panelGrid>
-
                         </p:panel>
 
+                        <p:panel id="panel1" header="Personal info: Persian" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+                            <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:outputLabel for="firstnamepersian" value="Firstname:" />
+                                    <p:inputText id="firstnamepersian" value="#{addCustomer.personal.personalFirstNameFa}"  label="Firstname(Persian)" >
+                                    </p:inputText>
+                                    <p:outputLabel for="lastnamepersian" value="Lasttname:" />
+                                    <p:inputText id="lastnamepersian" value="#{addCustomer.personal.personalFamilyNameFa}"  label="Lastname(Persian)">
+                                    </p:inputText>
+                                    <p:outputLabel for="prefixpersian" value="Prefix:" />
+                                    <p:inputText id="prefixpersian" value="#{addCustomer.personal.personalPrefixFa}"  label="Prefix">
+                                    </p:inputText>
+                                    <p:outputLabel for="fathernamepersian" value="FatherName:" />
+                                    <p:inputText id="fathernamepersian" value="#{addCustomer.personal.personalFatherNameFa}"  label="fathernamepersian">
+                                    </p:inputText>
+                                    <p:outputLabel for="birthdatepersian" value="Birthdate:" />
+                                    <p:calendar yearRange="c-60:c+10" id="birthdatepersian" value="#{addCustomer.personal.personalBirthdayFa}" locale="de" navigator="true" pattern="yyyy-MMM-dd" >
+                                        <f:convertDateTime pattern="yyyy-MMM-dd"/>
+                                    </p:calendar>
+                                 </h:panelGrid>
+                                 <h:panelGrid columns="2" cellpadding="10">
+                                    <p:outputLabel for="nationalitypersian" value="Nationality:" />
+                                    <p:inputText id="nationalitypersian" value="#{addCustomer.personal.personalNationalityFa}"  label="nationality">
+                                    </p:inputText>
+                                    <p:outputLabel for="hobbiespersian" value="Hobbies:" />
+                                    <p:inputTextarea rows="2" id="hobbiespersian" value="#{addCustomer.personal.personalHobbiesFa}"   cols="20" />
+                                    <p:outputLabel for="commentspersian" value="Comments:" />
+                                    <p:inputTextarea rows="2" id="commentspersian" value="#{addCustomer.personal.personalDiscFa}" cols="20" />
+                                    <p:outputLabel value="Home Address :" />
+                                    <p:inputTextarea rows="2" id="homeaddresspersian" value="#{addCustomer.personal.personalHomeAddressFa}"   cols="20" />
+                                 </h:panelGrid>
+                            </h:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="pane3" header="Personal info: Uploads" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+                            <h:panelGrid columns="2" cellpadding="20" style="margin-left: auto;margin-right: auto;display: block;" >
+                                <p:outputLabel  value="Photo Scan:" />
+                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload3}" value="#{addCustomer.pfile3}"  dragDropSupport="true" rendered="#{!addCustomer.photoScanAvailable}"   mode="advanced"
+                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
+                                <p:panel  rendered="#{addCustomer.photoScanAvailable}">
+                                    <a href="#{request.contextPath}/DisplayImage?type=ps&amp;pid=#{addCustomer.customer.customerId}&amp;" data-fresco-caption="#{addCustomer.customer.customerNameEN}" class="fresco" >
+                                        Show Photo
+                                    </a>
+                                    <p:commandLink actionListener="#{addCustomer.removeImage3()}" style="float: right;" update="@form:tview">
+                                        <span class="ui-icon ui-icon-close">Delete</span>
+                                    </p:commandLink>
+                                </p:panel>
+
+                                <p:outputLabel value="Passport Scan:" />
+                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload1}" value="#{addCustomer.pfile}"  dragDropSupport="true" rendered="#{!addCustomer.passScanAvailable}"   mode="advanced"
+                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
+                                <p:panel  rendered="#{addCustomer.passScanAvailable}">
+                                    <a href="#{request.contextPath}/DisplayImage?type=pps&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerNameEN}" style="overflow: scroll; overflow-style: auto" class="fresco" >
+                                        Show Photo</a>
+                                    <p:commandLink actionListener="#{addCustomer.removeImage1()}" style="float: right;" update="@form:tview">
+                                        <span class="ui-icon ui-icon-close">Delete</span>
+                                    </p:commandLink>
+                                </p:panel>
+                                <p:outputLabel  value="Shenasname Scan:" />
+                                <p:fileUpload fileUploadListener="#{addCustomer.handleFileUpload2}" value="#{addCustomer.pfile2}"  dragDropSupport="true" rendered="#{!addCustomer.birthCertScanAvailable}"   mode="advanced"
+                                              sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  update="@form:tview"/>
+                                <p:panel  rendered="#{addCustomer.birthCertScanAvailable}">
+                                    <a href="#{request.contextPath}/DisplayImage?type=bcs&amp;pid=#{addCustomer.personal.personalId}&amp;" data-fresco-caption="#{addCustomer.customer.customerNameEN}" class="fresco" >
+                                        Show Photo
+                                    </a>
+                                    <p:commandLink actionListener="#{addCustomer.removeImage2()}" style="float: right;" update="@form:tview">
+                                        <span class="ui-icon ui-icon-close">Delete</span>
+                                    </p:commandLink>
+                                </p:panel>
+                            </h:panelGrid>
+                        </p:panel>
                     </p:tab>
                     <p:tab title="Educational Information" transient="true">
                         <p:panel header="Past edu info">
@@ -321,19 +334,19 @@
                     </p:tab>
                     <p:tab title="Business Information" transient="true"    >
                         <ui:repeat var="bussiness" value="${addCustomer.listBusiness}">
-                            <p:panel header="Business Information" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+                            <p:panel header="Business Information : English" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
                                 <h:panelGrid columns="2" cellpadding="10"  style="margin-left: auto;margin-right: auto;display: block;" >
                                     <h:panelGrid columns="2" cellpadding="10" >
                                         <p:outputLabel for="bussinessName" value="Business Name:" />
-                                        <p:inputText id="bussinessName" value="#{bussiness.businessName}" label="asdsad"/>
+                                        <p:inputText id="bussinessName" value="#{bussiness.businessNameEn}" label="asdsad"/>
                                         <p:outputLabel for="position" value="Position:" />
-                                        <p:inputText id="position" value="#{bussiness.businessPosition}"/>
+                                        <p:inputText id="position" value="#{bussiness.businessPositionEn}"/>
                                         <p:outputLabel for="city" value="City:" />
-                                        <p:inputText id="city" value="#{bussiness.businessCity}"/>
+                                        <p:inputText id="city" value="#{bussiness.businessCityEn}"/>
                                         <p:outputLabel for="country" value="Country:" />
-                                        <p:inputText id="country" value="#{bussiness.businessCountry}"/>
+                                        <p:inputText id="country" value="#{bussiness.businessCountryEn}"/>
                                         <p:outputLabel for="bussinessAddress" value="Address:" />
-                                        <p:inputTextarea rows="6" id="bussinessAddress" value="#{bussiness.businessAddress}" cols="33" />
+                                        <p:inputTextarea rows="6" id="bussinessAddress" value="#{bussiness.businessAddressEn}" cols="33" />
 
                                         <p:outputLabel value="Office Tel:" />
                                         <p:inputText id="officeTel" value="#{bussiness.businessOfficeTel}">
@@ -351,6 +364,8 @@
                                         <p:inputText id="bussinessEmail" value="#{bussiness.businessEmail}"/>
                                         <p:outputLabel value="Business Tags:" />
                                         <p:inputText id="bussinessTags" value="#{bussiness.businessTag}"/>
+                                        <p:outputLabel value="Business Tags 2:" />
+                                        <p:inputText id="bussinessTags2" value="#{bussiness.businessTagSecond}"/>
                                         <p:outputLabel value="Business Branches:" />
                                         <p:inputText id="bussinessBranches" value="#{bussiness.businessBranchComp}"/>
                                         <p:outputLabel value="Secretary Name:" />
@@ -359,6 +374,22 @@
                                         <p:inputText id="secretaryTel" value="#{bussiness.bussinessSecretaryTel}"> </p:inputText>
                                         <p:outputLabel value="Secretary Email:" />
                                         <p:inputText id="secretaryEmail" value="#{bussiness.businessSecretaryEmail}"> </p:inputText>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </p:panel>
+                            <p:panel header="Business Information : Persian" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+                                <h:panelGrid columns="2" cellpadding="10"  style="margin-left: auto;margin-right: auto;display: block;" >
+                                    <h:panelGrid columns="2" cellpadding="10" >
+                                        <p:outputLabel for="bussinessNameFA" value="Business Name:" />
+                                        <p:inputText id="bussinessNameFA" value="#{bussiness.businessNameFa}" label="asdsad"/>
+                                        <p:outputLabel for="positionFA" value="Position:" />
+                                        <p:inputText id="positionFA" value="#{bussiness.businessPositionFa}"/>
+                                        <p:outputLabel for="cityFA" value="City:" />
+                                        <p:inputText id="cityFA" value="#{bussiness.businessCityFa}"/>
+                                        <p:outputLabel for="countryFA" value="Country:" />
+                                        <p:inputText id="countryFA" value="#{bussiness.businessCountryFa}"/>
+                                        <p:outputLabel for="bussinessAddressFA" value="Address:" />
+                                        <p:inputTextarea rows="6" id="bussinessAddressFA" value="#{bussiness.businessAddressFa}" cols="33" />
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </p:panel>
@@ -391,7 +422,7 @@
                     <p:graphicImage value="/resources/images/ajaxloadingbar.gif"/>
                 </p:blockUI>
                 <p:commandButton id="save" value="Submit" style="float: right;" action="#{addCustomer.commitCustomer()}" update="growl" validateClient="true" ajax="false" type="submit"/>
-                <p:commandButton value="Cancel" style="float: right;" action="#{addCustomer.cancelCustomer()}" ajax="false"   type="cancel" immediate="true"/>
+                <!--<p:commandButton value="Cancel" style="float: right;" action="#{addCustomer.cancelCustomer()}" ajax="false"   type="cancel" immediate="true"/>-->
             </p:outputPanel>
         </p:dialog>
         </h:form>
@@ -405,62 +436,93 @@
             <p:growl id="growl1" showDetail="true"  />
             <p:dataTable rowStyleClass="rowClass" style="font-size: 13px; font-style: normal;" id="customerTable" var="customer"  value="#{customerManager.customerList}" widgetVar="customersTable"
                          emptyMessage="No Customers found with given criteria" filteredValue="#{customerManager.filteredCustomers}" paginator="true" rows="10"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} "
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {JumpToPageDropdown} {CurrentPageReport} {NextPageLink} {LastPageLink} "
                          rowsPerPageTemplate="5,10,15" sortMode="multiple"  draggableColumns="true"  rowKey="#{customer.customerId}" >
 
                 <f:facet name="header">
                     <p:commandButton style="float: left" value="Add" icon="ui-icon-plus" action="#{customerManager.addCustomer()}" type="submit" ajax="false"/>
+
+                    <p:commandButton value="EN | FA" action="#{languageController.changeLanguage}" oncomplete="PF('customersTable').filter()"  style="float: left;" />
+
+
                     <p:commandButton id="toggler" type="link" value="Columns" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="customerTable" trigger="toggler"  />
+
+                    <p:commandButton value="Excel"  action="#{customerManager.DoPrint}" ajax="false" style="float: right;" />
+
                     <p:outputPanel>
                         <h:outputText value="Search all available fields:" />
                         <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" placeholder="Enter keyword"/>
                     </p:outputPanel>
+
+
                 </f:facet>
                 <p:column exportable="false" headerText="Image" width="62">
                     <p:graphicImage rendered="#{not empty customer.customerImage}" url="/DisplayImage?type=ps&amp;pid=#{customer.customerId}" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
                     <p:graphicImage rendered="#{empty customer.customerImage}" url="/resources/images/unknown.jpg" style="margin-left: auto; margin-right: auto; display: block;" width="60" height="80"/>
 
                 </p:column>
-                <p:column  filterBy="#{customer.customerName}" headerText="Name" sortBy="#{customer.customerName}"  filterMatchMode="contains">
-                    <h:outputText value="#{customer.customerName}" />
+
+                <p:column  filterBy="#{customer.customerNameEN}" headerText="Name" sortBy="#{customer.customerNameEN}"  filterMatchMode="contains" visible="#{languageController.english}">
+                    <h:outputText value="#{customer.customerNameEN}" />
+                </p:column>
+
+                <p:column  filterBy="#{customer.customerNameFA}" headerText="Name" sortBy="#{customer.customerNameFA}"  filterMatchMode="contains" visible="#{!(languageController.english)}">
+                    <h:outputText value="#{customer.customerNameFA}" />
                 </p:column>
                 
                 <p:column  filterBy="#{customer.firstBusinessEmail}" headerText="E-Mail"  width="15%" styleClass="not-show-at-start" filterMatchMode="contains" >
                     <h:outputText value="#{customer.firstBusinessEmail}"/>
                 </p:column>
 
-                <!--<p:column filterBy="#{customer.customerMobileNo}" headerText="Tell(Mobile)"  filterMatchMode="contains">-->
-                    <!--<h:outputText value="#{customer.customerMobileNo}" />-->
-                <!--</p:column>-->
+                <p:column filterBy="#{customer.firstMobileNumber}" headerText="Mobile"  filterMatchMode="contains">
+                    <h:outputText value="#{customer.firstMobileNumber}" />
+                </p:column>
 
                 <p:column filterBy="#{customer.customerRate}" headerText="Class"  width="6%" sortBy="#{customer.customerRate}" filterMatchMode="contains">
                     <h:outputText value="#{customer.customerRate}" />
                 </p:column>
 
-                <p:column filterBy="#{customer.customerPrograms}" headerText="Programs" width="6%" filterMatchMode="contains">
-                    <h:outputText value="#{customer.customerPrograms}" />
-                </p:column>
-
-                <p:column filterBy="#{customer.firstBusinessName}" headerText="Business Name" filterMatchMode="contains">
-                    <h:outputText value="#{customer.firstBusinessName}" />
-                </p:column>
-
-                <p:column  filterBy="#{customer.firstBusinessCountry}" width="10%"  rowspan="1" headerText="Country" filterMatchMode="contains">
-                    <h:outputText value="#{customer.firstBusinessCountry}" />
-                </p:column>
-
-                <p:column  filterBy="#{customer.firstBusinessCity}" width="10%"  rowspan="1" headerText="City" filterMatchMode="contains">
-                    <h:outputText value="#{customer.firstBusinessCity}" />
-                </p:column>
-
-                <p:column  filterBy="#{customer.firstBusinessAddress}" width="10%"  rowspan="1" headerText="Address" filterMatchMode="contains">
-                    <h:outputText value="#{customer.firstBusinessAddress}" />
-                </p:column>
+                <!--<p:column filterBy="#{customer.customerPrograms}" headerText="Programs" width="6%" filterMatchMode="contains">-->
+                    <!--<h:outputText value="#{customer.customerPrograms}" />-->
+                <!--</p:column>-->
 
                 <p:column filterBy="#{customer.firstBusinessField}" headerText="Business Fields" filterMatchMode="contains">
                     <h:outputText value="#{customer.firstBusinessField}" />
                 </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessNameFA}" headerText="Business Name " filterMatchMode="contains"  visible="#{!(languageController.english)}">
+                    <h:outputText value="#{customer.firstBusinessNameFA}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessCountryFA}" width="10%" rowspan="1" headerText="Country " filterMatchMode="contains" visible="#{!(languageController.english)}">
+                    <h:outputText value="#{customer.firstBusinessCountryFA}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessCityFA}" width="10%" rowspan="1" headerText="City " filterMatchMode="contains" visible="#{!(languageController.english)}">
+                    <h:outputText value="#{customer.firstBusinessCityFA}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessAddressFA}" width="10%" rowspan="1" headerText="Address " filterMatchMode="contains" visible="#{!(languageController.english)}">
+                    <h:outputText value="#{customer.firstBusinessAddressFA}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessNameEN}" headerText="Business Name" filterMatchMode="contains" visible="#{languageController.english}">
+                    <h:outputText value="#{customer.firstBusinessNameEN}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessCountryEN}" width="10%" rowspan="1" headerText="Country" filterMatchMode="contains"  visible="#{languageController.english}">
+                    <h:outputText value="#{customer.firstBusinessCountryEN}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessCityEN}" width="10%" rowspan="1" headerText="City" filterMatchMode="contains" visible="#{languageController.english}">
+                    <h:outputText value="#{customer.firstBusinessCityEN}" />
+                </p:column>
+
+                <p:column filterBy="#{customer.firstBusinessAddressEN}" width="10%" rowspan="1" headerText="Address" filterMatchMode="contains" visible="#{languageController.english}">
+                    <h:outputText value="#{customer.firstBusinessAddressEN}" />
+                </p:column>
+
 
 
                 <p:column width="40" style="max-width: 40px;" exportable="false" >
@@ -479,6 +541,7 @@
                     <p:commandButton  icon="ui-icon-close" actionListener="#{customerManager.viewCustomer(customer)}" update="@form" title="Delete">
                         <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
                     </p:commandButton>
+
                     
                     <p:confirmDialog global="true"  showEffect="fade" hideEffect="fade">
                         <p:commandButton value="Yes" type="button"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
@@ -489,11 +552,15 @@
 
             </p:dataTable>
 
-            <h:commandLink>
-                <p:graphicImage name="/images/excel.png" />
-                <p:dataExporter  type="xls" target="customerTable" fileName="students" />
-            </h:commandLink>
-            <p:commandLink value="Logout #{login.onlineUser.usersName}" action="#{login.logout}" style="float: right; color: #f6a828;" />
+            <!--<h:commandLink>-->
+                <!--<p:graphicImage name="/images/excel.png" />-->
+                <!--<p:dataExporter  type="xls" target="customerTable" fileName="students" />-->
+            <!--</h:commandLink>-->
+            <p:commandLink value="Logout #{login.onlineUser.usersName}" action="#{login.logout}" style="float: right;" />
         </h:form>
+
+
+
+
     </h:body>
 </f:view>

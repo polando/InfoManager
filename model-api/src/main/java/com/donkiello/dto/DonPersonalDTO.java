@@ -1,6 +1,7 @@
 package com.donkiello.dto;
 
 import com.donkiello.model.entity.common.DonCustomer;
+import com.donkiello.model.entity.common.DonPersonal;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -13,69 +14,49 @@ import java.util.Arrays;
 
 public class DonPersonalDTO {
     private Integer personalId;
-    private String persinalName;
-    private String personalFamilyName;
     private BigInteger personalGender;
     private String personalMobileNum;
-    private String personalNameEn;
-    private String personalFamilyNameEn;
-    private String personalPrefix;
-    private String personalPrefixEn;
     private String personalHomeTel;
     private String personalHomeFax;
     private String personalPostalCode;
-    private String personalHomeAddress;
-    private String personalFhName;
-    private String personalFhNameEn;
-    private String personalBirthday;
-    private String personalHomeAddressEn;
-    private String personalBirthPlace;
     private String personalPassportNo;
     private String personalBirthCertNo;
     private String personalPersonalEmail;
     private byte[] personalPassportScan;
     private byte[] personalBirthCertScan;
-    private String personalDisc;
-    private String personalHobbies;
+    private String personalFirstNameFa;
+    private String personalFamilyNameFa;
+    private String personalPrefixFa;
+    private String personalFatherNameFa;
+    private String personalHomeAddressFa;
+    private String personalBirthdayFa;
+    private String personalCountryFa;
+    private String personalCityFa;
+    private String personalNationalityFa;
+    private String personalDiscFa;
+    private String personalHobbiesFa;
+    private String personalDiscEn;
     private Integer personalDeleted;
+    private String personalHobbiesEn;
+    private String personalCityEn;
+    private String personalNationalityEn;
+    private String personalCountryEn;
+    private String personalBirthdayEn;
+    private String personalFirstNameEn;
+    private String personalFamilyNameEn;
+    private String personalPrefixEn;
+    private String personalFatherNameEn;
+    private String personalHomeAddressEn;
+
     private DonCustomerDTO donCustomerByCustomerIdInPersonal;
 
-    @Id
-    @Column(name = "PersonalID")
+
     public Integer getPersonalId() {
         return personalId;
     }
 
     public void setPersonalId(Integer personalId) {
         this.personalId = personalId;
-    }
-
-/*    @Basic
-    @Column(name = "CustomerID")
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-*/
-
-    public String getPersinalName() {
-        return persinalName;
-    }
-
-    public void setPersinalName(String persinalName) {
-        this.persinalName = persinalName;
-    }
-
-
-    public String getPersonalFamilyName() {
-        return personalFamilyName;
-    }
-
-    public void setPersonalFamilyName(String personalFamilyName) {
-        this.personalFamilyName = personalFamilyName;
     }
 
 
@@ -94,42 +75,6 @@ public class DonPersonalDTO {
 
     public void setPersonalMobileNum(String personalMobileNum) {
         this.personalMobileNum = personalMobileNum;
-    }
-
-
-    public String getPersonalNameEn() {
-        return personalNameEn;
-    }
-
-    public void setPersonalNameEn(String personalNameEn) {
-        this.personalNameEn = personalNameEn;
-    }
-
-
-    public String getPersonalFamilyNameEn() {
-        return personalFamilyNameEn;
-    }
-
-    public void setPersonalFamilyNameEn(String personalFamilyNameEn) {
-        this.personalFamilyNameEn = personalFamilyNameEn;
-    }
-
-
-    public String getPersonalPrefix() {
-        return personalPrefix;
-    }
-
-    public void setPersonalPrefix(String personalPrefix) {
-        this.personalPrefix = personalPrefix;
-    }
-
-
-    public String getPersonalPrefixEn() {
-        return personalPrefixEn;
-    }
-
-    public void setPersonalPrefixEn(String personalPrefixEn) {
-        this.personalPrefixEn = personalPrefixEn;
     }
 
 
@@ -157,60 +102,6 @@ public class DonPersonalDTO {
 
     public void setPersonalPostalCode(String personalPostalCode) {
         this.personalPostalCode = personalPostalCode;
-    }
-
-
-    public String getPersonalHomeAddress() {
-        return personalHomeAddress;
-    }
-
-    public void setPersonalHomeAddress(String personalHomeAddress) {
-        this.personalHomeAddress = personalHomeAddress;
-    }
-
-
-    public String getPersonalFhName() {
-        return personalFhName;
-    }
-
-    public void setPersonalFhName(String personalFhName) {
-        this.personalFhName = personalFhName;
-    }
-
-
-    public String getPersonalFhNameEn() {
-        return personalFhNameEn;
-    }
-
-    public void setPersonalFhNameEn(String personalFhNameEn) {
-        this.personalFhNameEn = personalFhNameEn;
-    }
-
-
-    public String getPersonalBirthday() {
-        return personalBirthday;
-    }
-
-    public void setPersonalBirthday(String personalBirthday) {
-        this.personalBirthday = personalBirthday;
-    }
-
-
-    public String getPersonalHomeAddressEn() {
-        return personalHomeAddressEn;
-    }
-
-    public void setPersonalHomeAddressEn(String personalHomeAddressEn) {
-        this.personalHomeAddressEn = personalHomeAddressEn;
-    }
-
-
-    public String getPersonalBirthPlace() {
-        return personalBirthPlace;
-    }
-
-    public void setPersonalBirthPlace(String personalBirthPlace) {
-        this.personalBirthPlace = personalBirthPlace;
     }
 
 
@@ -259,21 +150,111 @@ public class DonPersonalDTO {
     }
 
 
-    public String getPersonalDisc() {
-        return personalDisc;
+    public String getPersonalFirstNameFa() {
+        return personalFirstNameFa;
     }
 
-    public void setPersonalDisc(String personalDisc) {
-        this.personalDisc = personalDisc;
+    public void setPersonalFirstNameFa(String personalFirstNameFa) {
+        this.personalFirstNameFa = personalFirstNameFa;
     }
 
 
-    public String getPersonalHobbies() {
-        return personalHobbies;
+    public String getPersonalFamilyNameFa() {
+        return personalFamilyNameFa;
     }
 
-    public void setPersonalHobbies(String personalHobbies) {
-        this.personalHobbies = personalHobbies;
+    public void setPersonalFamilyNameFa(String personalFamilyNameFa) {
+        this.personalFamilyNameFa = personalFamilyNameFa;
+    }
+
+
+    public String getPersonalPrefixFa() {
+        return personalPrefixFa;
+    }
+
+    public void setPersonalPrefixFa(String personalPrefixFa) {
+        this.personalPrefixFa = personalPrefixFa;
+    }
+
+
+    public String getPersonalFatherNameFa() {
+        return personalFatherNameFa;
+    }
+
+    public void setPersonalFatherNameFa(String personalFatherNameFa) {
+        this.personalFatherNameFa = personalFatherNameFa;
+    }
+
+
+    public String getPersonalHomeAddressFa() {
+        return personalHomeAddressFa;
+    }
+
+    public void setPersonalHomeAddressFa(String personalHomeAddressFa) {
+        this.personalHomeAddressFa = personalHomeAddressFa;
+    }
+
+
+    public String getPersonalBirthdayFa() {
+        return personalBirthdayFa;
+    }
+
+    public void setPersonalBirthdayFa(String personalBirthdayFa) {
+        this.personalBirthdayFa = personalBirthdayFa;
+    }
+
+
+    public String getPersonalCountryFa() {
+        return personalCountryFa;
+    }
+
+    public void setPersonalCountryFa(String personalCountryFa) {
+        this.personalCountryFa = personalCountryFa;
+    }
+
+
+    public String getPersonalCityFa() {
+        return personalCityFa;
+    }
+
+    public void setPersonalCityFa(String personalCityFa) {
+        this.personalCityFa = personalCityFa;
+    }
+
+
+    public String getPersonalNationalityFa() {
+        return personalNationalityFa;
+    }
+
+    public void setPersonalNationalityFa(String personalNationalityFa) {
+        this.personalNationalityFa = personalNationalityFa;
+    }
+
+
+    public String getPersonalDiscFa() {
+        return personalDiscFa;
+    }
+
+    public void setPersonalDiscFa(String personalDiscFa) {
+        this.personalDiscFa = personalDiscFa;
+    }
+
+
+    public String getPersonalHobbiesFa() {
+        return personalHobbiesFa;
+    }
+
+    public void setPersonalHobbiesFa(String personalHobbiesFa) {
+        this.personalHobbiesFa = personalHobbiesFa;
+    }
+
+
+    public String getPersonalDiscEn() {
+        return personalDiscEn;
+    }
+
+    public void setPersonalDiscEn(String personalDiscEn) {
+        this.personalDiscEn = personalDiscEn;
     }
 
 
@@ -284,6 +265,96 @@ public class DonPersonalDTO {
     public void setPersonalDeleted(Integer personalDeleted) {
         this.personalDeleted = personalDeleted;
     }
+
+
+    public String getPersonalHobbiesEn() {
+        return personalHobbiesEn;
+    }
+
+    public void setPersonalHobbiesEn(String personalHobbiesEn) {
+        this.personalHobbiesEn = personalHobbiesEn;
+    }
+
+
+    public String getPersonalCityEn() {
+        return personalCityEn;
+    }
+
+    public void setPersonalCityEn(String personalCityEn) {
+        this.personalCityEn = personalCityEn;
+    }
+
+
+    public String getPersonalNationalityEn() {
+        return personalNationalityEn;
+    }
+
+    public void setPersonalNationalityEn(String personalNationalityEn) {
+        this.personalNationalityEn = personalNationalityEn;
+    }
+
+
+    public String getPersonalCountryEn() {
+        return personalCountryEn;
+    }
+
+    public void setPersonalCountryEn(String personalCountryEn) {
+        this.personalCountryEn = personalCountryEn;
+    }
+
+
+    public String getPersonalBirthdayEn() {
+        return personalBirthdayEn;
+    }
+
+    public void setPersonalBirthdayEn(String personalBirthdayEn) {
+        this.personalBirthdayEn = personalBirthdayEn;
+    }
+
+
+    public String getPersonalFirstNameEn() {
+        return personalFirstNameEn;
+    }
+
+    public void setPersonalFirstNameEn(String personalFirstNameEn) {
+        this.personalFirstNameEn = personalFirstNameEn;
+    }
+
+
+    public String getPersonalFamilyNameEn() {
+        return personalFamilyNameEn;
+    }
+
+    public void setPersonalFamilyNameEn(String personalFamilyNameEn) {
+        this.personalFamilyNameEn = personalFamilyNameEn;
+    }
+
+    public String getPersonalPrefixEn() {
+        return personalPrefixEn;
+    }
+
+    public void setPersonalPrefixEn(String personalPrefixEn) {
+        this.personalPrefixEn = personalPrefixEn;
+    }
+
+
+    public String getPersonalFatherNameEn() {
+        return personalFatherNameEn;
+    }
+
+    public void setPersonalFatherNameEn(String personalFatherNameEn) {
+        this.personalFatherNameEn = personalFatherNameEn;
+    }
+
+
+    public String getPersonalHomeAddressEn() {
+        return personalHomeAddressEn;
+    }
+
+    public void setPersonalHomeAddressEn(String personalHomeAddressEn) {
+        this.personalHomeAddressEn = personalHomeAddressEn;
+    }
+
 
     public DonCustomerDTO getDonCustomerByCustomerIdInPersonal() {
         return donCustomerByCustomerIdInPersonal;

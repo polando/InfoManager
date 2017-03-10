@@ -3,16 +3,17 @@ package com.donkiello.model.entity.common;
 import javax.persistence.*;
 
 /**
- * Created by ussocom on 2/1/2017.
+ * Created by ussocom on 3/8/2017.
  */
 @Entity
-@Table(name = "don_bussiness", schema = "dondb")
+@Table(name = "don_bussiness", schema = "dondb", catalog = "")
 public class DonBussiness {
-    private int bussinessId;
- //   private int customerId;
-    private String businessName;
-    private String businessPosition;
-    private String businessAddress;
+    private Integer bussinessId;
+    private String businessNameFa;
+    private String businessPositionFa;
+    private String businessAddressFa;
+    private String businessCityFa;
+    private String businessCountryFa;
     private String businessBrand;
     private String businessField;
     private String businessOfficeTel;
@@ -28,10 +29,16 @@ public class DonBussiness {
     private String businessTag;
     private String businessCountry;
     private String businessSecretaryEmail;
+    private String businessCountryEn;
+    private String businessCityEn;
+    private String businessAddressEn;
+    private String businessPositionEn;
+    private String businessNameEn;
+    private String businessTagSecond;
+
     private DonCustomer donCustomerByCustomerIdInBusiness;
 
     @Id
- //   @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BussinessID",unique = true)
     public Integer getBussinessId() {
         return bussinessId;
@@ -41,44 +48,54 @@ public class DonBussiness {
         this.bussinessId = bussinessId;
     }
 
-  /*  @Basic
-    @Column(name = "CustomerID")
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-*/
     @Basic
-    @Column(name = "BusinessName")
-    public String getBusinessName() {
-        return businessName;
+    @Column(name = "BusinessNameFA")
+    public String getBusinessNameFa() {
+        return businessNameFa;
     }
 
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
+    public void setBusinessNameFa(String businessNameFa) {
+        this.businessNameFa = businessNameFa;
     }
 
     @Basic
-    @Column(name = "BusinessPosition")
-    public String getBusinessPosition() {
-        return businessPosition;
+    @Column(name = "BusinessPositionFA")
+    public String getBusinessPositionFa() {
+        return businessPositionFa;
     }
 
-    public void setBusinessPosition(String businessPosition) {
-        this.businessPosition = businessPosition;
+    public void setBusinessPositionFa(String businessPositionFa) {
+        this.businessPositionFa = businessPositionFa;
     }
 
     @Basic
-    @Column(name = "BusinessAddress")
-    public String getBusinessAddress() {
-        return businessAddress;
+    @Column(name = "BusinessAddressFA")
+    public String getBusinessAddressFa() {
+        return businessAddressFa;
     }
 
-    public void setBusinessAddress(String businessAddress) {
-        this.businessAddress = businessAddress;
+    public void setBusinessAddressFa(String businessAddressFa) {
+        this.businessAddressFa = businessAddressFa;
+    }
+
+    @Basic
+    @Column(name = "BusinessCityFA")
+    public String getBusinessCityFa() {
+        return businessCityFa;
+    }
+
+    public void setBusinessCityFa(String businessCityFa) {
+        this.businessCityFa = businessCityFa;
+    }
+
+    @Basic
+    @Column(name = "BusinessCountryFA")
+    public String getBusinessCountryFa() {
+        return businessCountryFa;
+    }
+
+    public void setBusinessCountryFa(String businessCountryFa) {
+        this.businessCountryFa = businessCountryFa;
     }
 
     @Basic
@@ -211,15 +228,6 @@ public class DonBussiness {
         this.businessTag = businessTag;
     }
 
-    @Basic
-    @Column(name = "BusinessCountry")
-    public String getBusinessCountry() {
-        return businessCountry;
-    }
-
-    public void setBusinessCountry(String businessCountry) {
-        this.businessCountry = businessCountry;
-    }
 
     @Basic
     @Column(name = "BusinessSecretaryEmail")
@@ -231,6 +239,66 @@ public class DonBussiness {
         this.businessSecretaryEmail = businessSecretaryEmail;
     }
 
+    @Basic
+    @Column(name = "BusinessCountryEN")
+    public String getBusinessCountryEn() {
+        return businessCountryEn;
+    }
+
+    public void setBusinessCountryEn(String businessCountryEn) {
+        this.businessCountryEn = businessCountryEn;
+    }
+
+    @Basic
+    @Column(name = "BusinessCityEN")
+    public String getBusinessCityEn() {
+        return businessCityEn;
+    }
+
+    public void setBusinessCityEn(String businessCityEn) {
+        this.businessCityEn = businessCityEn;
+    }
+
+    @Basic
+    @Column(name = "BusinessAddressEN")
+    public String getBusinessAddressEn() {
+        return businessAddressEn;
+    }
+
+    public void setBusinessAddressEn(String businessAddressEn) {
+        this.businessAddressEn = businessAddressEn;
+    }
+
+    @Basic
+    @Column(name = "BusinessPositionEN")
+    public String getBusinessPositionEn() {
+        return businessPositionEn;
+    }
+
+    public void setBusinessPositionEn(String businessPositionEn) {
+        this.businessPositionEn = businessPositionEn;
+    }
+
+    @Basic
+    @Column(name = "BusinessNameEN")
+    public String getBusinessNameEn() {
+        return businessNameEn;
+    }
+
+    public void setBusinessNameEn(String businessNameEn) {
+        this.businessNameEn = businessNameEn;
+    }
+
+    @Basic
+    @Column(name = "BusinessTagSecond")
+    public String getBusinessTagSecond() {
+        return businessTagSecond;
+    }
+
+    public void setBusinessTagSecond(String businessTagSecond) {
+        this.businessTagSecond = businessTagSecond;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -238,12 +306,16 @@ public class DonBussiness {
 
         DonBussiness that = (DonBussiness) o;
 
-        if (bussinessId != that.bussinessId) return false;
-    //    if (customerId != that.customerId) return false;
-        if (businessName != null ? !businessName.equals(that.businessName) : that.businessName != null) return false;
-        if (businessPosition != null ? !businessPosition.equals(that.businessPosition) : that.businessPosition != null)
+        if (bussinessId != null ? !bussinessId.equals(that.bussinessId) : that.bussinessId != null) return false;
+        if (businessNameFa != null ? !businessNameFa.equals(that.businessNameFa) : that.businessNameFa != null)
             return false;
-        if (businessAddress != null ? !businessAddress.equals(that.businessAddress) : that.businessAddress != null)
+        if (businessPositionFa != null ? !businessPositionFa.equals(that.businessPositionFa) : that.businessPositionFa != null)
+            return false;
+        if (businessAddressFa != null ? !businessAddressFa.equals(that.businessAddressFa) : that.businessAddressFa != null)
+            return false;
+        if (businessCityFa != null ? !businessCityFa.equals(that.businessCityFa) : that.businessCityFa != null)
+            return false;
+        if (businessCountryFa != null ? !businessCountryFa.equals(that.businessCountryFa) : that.businessCountryFa != null)
             return false;
         if (businessBrand != null ? !businessBrand.equals(that.businessBrand) : that.businessBrand != null)
             return false;
@@ -272,17 +344,30 @@ public class DonBussiness {
             return false;
         if (businessSecretaryEmail != null ? !businessSecretaryEmail.equals(that.businessSecretaryEmail) : that.businessSecretaryEmail != null)
             return false;
+        if (businessCountryEn != null ? !businessCountryEn.equals(that.businessCountryEn) : that.businessCountryEn != null)
+            return false;
+        if (businessCityEn != null ? !businessCityEn.equals(that.businessCityEn) : that.businessCityEn != null)
+            return false;
+        if (businessAddressEn != null ? !businessAddressEn.equals(that.businessAddressEn) : that.businessAddressEn != null)
+            return false;
+        if (businessPositionEn != null ? !businessPositionEn.equals(that.businessPositionEn) : that.businessPositionEn != null)
+            return false;
+        if (businessNameEn != null ? !businessNameEn.equals(that.businessNameEn) : that.businessNameEn != null)
+            return false;
+        if (businessTagSecond != null ? !businessTagSecond.equals(that.businessTagSecond) : that.businessTagSecond != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = bussinessId;
-    //    result = 31 * result + customerId;
-        result = 31 * result + (businessName != null ? businessName.hashCode() : 0);
-        result = 31 * result + (businessPosition != null ? businessPosition.hashCode() : 0);
-        result = 31 * result + (businessAddress != null ? businessAddress.hashCode() : 0);
+        int result = bussinessId != null ? bussinessId.hashCode() : 0;
+        result = 31 * result + (businessNameFa != null ? businessNameFa.hashCode() : 0);
+        result = 31 * result + (businessPositionFa != null ? businessPositionFa.hashCode() : 0);
+        result = 31 * result + (businessAddressFa != null ? businessAddressFa.hashCode() : 0);
+        result = 31 * result + (businessCityFa != null ? businessCityFa.hashCode() : 0);
+        result = 31 * result + (businessCountryFa != null ? businessCountryFa.hashCode() : 0);
         result = 31 * result + (businessBrand != null ? businessBrand.hashCode() : 0);
         result = 31 * result + (businessField != null ? businessField.hashCode() : 0);
         result = 31 * result + (businessOfficeTel != null ? businessOfficeTel.hashCode() : 0);
@@ -298,8 +383,15 @@ public class DonBussiness {
         result = 31 * result + (businessTag != null ? businessTag.hashCode() : 0);
         result = 31 * result + (businessCountry != null ? businessCountry.hashCode() : 0);
         result = 31 * result + (businessSecretaryEmail != null ? businessSecretaryEmail.hashCode() : 0);
+        result = 31 * result + (businessCountryEn != null ? businessCountryEn.hashCode() : 0);
+        result = 31 * result + (businessCityEn != null ? businessCityEn.hashCode() : 0);
+        result = 31 * result + (businessAddressEn != null ? businessAddressEn.hashCode() : 0);
+        result = 31 * result + (businessPositionEn != null ? businessPositionEn.hashCode() : 0);
+        result = 31 * result + (businessNameEn != null ? businessNameEn.hashCode() : 0);
+        result = 31 * result + (businessTagSecond != null ? businessTagSecond.hashCode() : 0);
         return result;
     }
+
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
@@ -307,7 +399,7 @@ public class DonBussiness {
         return donCustomerByCustomerIdInBusiness;
     }
 
-    public void setDonCustomerByCustomerIdInBusiness(DonCustomer donCustomerByCustomerId) {
-        this.donCustomerByCustomerIdInBusiness = donCustomerByCustomerId;
+    public void setDonCustomerByCustomerIdInBusiness(DonCustomer donCustomerByCustomerIdInBusiness) {
+        this.donCustomerByCustomerIdInBusiness = donCustomerByCustomerIdInBusiness;
     }
 }
