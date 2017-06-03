@@ -39,6 +39,7 @@ public class DonBussiness {
     private DonCustomer donCustomerByCustomerIdInBusiness;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BussinessID",unique = true)
     public Integer getBussinessId() {
         return bussinessId;
@@ -391,6 +392,7 @@ public class DonBussiness {
         result = 31 * result + (businessTagSecond != null ? businessTagSecond.hashCode() : 0);
         return result;
     }
+
 
 
     @ManyToOne

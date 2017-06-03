@@ -440,7 +440,11 @@
                          rowsPerPageTemplate="5,10,15" sortMode="multiple"  draggableColumns="true"  rowKey="#{customer.customerId}" >
 
                 <f:facet name="header">
-                    <p:commandButton style="float: left" value="Add" icon="ui-icon-plus" action="#{customerManager.addCustomer()}" type="submit" ajax="false"/>
+
+                    <p:commandButton  style="float: left" update=":form1:customerDlg" oncomplete="PF('dlg1').show();" icon="ui-icon-plus"  value="Add">
+                        <f:setPropertyActionListener value="#{null}" target="#{addCustomer.customer}" />
+                        <f:actionListener binding="#{addCustomer.initialize()}" />
+                    </p:commandButton>
 
                     <p:commandButton value="EN | FA" action="#{languageController.changeLanguage}" oncomplete="PF('customersTable').filter()"  style="float: left;" />
 
@@ -538,7 +542,9 @@
                         <!--<f:actionListener binding="#{addCustomer.initialize()}" />-->
                     </p:commandButton>
 
-                    <p:commandButton  icon="ui-icon-close" actionListener="#{customerManager.viewCustomer(customer)}" update="@form" title="Delete">
+                    <p:commandButton  icon="ui-icon-close"  update="growl" title="Delete">
+                        <f:setPropertyActionListener value="#{customer}" target="#{customerManager.toDeleteCustomer}" />
+                        <f:actionListener binding="#{customerManager.removeRow()}" />
                         <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
                     </p:commandButton>
 

@@ -150,6 +150,7 @@ public class DonPast {
         return result;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "CustomerIDFK", referencedColumnName = "CustomerID", nullable = false)
     public DonCustomer getDonCustomerByCustomerIdInPast() {

@@ -167,13 +167,23 @@ public class AddCustomer implements Serializable {
 
 
 
-            } else {
-                customer = new DonCustomerDTO();
-                bussiness = new DonBussinessDTO();
-                personal = new DonPersonalDTO();
-                pastEdu = new DonPastDTO();
-
             }
+        }
+        else
+        {
+            customer = new DonCustomerDTO();
+            bussiness = new DonBussinessDTO();
+            personal = new DonPersonalDTO();
+
+            listBusiness = new ArrayList<DonBussinessDTO>();
+            listPersonal = new ArrayList<DonPersonalDTO>();
+            listPast = new ArrayList<DonPastDTO>();
+            listIdaq = new ArrayList<DonProgramDTO>();
+
+            listBusiness.add(bussiness);
+            listPersonal.add(personal);
+
+
         }
     }
 
@@ -255,7 +265,6 @@ public class AddCustomer implements Serializable {
         p.setPastDeleted(1);
         deletedListPast.add(p);
         listPast.remove(p);
-
     }
 
     public void deleteIdaqRow(DonProgramDTO p) {
@@ -280,6 +289,15 @@ public class AddCustomer implements Serializable {
     }
 
     public String commitCustomer() {
+
+        //if customer.Id == null
+        //set customer ID
+        //
+
+        if(customer.getCustomerId() == null)
+        {
+                customerService.create(customer);
+        }
 
 
         if (gender.equalsIgnoreCase("Male")) {
@@ -342,21 +360,21 @@ public class AddCustomer implements Serializable {
 
         customerService.update(customer);
 
-        for (DonBussinessDTO p: listBusiness) {
-            donBussinessService.update(p);
-        }
-
-        for (DonPersonalDTO p: listPersonal) {
-            donPersonalService.update(p);
-        }
-
-        for (DonProgramDTO p: listIdaq) {
-            donProgramService.update(p);
-        }
-
-        for (DonPastDTO p: listPast) {
-            donPastService.update(p);
-        }
+//        for (DonBussinessDTO p: listBusiness) {
+//            donBussinessService.update(p);
+//        }
+//
+//        for (DonPersonalDTO p: listPersonal) {
+//            donPersonalService.update(p);
+//        }
+//
+//        for (DonProgramDTO p: listIdaq) {
+//            donProgramService.update(p);
+//        }
+//
+//        for (DonPastDTO p: listPast) {
+//            donPastService.update(p);
+//        }
 
 
 

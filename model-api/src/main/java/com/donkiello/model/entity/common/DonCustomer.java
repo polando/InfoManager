@@ -1,5 +1,7 @@
 package com.donkiello.model.entity.common;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +46,7 @@ public class DonCustomer {
 
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerID",unique = true)
     public Integer getCustomerId() {
         return customerId;
@@ -197,7 +199,7 @@ public class DonCustomer {
         return result;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInPast")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInPast" , cascade = CascadeType.ALL)
     public List<DonPast> getDonPastsByCustomerId() {
         return donPastsByCustomerId;
     }
@@ -206,7 +208,7 @@ public class DonCustomer {
         this.donPastsByCustomerId = donPastsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInProgram")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInProgram" , cascade = CascadeType.ALL)
     public List<DonProgram> getDonProgramsByCustomerId() {
         return donProgramsByCustomerId;
     }
@@ -215,7 +217,7 @@ public class DonCustomer {
         this.donProgramsByCustomerId = donProgramsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInPersonal")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInPersonal" , cascade = CascadeType.ALL)
     public List<DonPersonal> getDonPersonalsByCustomerId() {
         return donPersonalsByCustomerId;
     }
@@ -224,7 +226,7 @@ public class DonCustomer {
         this.donPersonalsByCustomerId = donPersonalsByCustomerId;
     }
 
-    @OneToMany(mappedBy = "donCustomerByCustomerIdInBusiness")
+    @OneToMany(mappedBy = "donCustomerByCustomerIdInBusiness" , cascade = CascadeType.ALL)
     public List<DonBussiness> getDonBusinessesByCustomerId() {
         return DonBusinessesByCustomerId;
     }

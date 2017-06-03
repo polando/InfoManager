@@ -54,8 +54,10 @@ public class DonCustomerService {
     }
 
     public DonCustomerDTO searchById(Object id) throws BusinessException {
-      //  return donCustomerDao.searchById(id);
-        return null;
+        DonCustomer donCustomer = donCustomerDao.searchById(id);
+        DonCustomerDTO donCustomerDTO = new DonCustomerDTO();
+        mapper.map(donCustomer , donCustomerDTO);
+        return donCustomerDTO;
     }
 
     public void update(DonCustomerDTO donCustomerDTO) throws BusinessException {

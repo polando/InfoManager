@@ -184,6 +184,7 @@ public class DonProgram {
         return result;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
     public DonCustomer getDonCustomerByCustomerIdInProgram() {

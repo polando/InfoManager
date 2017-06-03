@@ -28,6 +28,7 @@ public class CustomerManager implements Serializable {
     private DonUsers onlineUser;
     private DonCustomerService customerService;
     private String[] programms;
+    private DonCustomerDTO toDeleteCustomer;
 
     private DonCustomerDTO currentselectedDTO;
 
@@ -71,32 +72,31 @@ public class CustomerManager implements Serializable {
 
 
 
-    public String removeRow(DonCustomerDTO selectedCustomer) {
+    public String removeRow() {
         System.out.println("deleted");
         DonCustomerDTO selectedCustomer1 = null;
 
-        if (selectedCustomer != null) {
-            selectedCustomer1 = customerService.searchById(selectedCustomer.getCustomerId());
-            String temp = selectedCustomer.getCustomerNameEN();
+        if (toDeleteCustomer != null) {
+            selectedCustomer1 = customerService.searchById(toDeleteCustomer.getCustomerId());
+            String temp = toDeleteCustomer.getCustomerNameEN();
             
             //cascading remove
             if(selectedCustomer1.getDonPersonalsByCustomerId()!=null)
-                for( DonPersonalDTO p : selectedCustomer.getDonPersonalsByCustomerId())
+                for( DonPersonalDTO p : toDeleteCustomer.getDonPersonalsByCustomerId())
                     p.setPersonalDeleted(1);
             if(selectedCustomer1.getDonBusinessesByCustomerId()!=null)
-                for( DonBussinessDTO p : selectedCustomer.getDonBusinessesByCustomerId())
+                for( DonBussinessDTO p : toDeleteCustomer.getDonBusinessesByCustomerId())
                     p.setBusinessDeleted(1);
             if(selectedCustomer1.getDonPastsByCustomerId()!=null)
-                for( DonPastDTO p : selectedCustomer.getDonPastsByCustomerId())
+                for( DonPastDTO p : toDeleteCustomer.getDonPastsByCustomerId())
                     p.setPastDeleted(1);
             if(selectedCustomer1.getDonProgramsByCustomerId()!=null)
-                for( DonProgramDTO p : selectedCustomer.getDonProgramsByCustomerId())
+                for( DonProgramDTO p : toDeleteCustomer.getDonProgramsByCustomerId())
                     p.setProgramDeleted(1);
-            customerService.remove(selectedCustomer);
-            customerList.remove(selectedCustomer);
+            customerService.remove(toDeleteCustomer);
+            customerList.remove(toDeleteCustomer);
             
-            JSFUtils.addFacesInfoMessage(temp + " removed from customers!");
-        } else {
+           // JSFUtils.addFacesInfoMessage(temp + " removed from customers!");
         }
         return "";  
     }
@@ -187,5 +187,13 @@ public class CustomerManager implements Serializable {
 
     public void setCurrentselectedDTO(DonCustomerDTO currentselectedDTO) {
         this.currentselectedDTO = currentselectedDTO;
+    }
+
+    public DonCustomerDTO getToDeleteCustomer() {
+        return toDeleteCustomer;
+    }
+
+    public void setToDeleteCustomer(DonCustomerDTO toDeleteCustomer) {
+        this.toDeleteCustomer = toDeleteCustomer;
     }
 }

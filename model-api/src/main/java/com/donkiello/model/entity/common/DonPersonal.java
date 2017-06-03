@@ -49,6 +49,7 @@ public class DonPersonal {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PersonalID",unique = true)
     public Integer getPersonalId() {
         return personalId;
@@ -502,6 +503,7 @@ public class DonPersonal {
         result = 31 * result + (personalHomeAddressEn != null ? personalHomeAddressEn.hashCode() : 0);
         return result;
     }
+
 
 
 
