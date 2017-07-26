@@ -16,8 +16,10 @@ import org.primefaces.model.UploadedFile;
 import java.math.BigInteger;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -375,7 +377,6 @@ public class AddCustomer implements Serializable {
 //        for (DonPastDTO p: listPast) {
 //            donPastService.update(p);
 //        }
-
 
 
 

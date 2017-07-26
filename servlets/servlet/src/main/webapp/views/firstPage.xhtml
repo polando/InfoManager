@@ -17,7 +17,7 @@
 
 
         <h:form id="form1" >
-        <p:dialog header="Basic Dialog" widgetVar="dlg1" position="center top" modal="true" resizable="false" width="1200"  height="650" >
+        <p:dialog header="Customer Information" widgetVar="dlg1" position="center top" modal="true" resizable="false" width="1200"  height="650" >
             <p:outputPanel id="customerDlg" >
                 <f:event type="preRenderComponent" listener="#{login.checkSession}"/>
                 <p:tabView id="tview" effect="fade" effectDuration="fast">
@@ -427,8 +427,34 @@
         </p:dialog>
         </h:form>
 
+<p:messages autoUpdate="true"/>
+        <h:form id="formEmail" enctype="multipart/form-data">
+            <p:dialog header="Email" widgetVar="dlg2" position="center middle" modal="true" resizable="false"
+                      width="540" height="240">
+                <p:outputPanel id="emailDlg">
+                    <f:event type="preRenderComponent" listener="#{login.checkSession}"/>
+                    <p:panelGrid styleClass="ui-noborder" cellpadding="5" columns="2" >
 
-        <h:form id="form">
+                                <h:outputText value="From"/>
+                                <p:inputText value="#{MailCustomer.mailSender}" ajax="false"/>
+
+                                <h:outputText value="Subject"/>
+                                <p:inputText value="#{MailCustomer.mailSubject}" ajax="false" style="align-content: center"/>
+
+                                <h:outputText value="Email File"/>
+                                  <p:fileUpload fileUploadListener="#{MailCustomer.handleFileUpload}" value="#{MailCustomer.pfile}"  dragDropSupport="true"    mode="advanced" sizeLimit="1000000" allowTypes="/(\.|\/)(htm|html)$/" fileLimit="1" />
+
+                    </p:panelGrid>
+
+
+                            <p:commandButton value="Send" action="#{MailCustomer.sendSimple}" ajax="false" style="margin-left: auto; margin-right: auto; display: block;"/>
+
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+
+        <h:form id="form" >
 
             <f:event type="preRenderComponent" listener="#{login.checkSession}"/>
             <f:event type="preRenderComponent" listener="#{customerManager.init()}"/>
@@ -447,6 +473,9 @@
                     </p:commandButton>
 
                     <p:commandButton value="EN | FA" action="#{languageController.changeLanguage}" oncomplete="PF('customersTable').filter()"  style="float: left;" />
+                    <p:commandButton value="Email" update=":formEmail:emailDlg" oncomplete="PF('dlg2').show();" style="float: right;">
+                        <f:setPropertyActionListener target="#{MailCustomer.recipients}" value="#{customerManager.filteredCustomers}" />
+                            </p:commandButton>
 
 
                     <p:commandButton id="toggler" type="link" value="Columns" style="float:right" icon="ui-icon-calculator" />
@@ -542,10 +571,10 @@
                         <!--<f:actionListener binding="#{addCustomer.initialize()}" />-->
                     </p:commandButton>
 
-                    <p:commandButton  icon="ui-icon-close"  update="growl" title="Delete">
-                        <f:setPropertyActionListener value="#{customer}" target="#{customerManager.toDeleteCustomer}" />
+                    <p:commandButton  icon="ui-icon-close"  update="form" title="Delete">
+                        <f:setPropertyActionListener value="#{customer}" target="#{customerManager.toDeleteCustomer}"/>
                         <f:actionListener binding="#{customerManager.removeRow()}" />
-                        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
                     </p:commandButton>
 
                     
@@ -566,6 +595,9 @@
         </h:form>
 
 
+        <h:form id="form3" enctype="multipart/form-data">
+            <!--<p:growl id="messages" showDetail="true" />-->
+        </h:form>
 
 
     </h:body>

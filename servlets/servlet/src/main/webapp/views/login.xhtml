@@ -23,17 +23,13 @@
                 <p:outputLabel value="Please Login to use the system" style="text-align: center; display: block;"/>
                 <br/>
                 <p:panel header="Login" id="loginPanel" style="width: 30%; margin-left: auto; margin-right: auto;" >
-                    <h:panelGrid cellpadding="5" columns="3">
+                    <h:panelGrid cellpadding="5" columns="2" id="matchGrid">
 
                         <h:outputLabel for="name" value="User Name" />
-                        <p:inputText id="name" value="#{login.userName}" required="true" requiredMessage="Please Enter Username!"/>
+                        <p:inputText id="name" value="#{login.userName}" required="true" requiredMessage="Please Enter Username!" style="right: auto"/>
 
-                    </h:panelGrid>
-
-
-                    <h:panelGrid columns="2" cellspacing="5" id="matchGrid" cellpadding="5">                   
                         <h:outputLabel for="pwd" value="Password" />
-                        <p:password id="pwd" value="#{login.password}" label="Password 1" required="true" requiredMessage="Trust us please enter your password" />
+                        <p:password id="pwd" value="#{login.password}" label="Password 1" required="true" requiredMessage="Trust us please enter your password"  style="right: auto"/>
                     </h:panelGrid>
 
                     <p:commandButton  id="loginButton" value="Login" action="#{login.authenticate()}" update="growl" style="margin-left: auto; margin-right: auto; display: block;"/>

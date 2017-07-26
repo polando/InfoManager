@@ -75,7 +75,7 @@ public class DonUsersService {
     public String checkLogin(String username, String password) throws BusinessException{
         return donUsersService.checkLogin(username, password);
     }
-    public DonUsers getOnlineUser(String name){
-        return donUsersService.getOnlineUser(name);
+    public DonUsers getOnlineUser(String username){
+        return donUsersService.getOnlineUser(username);
     }
 }

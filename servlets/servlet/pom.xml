@@ -125,6 +125,8 @@
         <artifactId>commons-fileupload</artifactId>
         <version>1.2.1</version>
     </dependency>
+
+
     <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-io</artifactId>
@@ -170,7 +172,69 @@
 
 
 
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.core</groupId>-->
+            <!--<artifactId>jersey-client</artifactId>-->
+            <!--<version>2.22.4</version>-->
+        <!--</dependency>-->
 
 
-</dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.core</groupId>-->
+            <!--<artifactId>jersey-client</artifactId>-->
+            <!--<version>2.22.3</version>-->
+        <!--</dependency>-->
+
+
+
+        <!--<dependency>-->
+        <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+        <!--<artifactId>jersey-container-servlet</artifactId>-->
+        <!--<version>2.22.1</version>-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey</groupId>-->
+            <!--<artifactId>jersey-client</artifactId>-->
+            <!--<version>1.18.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey</groupId>-->
+            <!--<artifactId>jersey-core</artifactId>-->
+            <!--<version>1.18.1</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey.contribs</groupId>-->
+            <!--<artifactId>jersey-multipart</artifactId>-->
+            <!--<version>1.18.1</version>-->
+        <!--</dependency>-->
+
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.jhades</groupId>-->
+            <!--<artifactId>jhades</artifactId>-->
+            <!--<version>1.0.4</version>-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey</groupId>-->
+            <!--<artifactId>jersey-bundle</artifactId>-->
+            <!--<version>1.19.1</version>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>com.sparkpost</groupId>
+            <artifactId>sparkpost-lib</artifactId>
+            <version>0.18</version>
+        </dependency>
+
+    </dependencies>
+
+
 </project>

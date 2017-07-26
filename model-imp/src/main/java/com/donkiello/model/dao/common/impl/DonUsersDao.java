@@ -54,16 +54,16 @@ public class DonUsersDao extends AbstractDao {
         if (users==null || users.size() < 1) {
             return null;
         } else if (users.size() == 1) {
-            return users.get(0).getUsersName();
+            return users.get(0).getUsersUsername();
         } else {
             return null;
         }
     }
     
-    public DonUsers getOnlineUser(String name){
+    public DonUsers getOnlineUser(String username){
         
         Query query = getEntityManager().createQuery("SELECT c FROM DonUsers c WHERE c.usersDeleted = 0 AND c.usersUsername=:un");
-        query.setParameter("un", name);
+        query.setParameter("un", username);
         DonUsers users = (DonUsers) query.getSingleResult();
         return users;
     }
